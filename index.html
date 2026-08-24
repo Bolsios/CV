@@ -1,0 +1,528 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Josseph Steven Bolsios Cortés</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Paleta Premium: Naranja Vibrante, Cyan y tonos oscuros profundos */
+      --acc: #ff6a00; 
+      --acc-alt: #00c6ff;
+      --acc-glow: rgba(255, 106, 0, 0.25);
+      --acc-success: #10b981;
+      --bg: #090b10;
+      --bg2: #12161f;
+      --border: rgba(255, 255, 255, 0.06);
+      --text: #f0f2f5;
+      --text-muted: rgba(240, 242, 245, 0.5);
+      --nav-h: 72px;
+      --max-w: 1140px;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* --- CAPAS DE FONDO TECNOLÓGICO --- */
+    .bg-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .bg-overlay { 
+      position: absolute; inset: 0; 
+      background: radial-gradient(circle at 15% 15%, rgba(0, 198, 255, 0.07), transparent 45%),
+                  radial-gradient(circle at 85% 25%, rgba(255, 106, 0, 0.07), transparent 45%);
+    }
+    .bg-grid { 
+      position: absolute; inset: 0; 
+      background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), 
+                        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); 
+      background-size: 50px 50px; 
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- NAVBAR --- */
+    header.navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h); background: rgba(9, 11, 16, 0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      height: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand .logo {
+      font-family: 'Barlow Condensed'; font-weight: 800; font-size: 18px;
+      background: linear-gradient(135deg, var(--acc), var(--acc-alt));
+      color: #090b10; width: 38px; height: 38px; display: flex; 
+      align-items: center; justify-content: center; border-radius: 4px;
+      box-shadow: 0 0 12px var(--acc-glow);
+    }
+    .brand-text-main { font-family: 'Barlow Condensed'; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; font-size: 16px; line-height: 1.1; }
+    .brand-text-sub { font-size: 11px; color: var(--text-muted); }
+
+    nav.nav-links { display: flex; gap: 8px; }
+    nav.nav-links a {
+      color: var(--text-muted); text-decoration: none; font-size: 12px; text-transform: uppercase;
+      letter-spacing: 1px; font-weight: 500; padding: 8px 16px; transition: .3s; border-radius: 4px;
+    }
+    nav.nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+    /* --- HERO --- */
+    .hero {
+      position: relative; z-index: 1; padding-top: calc(var(--nav-h) + 40px); margin-bottom: 30px;
+    }
+    .hero-bg-wrapper {
+      position: relative; border: 1px solid var(--border); overflow: hidden; border-radius: 4px;
+      background: #11141c;
+    }
+    .hero .bg {
+      position: absolute; inset: 0; opacity: 0.12; filter: blur(40px); transform: scale(1.1);
+    }
+    .hero-content {
+      position: relative; z-index: 2; padding: 45px 35px;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    
+    .hero-text h1 {
+      font-family: 'Barlow Condensed'; font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800; text-transform: uppercase; letter-spacing: 1px; line-height: 1; margin-bottom: 12px;
+    }
+    .hero-text p { color: var(--text-muted); font-size: 15px; max-width: 620px; margin-bottom: 25px; }
+
+    /* Botones */
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed'; font-weight: 600; font-size: 14px;
+      text-transform: uppercase; letter-spacing: 1px; padding: 10px 22px;
+      border: 1px solid transparent; border-radius: 4px; cursor: pointer;
+      text-decoration: none; transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+    .btn-primary { background: var(--acc); color: #000; }
+    .btn-primary:hover { background: #ff7b1c; transform: translateY(-2px); }
+    .btn-ghost { background: rgba(255,255,255,0.03); border-color: var(--border); color: var(--text); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.2); }
+
+    /* Tarjeta Flotante Derecha */
+    .hero-card {
+      background: rgba(18, 22, 31, 0.8); border: 1px solid rgba(255,255,255,0.05);
+      padding: 24px; border-radius: 4px; display: flex; align-items: center; gap: 20px;
+      backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .hero-avatar { width: 72px; height: 72px; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); background: #222; flex-shrink: 0; }
+    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-card .muted { font-size: 13px; color: var(--acc-alt); font-weight: 500; }
+    
+    .badge {
+      font-family: 'Barlow Condensed'; font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; padding: 2px 10px; background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border); color: var(--text-muted); border-radius: 2px;
+    }
+
+    /* --- ESTRUCTURA GRID PRINCIPAL --- */
+    main.container { position: relative; z-index: 1; padding-bottom: 80px; }
+    .cards-grid {
+      display: grid; grid-template-columns: 3.5fr 6.5fr; gap: 24px;
+    }
+
+    /* Estructura Base de Tarjetas */
+    .card {
+      background: var(--bg2); border: 1px solid var(--border); padding: 26px;
+      border-radius: 4px; height: fit-content; transition: border-color 0.3s;
+    }
+    .card:hover { border-color: rgba(255,255,255,0.12); }
+    
+    .card h3 {
+      font-family: 'Barlow Condensed'; font-size: 18px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.5px; color: #fff;
+      margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .muted-small { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: block; }
+    .muted { color: var(--text-muted); font-size: 14px; }
+
+    /* --- COLUMNA IZQUIERDA: PERFIL --- */
+    .profile { display: flex; flex-direction: column; gap: 16px; }
+    .profile .photo { width: 100%; height: 160px; overflow: hidden; border-radius: 4px; border: 1px solid var(--border); }
+    .profile .photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.2); }
+    
+    .profile .meta .name { font-family: 'Barlow Condensed'; font-size: 22px; font-weight: 800; text-transform: uppercase; }
+    .profile .meta .role { font-size: 14px; color: var(--acc); font-weight: 500; }
+    .profile .meta .muted { font-size: 13px; }
+
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+    .small-card { padding: 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 4px; }
+    .small-card .value { font-family: 'Barlow Condensed'; font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; }
+
+    /* --- COLUMNA CENTRAL: ESTUDIOS --- */
+    .list-item {
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.6s ease both;
+    }
+    .list-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .list-item:first-of-type { padding-top: 4px; }
+    .list-item h4 { font-size: 15px; font-weight: 700; color: #fff; }
+    .list-item .institution { font-size: 13px; color: var(--acc-alt); margin: 2px 0 6px; font-weight: 500; }
+    .list-item small { display: block; font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+    /* --- CHIPS DE COMPETENCIAS --- */
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .chip {
+      font-size: 12px; padding: 5px 12px; background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border); color: var(--text); border-radius: 2px;
+      transition: .2s;
+    }
+    .chip:hover { border-color: var(--acc-alt); background: rgba(0, 198, 255, 0.05); }
+
+    /* --- VENTANA EMERGENTE (MODALS) --- */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(5, 7, 10, 0.4);
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      z-index: 1000; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+      padding: 20px;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .modal-card {
+      background: #11141c; border: 1px solid rgba(255,255,255,0.1);
+      width: 100%; max-width: 420px; border-radius: 6px; padding: 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6); position: relative;
+      transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+    .modal-overlay.active .modal-card { transform: translateY(0); }
+
+    .modal-card h3 {
+      font-family: 'Barlow Condensed'; font-size: 24px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.5px; color: #fff; margin-bottom: 20px;
+    }
+    .modal-close {
+      position: absolute; top: 18px; right: 20px; background: none; border: none;
+      color: var(--text-muted); font-size: 24px; cursor: pointer; transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--acc); }
+
+    .contact-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding: 12px 0; }
+    .contact-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-row .value { font-size: 14px; font-weight: 600; color: #fff; font-family: 'Barlow', sans-serif; }
+
+    /* --- BANNER DE BIENVENIDA ESPECÍFICO --- */
+    .welcome-overlay {
+      position: fixed; inset: 0; background: rgba(5, 7, 10, 0.5);
+      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+      z-index: 2000; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
+      padding: 20px;
+    }
+    .welcome-overlay.active { opacity: 1; pointer-events: all; }
+    
+    .welcome-card {
+      background: linear-gradient(145deg, #121622, #090b10);
+      border: 1px solid rgba(255, 106, 0, 0.2);
+      width: 100%; max-width: 500px; border-radius: 6px; padding: 40px 35px;
+      box-shadow: 0 0 30px rgba(255, 106, 0, 0.1), 0 25px 60px rgba(0,0,0,0.8);
+      position: relative; text-align: center;
+      transform: scale(0.9); transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+    .welcome-overlay.active .welcome-card { transform: scale(1); }
+    
+    .welcome-card h2 {
+      font-family: 'Barlow Condensed'; font-size: 32px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--acc), var(--acc-alt));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 14px;
+    }
+    .welcome-card p {
+      color: var(--text); font-size: 15px; line-height: 1.6; margin-bottom: 28px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      border-top: 1px solid var(--border); padding: 24px 0; background: #07090d;
+      position: relative; z-index: 1; font-size: 13px;
+    }
+    .foot-row { display: flex; justify-content: space-between; align-items: center; }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVO --- */
+    @media (max-width: 960px) {
+      .cards-grid { grid-template-columns: 1fr; gap: 24px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .foot-row { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+  <link rel="stylesheet" href="theme-glassmorphism.css">
+</head>
+<body>
+
+  <div class="welcome-overlay active" id="welcomeBanner">
+    <div class="welcome-card">
+      <button class="modal-close" id="closeWelcomeBtn">&times;</button>
+      <h2>¡Bienvenido a mi CV Virtual!</h2>
+    <p>Te invito cordialmente a explorar la sección de <strong>Portafolio</strong>, donde podrás visualizar algunos de los proyectos, maquetas, ideas y casos técnicos que he desarrollado a lo largo de mi trayectoria profesional.</p> 
+      <div style="display: flex; gap: 12px; justify-content: center;">
+         <!--  <a href="portfolio.html" class="btn btn-primary" style="box-shadow: 0 0 15px var(--acc-glow);">Ir al Portafolio</a>-->
+        <button class="btn btn-ghost" id="exploreCvBtn">Explorar CV</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-layer">
+    <div class="bg-overlay"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo">CV</div>
+        <div>
+          <div class="brand-text-main">Mi Curriculum Vitae</div>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Navegación rápida">
+        <a href="#info">Perfil</a>
+        <a href="exp.html">Experiencia</a>
+        <a href="portfolio.html">Portafolio</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero container" aria-labelledby="hero-title">
+    <div class="hero-bg-wrapper">
+      <div class="bg" style="background: linear-gradient(135deg, #000000 20%, #371211 40%, #7D1416 60%, #C0191F 70%, #E51E1B 85%, #000000 100%);"></div>
+      
+      <div class="hero-content">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <h1 id="hero-title">Resumen de perfil</h1>
+            <p>Profesional técnico con diferentes habilidades tecnológicas adquiridas por la demanda del momento, caracterizado por ser bastante flexible a la situación y un pensamiento creativo que se adapta según el requerimiento.</p>
+
+            <div class="hero-cta" role="toolbar" aria-label="Acciones rápidas">
+              <a href="Certificados.html" class="btn btn-primary">Ver certificados</a>
+              <a href="portfolio.html" class="btn btn-ghost">Ver portafolio</a>
+              <a href="exp.html" class="btn btn-ghost">Experiencia Laboral</a>
+              <button class="btn" style="background:var(--acc-success); color:#fff" id="openContactBtn">Contacto</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="hero-card">
+              <div class="hero-avatar">
+                <img src="Media/Perfil.jpg" alt="Avatar Josseph Bolsios">
+              </div>
+              <div>
+                <div style="font-weight:700; font-size:16px; color:#fff">Josseph Bolsios Cortés</div>
+                <div class="muted">Técnico en Soporte</div>
+                <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap">
+                  <span class="badge">Educación</span>
+                  <span class="badge" style="background: linear-gradient(180deg, var(--acc-alt), rgba(0,198,255,0.2)); color: #fff; border-color: var(--acc-alt);">Certificaciones</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="cards-grid" aria-label="Contenido principal">
+
+      <aside style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="card" id="info" aria-labelledby="perfil-title">
+          <h3 id="perfil-title">Información General</h3>
+          <div class="profile">
+            
+            <div class="meta">
+              <div class="name">Josseph Bolsios Cortés</div>
+              <div class="role">Técnico en Soporte</div>
+              <div class="muted">Oreamuno de Cartago</div>
+            </div>
+
+            <div class="stats">
+              <div class="small-card">
+                <div class="muted-small">Freelancer</div>
+                <div class="value">5 años</div>
+              </div>
+              <div class="small-card">
+                <div class="muted-small">Laboral</div>
+                <div class="value">1 año y 6 meses</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="muted-small">Resumen</div>
+              <p class="muted">Profesional con experiencia en electrónica y soporte en tecnologías de la información. Capacidad para diseñar recursos, herramientas y materiales de apoyo. El primer paso del éxito es una correcta información de los procesos, para buscar la mejor implementación soluciones</p>
+            </div>
+
+            <div style="margin-top:4px">
+              <a href="https://drive.google.com/file/d/1uq_bCt8xgrJSIinNFeKNj0oTx0J7ud4M/view?usp=sharing" target="_blank" style="text-decoration:none;">
+                <button class="btn btn-primary" style="width:100%">Descargar CV</button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="otras" aria-labelledby="otras-title">
+          <h3 id="otras-title">Competencias</h3>
+          <div class="muted-small">Habilidades complementarias</div>
+
+          <div class="chips">
+            <div class="chip">Liderazgo</div>
+            <div class="chip">Diseño 3D</div>
+            <div class="chip">Impresión 3D</div>
+            <div class="chip">Desarrollo de herramientas</div>
+            <div class="chip">Planificación</div>
+          </div>
+
+          <div style="margin-top:20px">
+            <div class="muted-small">Idiomas</div>
+            <div class="chips">
+              <div class="chip" style="border-color: rgba(255,255,255,0.1)">Español — Nativo</div>
+              <div class="chip" style="border-color: rgba(255,255,255,0.1)">Inglés — Intermedio</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section aria-live="polite">
+        <div class="card" id="estudios" aria-labelledby="estudios-title">
+          <h3 id="estudios-title">Estudios y certificaciones</h3>
+          <div class="muted-small">Títulos académicos, cursos y certificaciones relevantes</div>
+
+          <div>
+            <div class="list-item">
+              <h4>Técnico en Redes y Telecomunicaciones</h4>
+              <div class="institution">Universidad Juan Pablo II • 2019 - 2020</div>
+              <small>• Cisco CCNAv7 2020.<br>• Fundamentos de las telecomunicaciones empresariales.<br>• Fundamentos de la Ciberseguridad.<br>• Fundamentos de IoT y IT.</small>
+            </div>
+
+            <div class="list-item">
+              <h4>Técnico en Electrónica en Telecomunicaciones</h4>
+              <div class="institution">COVAO Nocturno • 2022 - 2024</div>
+              <small>Fundamentos de electrónica y su implementación en el área de telecomunicaciones.</small>
+            </div>
+
+            <div class="list-item">
+              <h4>Certificado: UNP</h4>
+              <div class="institution">SEKUNET S.A • 2025</div>
+              <small>Fundamentos de Unifi Site Manager y sistemas Ubiquiti.</small>
+            </div>
+
+            <div class="list-item">
+              <h4>Certificado: HSCA Hikvision</h4>
+              <div class="institution">SEKUNET S.A • 2025</div>
+              <small>Fundamentos de sistemas CCTV &amp; Intercom Hikvision.</small>
+            </div>
+
+            <div class="list-item">
+              <h4>Certificado ZKTECO: Control de Acceso, Tiempo y Asistencia</h4>
+              <div class="institution">SEKUNET S.A • 2025</div>
+              <small>Fundamentos de sistemas de la marca y su implementación.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeContactBtn">&times;</button>
+      <h3>Contacto</h3>
+      <div class="muted-small" style="margin-bottom: 15px;">Canales directos de comunicación</div>
+      <div>
+        <div class="contact-row">
+          <span class="muted-small" style="margin-bottom:0">Correo</span>
+          <span class="value">bolsios2007@gmail.com</span>
+        </div>
+        <div class="contact-row">
+          <span class="muted-small" style="margin-bottom:0">Celular</span>
+          <span class="value">+506 7158-4923</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="foot-row">
+        <p>© <strong>MiCV</strong> — Panel Informativo Profesional</p>
+        <p class="muted-small">Diseñado con IA y personalizado con habilidad humana</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  
+  <script>
+    // Control de Modal de Contacto
+    const openBtn = document.getElementById('openContactBtn');
+    const closeBtn = document.getElementById('closeContactBtn');
+    const modal = document.getElementById('contactModal');
+
+    openBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Control de Banner de Bienvenida (Parche solicitado)
+    const welcomeBanner = document.getElementById('welcomeBanner');
+    const closeWelcomeBtn = document.getElementById('closeWelcomeBtn');
+    const exploreCvBtn = document.getElementById('exploreCvBtn');
+
+    function closeWelcomeBanner() {
+      welcomeBanner.classList.remove('active');
+    }
+
+    closeWelcomeBtn.addEventListener('click', closeWelcomeBanner);
+    exploreCvBtn.addEventListener('click', closeWelcomeBanner);
+    
+    welcomeBanner.addEventListener('click', (e) => {
+      if (e.target === welcomeBanner) {
+        closeWelcomeBanner();
+      }
+    });
+
+    // Stagger para los estudios
+    document.querySelectorAll('.list-item').forEach((el, i) => {
+      el.style.animationDelay = (i * 0.08) + 's';
+    });
+  </script>
+</body>
+</html>

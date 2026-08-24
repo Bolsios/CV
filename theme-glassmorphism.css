@@ -1,0 +1,703 @@
+﻿/* ============================================================
+   CV - JOSSEPH BOLSIOS - TEMA CORPORATIVO AZUL/BLANCO
+   ============================================================ */
+
+:root {
+  --acc: #0077B5;
+  --acc-alt: #00A0DC;
+  --acc-glow: rgba(0, 160, 220, 0.25);
+  --acc-success: #27ae60;
+  --bg: #ffffff;
+  --bg2: #ffffff;
+  --border: #e6e6e6;
+  --text: #2c3e50;
+  --text-muted: #6c7a89;
+}
+
+/* BASE */
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: 'Barlow', 'Segoe UI', sans-serif !important;
+}
+.bg-layer, .bg-overlay, .bg-grid, .welcome-overlay { display: none !important; }
+
+/* ======================== NAVBAR ======================== */
+header.navbar {
+  background: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+}
+.brand .logo {
+  background: linear-gradient(135deg, var(--acc-alt), var(--acc)) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+.brand-text-main { color: var(--acc) !important; font-weight: 800 !important; }
+nav.nav-links a {
+  color: var(--text-muted) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 12px !important;
+}
+nav.nav-links a:hover, nav.nav-links a.active {
+  color: var(--acc) !important;
+  background: transparent !important;
+  border-bottom: 2px solid var(--acc) !important;
+  border-radius: 0 !important;
+}
+
+/* ======================== HERO ======================== */
+.hero-bg-wrapper {
+  background: linear-gradient(135deg, var(--acc-alt) 0%, var(--acc) 100%) !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border-radius: 0 !important;
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  overflow: hidden !important;
+  padding: 50px 0 !important;
+}
+.hero-bg-wrapper::before, .hero-bg-wrapper::after {
+  content: '' !important;
+  position: absolute !important;
+  border-radius: 50% !important;
+  background: rgba(255,255,255,0.06) !important;
+  pointer-events: none !important;
+}
+.hero-bg-wrapper::before {
+  width: 500px !important; height: 500px !important;
+  top: -150px !important; left: -100px !important;
+  animation: floatCircle 15s ease-in-out infinite !important;
+}
+.hero-bg-wrapper::after {
+  width: 400px !important; height: 400px !important;
+  bottom: -150px !important; right: 5% !important;
+  animation: floatCircle 18s ease-in-out infinite reverse !important;
+}
+.hero .bg { display: none !important; }
+
+/* Textos blancos SOLO en el hero */
+.hero-bg-wrapper,
+.hero-bg-wrapper h1,
+.hero-bg-wrapper p,
+.hero-bg-wrapper .hero-text h1,
+.hero-bg-wrapper .hero-text p,
+.hero-bg-wrapper .hero-card,
+.hero-bg-wrapper .hero-card div,
+.hero-bg-wrapper .hero-card span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.hero-text h1 {
+  font-weight: 300 !important;
+  font-size: 40px !important;
+  text-transform: uppercase !important;
+  animation: fadeLeftIn 0.8s cubic-bezier(0.2,0.8,0.2,1) both !important;
+}
+.hero-text p {
+  color: rgba(255,255,255,0.9) !important;
+  -webkit-text-fill-color: rgba(255,255,255,0.9) !important;
+  font-style: italic !important;
+  animation: fadeLeftIn 0.8s cubic-bezier(0.2,0.8,0.2,1) 0.15s both !important;
+}
+.hero-cta .btn { animation: smoothFadeInUp 0.6s cubic-bezier(0.2,0.8,0.2,1) both !important; }
+.hero-cta .btn:nth-child(1) { animation-delay: 0.4s !important; }
+.hero-cta .btn:nth-child(2) { animation-delay: 0.5s !important; }
+.hero-cta .btn:nth-child(3) { animation-delay: 0.6s !important; }
+.hero-cta .btn:nth-child(4) { animation-delay: 0.7s !important; }
+.hero-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  animation: fadeRightIn 0.8s cubic-bezier(0.2,0.8,0.2,1) 0.3s both !important;
+}
+.hero-avatar img {
+  border-radius: 50% !important;
+  border: 4px solid rgba(255,255,255,0.3) !important;
+  transition: transform 0.5s ease !important;
+}
+.hero-card:hover .hero-avatar img { transform: scale(1.08) rotate(2deg) !important; }
+
+/* ======================== CONTENIDO ======================== */
+html:not(.is-iframe) main.container { padding-top: 40px !important; }
+h1, h2, h3, h4, h5, h6 { color: var(--text) !important; }
+.card, .small-card { background: transparent !important; border: none !important; box-shadow: none !important; }
+.card h3, .modal-card h3 {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+  background: none !important;
+  border-bottom: 2px solid #eef0f2 !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 20px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+/* ======================== LINEA DE TIEMPO ======================== */
+.list-item {
+  position: relative !important;
+  border: none !important;
+  border-left: 2px solid #d0dce8 !important;
+  padding: 0 0 28px 24px !important;
+  margin-bottom: 0 !important;
+  background: transparent !important;
+  animation: smoothFadeInUp 0.5s ease both !important;
+}
+.list-item:last-child { border-left-color: transparent !important; padding-bottom: 0 !important; }
+.list-item::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -7px !important; top: 4px !important;
+  width: 12px !important; height: 12px !important;
+  border-radius: 50% !important;
+  background: var(--acc) !important;
+  border: 2px solid #fff !important;
+  box-shadow: 0 0 0 3px rgba(0,119,181,0.15) !important;
+}
+.role-title, .list-item h4 {
+  font-size: 17px !important; color: var(--text) !important;
+  font-weight: 700 !important; margin-bottom: 6px !important; display: block !important;
+}
+.company, .list-item .institution {
+  display: inline-block !important; font-size: 12px !important; font-weight: 600 !important;
+  color: var(--acc-alt) !important; background: #eef7fc !important;
+  border: 1px solid #c5e4f3 !important; padding: 3px 10px !important;
+  border-radius: 4px !important; margin-bottom: 10px !important;
+  text-transform: uppercase !important; letter-spacing: 0.3px !important;
+}
+.list-item p, .list-item small, .muted-small {
+  font-size: 14px !important; line-height: 1.7 !important;
+  color: var(--text-muted) !important; display: block !important;
+}
+
+/* ======================== CHIPS / BADGES ======================== */
+.chip {
+  background: #f2f5f8 !important; color: var(--text) !important;
+  border: 1px solid #dde3ea !important; border-radius: 4px !important;
+  font-size: 13px !important; padding: 4px 12px !important;
+  transition: all 0.2s ease !important;
+}
+.chip:hover { background: var(--acc-alt) !important; color: #fff !important; border-color: var(--acc-alt) !important; }
+.badge {
+  background: rgba(255,255,255,0.2) !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  color: #fff !important; border-radius: 3px !important;
+}
+
+/* ======================== BOTONES ======================== */
+.btn {
+  border-radius: 4px !important; text-transform: uppercase !important;
+  font-weight: 600 !important; font-size: 12px !important;
+  letter-spacing: 0.5px !important; cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+.btn-primary { background: var(--acc) !important; color: #fff !important; border: none !important; }
+.btn-primary:hover { background: var(--acc-alt) !important; transform: translateY(-2px) !important; }
+.btn-ghost { background: transparent !important; border: 1px solid rgba(255,255,255,0.5) !important; color: #fff !important; }
+.btn-ghost:hover { background: #fff !important; color: var(--acc) !important; }
+
+/* ======================== EXPERIENCIA ======================== */
+.exp-grid {
+  display: grid !important; grid-template-columns: 1fr !important;
+  gap: 40px !important; align-items: start !important;
+}
+@media (min-width: 900px) { .exp-grid { grid-template-columns: 3fr 2fr !important; } }
+.exp-content { padding-left: 8% !important; padding-right: 4% !important; }
+.exp-media { display: block !important; height: 100% !important; }
+.exp-media img {
+  width: 100% !important; height: 100% !important; min-height: 480px !important;
+  max-width: none !important; object-fit: cover !important;
+  border-radius: 400px 0 0 400px !important; border: none !important;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.05) !important;
+  display: block !important; aspect-ratio: auto !important;
+  transition: transform 0.4s ease !important;
+}
+.exp-media img:hover { transform: translateX(-5px) !important; }
+
+/* ======================== PORTAFOLIO ======================== */
+.portfolio-item {
+  border: 1px solid var(--border) !important; border-radius: 8px !important;
+  overflow: hidden !important; background: #fff !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  animation: smoothFadeInUp 0.5s ease both !important;
+}
+.portfolio-item:hover { transform: translateY(-4px) !important; box-shadow: 0 12px 30px rgba(0,0,0,0.08) !important; }
+.portfolio-info { padding: 20px 16px !important; text-align: center !important; }
+.portfolio-title a {
+  font-size: 16px !important; font-weight: 700 !important;
+  color: var(--acc) !important; text-decoration: none !important;
+}
+.portfolio-title a:hover { color: var(--acc-alt) !important; }
+.portfolio-desc { font-size: 13px !important; color: var(--text-muted) !important; line-height: 1.5 !important; margin-top: 6px !important; }
+
+/* ======================== SLIDER PRESENTACION ======================== */
+.description {
+  background: transparent !important; border: none !important;
+  box-shadow: none !important; padding: 0 !important; overflow: hidden !important;
+}
+.pres-slider {
+  width: 100% !important; display: flex !important; flex-direction: column !important;
+}
+.pres-track {
+  display: flex !important; width: 100% !important; overflow: hidden !important;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.pres-slide {
+  flex: 0 0 100% !important; width: 100% !important;
+  padding: 20px 10px 10px !important; box-sizing: border-box !important;
+  position: relative !important; min-height: 200px !important;
+}
+.slide-num {
+  display: block !important; font-size: 11px !important; font-weight: 600 !important;
+  color: var(--acc-alt) !important; text-transform: uppercase !important;
+  letter-spacing: 1px !important; margin-bottom: 14px !important;
+  border-bottom: 1px solid #eef0f2 !important; padding-bottom: 8px !important;
+}
+.description h2 {
+  color: var(--acc) !important; -webkit-text-fill-color: var(--acc) !important;
+  font-size: 24px !important; font-weight: 800 !important;
+  margin-bottom: 14px !important; text-transform: uppercase !important;
+}
+.description h3 {
+  color: var(--text) !important; -webkit-text-fill-color: var(--text) !important;
+  font-size: 17px !important; font-weight: 700 !important;
+  margin-bottom: 10px !important; text-transform: none !important;
+}
+.description p {
+  color: var(--text-muted) !important; font-size: 14px !important;
+  line-height: 1.8 !important; margin-bottom: 10px !important;
+}
+/* Controles de la presentacion */
+.pres-controls {
+  display: flex !important; align-items: center !important;
+  justify-content: center !important; gap: 16px !important;
+  padding: 14px 0 4px !important; border-top: 1px solid #eef0f2 !important;
+  margin-top: 10px !important;
+}
+.pres-btn {
+  width: 36px !important; height: 36px !important; border-radius: 50% !important;
+  border: 2px solid var(--acc) !important; background: transparent !important;
+  color: var(--acc) !important; font-size: 16px !important;
+  cursor: pointer !important; display: flex !important;
+  align-items: center !important; justify-content: center !important;
+  transition: all 0.2s ease !important; flex-shrink: 0 !important;
+}
+.pres-btn:hover { background: var(--acc) !important; color: #fff !important; }
+.pres-dots { display: flex !important; gap: 8px !important; align-items: center !important; }
+.pres-dot {
+  width: 9px !important; height: 9px !important; border-radius: 50% !important;
+  background: #d0dce8 !important; border: none !important;
+  cursor: pointer !important; transition: all 0.2s ease !important; padding: 0 !important;
+}
+.pres-dot.active {
+  background: var(--acc) !important; transform: scale(1.4) !important;
+  box-shadow: 0 0 0 2px rgba(0,119,181,0.2) !important;
+}
+/* Tags */
+.tech-tag-container { display: flex !important; gap: 8px !important; flex-wrap: wrap !important; margin-top: 14px !important; }
+.tech-tag {
+  font-size: 12px !important; font-weight: 600 !important; padding: 4px 12px !important;
+  background: #eef7fc !important; border: 1px solid var(--acc-alt) !important;
+  color: var(--acc) !important; border-radius: 4px !important;
+}
+
+/* ======================== MODAL GLOBAL (mas grande) ======================== */
+.modal-overlay {
+  position: fixed !important; inset: 0 !important;
+  background: rgba(30,40,60,0.55) !important;
+  display: none !important; align-items: center !important;
+  justify-content: center !important; z-index: 3000 !important;
+  backdrop-filter: blur(5px) !important;
+}
+.modal-overlay.active { display: flex !important; }
+.modal-card {
+  background: #fff !important; border-radius: 12px !important;
+  padding: 20px !important; position: relative !important;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.25) !important;
+  max-width: 1100px !important;
+  width: 95vw !important;
+  height: 88vh !important;
+  max-height: 860px !important;
+  display: flex !important; flex-direction: column !important;
+}
+.modal-close {
+  position: absolute !important; top: 10px !important; right: 14px !important;
+  background: none !important; border: none !important;
+  font-size: 30px !important; cursor: pointer !important;
+  color: var(--text-muted) !important; line-height: 1 !important; z-index: 10 !important;
+}
+.modal-close:hover { color: var(--acc) !important; }
+
+/* ======================== CUANDO ESTA EN IFRAME ======================== */
+html.is-iframe header.navbar,
+html.is-iframe footer,
+html.is-iframe .welcome-overlay,
+html.is-iframe #overlay-msg { display: none !important; }
+html.is-iframe body { padding-top: 0 !important; background: #fff !important; }
+html.is-iframe main,
+html.is-iframe main.content,
+html.is-iframe main.container {
+  padding-top: 20px !important; padding-left: 24px !important;
+  padding-right: 24px !important; padding-bottom: 32px !important; margin-top: 0 !important;
+}
+html.is-iframe .card { padding: 0 !important; }
+
+/* ======================== FOOTER ======================== */
+footer { background: #f6f8fa !important; border-top: 1px solid #e8ecf0 !important; backdrop-filter: none !important; }
+footer p, footer .foot-row p { color: var(--text-muted) !important; }
+
+/* ======================== ANIMACIONES ======================== */
+@keyframes smoothFadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeftIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeRightIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes floatCircle {
+  0%   { transform: translate(0,0) scale(1); }
+  33%  { transform: translate(20px,-20px) scale(1.05); }
+  66%  { transform: translate(-20px,20px) scale(0.96); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+.portfolio-item:nth-child(1) { animation-delay: 0.05s !important; }
+.portfolio-item:nth-child(2) { animation-delay: 0.12s !important; }
+.portfolio-item:nth-child(3) { animation-delay: 0.19s !important; }
+.portfolio-item:nth-child(4) { animation-delay: 0.26s !important; }
+.portfolio-item:nth-child(5) { animation-delay: 0.33s !important; }
+.portfolio-item:nth-child(6) { animation-delay: 0.40s !important; }
+.portfolio-item:nth-child(7) { animation-delay: 0.47s !important; }
+.portfolio-item:nth-child(8) { animation-delay: 0.54s !important; }
+
+/* ======================== HERO GRID MEJORADO ======================== */
+/* Centrar verticalmente la tarjeta y hacerla ocupar mejor su columna */
+.hero-grid {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 40px !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.hero-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  background: rgba(255,255,255,0.12) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.hero-avatar {
+  flex-shrink: 0 !important;
+}
+
+.hero-avatar img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important;
+  border: 3px solid rgba(255,255,255,0.5) !important;
+  object-fit: cover !important;
+}
+
+.hero-card > div:last-child {
+  flex: 1 !important;
+}
+
+.hero-card .name,
+.hero-card div[style*="font-weight:700"] {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  margin-bottom: 4px !important;
+}
+
+.hero-card .muted,
+.hero-card .role {
+  color: rgba(255,255,255,0.8) !important;
+  -webkit-text-fill-color: rgba(255,255,255,0.8) !important;
+  font-size: 14px !important;
+}
+
+/* ======================== FIX HERO CENTRADO ======================== */
+/* El wrapper ya es 100vw; el content necesita centrarse con max-width */
+.hero-bg-wrapper {
+  border-radius: 0 !important;
+}
+.hero-content {
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+  padding: 50px 40px !important;
+  width: 100% !important;
+}
+.hero-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 60px !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+.hero-text {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+.hero-text p {
+  max-width: 100% !important; /* quitar limit que empujaba texto a la izquierda */
+}
+
+/* ======================== FIX SLIDER - overflow en lugar correcto ======================== */
+.pres-slider {
+  width: 100% !important;
+  overflow: hidden !important;   /* <-- aqui, no en el track */
+  display: flex !important;
+  flex-direction: column !important;
+}
+.pres-track {
+  display: flex !important;
+  width: 100% !important;
+  overflow: visible !important;  /* <-- track NO tiene overflow hidden */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform !important;
+}
+.pres-slide {
+  flex: 0 0 100% !important;
+  min-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 20px 8px 10px !important;
+}
+
+/* ======================== TEXTO IZQUIERDA EN PROYECTOS ======================== */
+.description,
+.description h2,
+.description h3,
+.description p,
+.pres-slide,
+.pres-slide h2,
+.pres-slide h3,
+.pres-slide p,
+.slide-num {
+  text-align: left !important;
+}
+
+/* ======================== FIX TEXTOS BLANCOS INVISIBLES ======================== */
+
+/* Cualquier texto blanco fuera del hero o botones => color oscuro */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+
+/* Titulos de descripcion de proyectos => azul con énfasis */
+.description h2,
+.pres-slide h2 {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px !important;
+  border-left: 4px solid var(--acc-alt) !important;
+  padding-left: 12px !important;
+  margin-bottom: 18px !important;
+}
+
+/* Subtitulos H3 de proyectos => azul medio */
+.description h3,
+.pres-slide h3 {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+  border-bottom: 1px solid #e8f4fb !important;
+  padding-bottom: 6px !important;
+}
+
+/* Titulos de galerías y secciones dentro de sub-páginas */
+.gallery-preview-title {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+}
+
+/* Textos de nav en sub-páginas que eran blancos */
+nav.nav-links a:hover,
+nav.nav-links a.active {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+  background: transparent !important;
+}
+
+/* Headers dentro de modales y cards genéricas */
+.card h3,
+.modal-card h3,
+.description h2 {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+}
+
+/* Textos inline con color:#fff fuera del hero */
+html:not(.is-iframe) .modal-overlay:not(#globalIframeModal) .modal-card h3 {
+  color: var(--acc) !important;
+}
+
+/* Tech tags visibles */
+.tech-tag {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+  background: #eef7fc !important;
+  border: 1px solid var(--acc-alt) !important;
+}
+
+/* Contadores de slide */
+.slide-num {
+  color: var(--acc-alt) !important;
+  -webkit-text-fill-color: var(--acc-alt) !important;
+  font-weight: 700 !important;
+}
+
+/* Valor de estadísticas (años de experiencia) */
+.value {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+  font-weight: 800 !important;
+}
+
+/* Nombres y roles en el hero (SOLO fondo azul = mantener blanco) */
+.hero-bg-wrapper h1,
+.hero-bg-wrapper h2,
+.hero-bg-wrapper h3,
+.hero-bg-wrapper p,
+.hero-bg-wrapper span,
+.hero-bg-wrapper div {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+/* Excepcion: badges dentro del hero */
+.hero-bg-wrapper .badge {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* ======================== FIX TEXTO INVISIBLE - INLINE ELEMENTS ======================== */
+/* strong, b, em, a, span heredaban color blanco del tema oscuro original */
+
+.description strong,
+.description b,
+.description em,
+.description span,
+.description mark,
+.description a,
+.pres-slide strong,
+.pres-slide b,
+.pres-slide em,
+.pres-slide span:not(.slide-num),
+.pres-slide mark,
+.pres-slide a {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+  font-weight: 700 !important;
+  background: none !important;
+}
+
+/* strong / b reciben énfasis visual azul oscuro */
+.description strong,
+.pres-slide strong,
+.description b,
+.pres-slide b {
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+}
+
+/* em / itálica en azul claro */
+.description em,
+.pres-slide em {
+  color: var(--acc-alt) !important;
+  -webkit-text-fill-color: var(--acc-alt) !important;
+  font-weight: 400 !important;
+}
+
+/* Asegurar que los párrafos normales sean siempre grises legibles */
+.description p,
+.pres-slide p {
+  color: var(--text-muted) !important;
+  -webkit-text-fill-color: var(--text-muted) !important;
+}
+
+/* Links dentro de descripción */
+.description a,
+.pres-slide a {
+  color: var(--acc-alt) !important;
+  -webkit-text-fill-color: var(--acc-alt) !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+/* ======================== MODAL DE CONTACTO COMPACTO ======================== */
+#contactModal .modal-card {
+  max-width: 400px !important;
+  width: 90vw !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 28px 32px 24px !important;
+  border-radius: 14px !important;
+}
+
+#contactModal h3 {
+  font-size: 18px !important;
+  margin-bottom: 6px !important;
+  color: var(--acc) !important;
+  -webkit-text-fill-color: var(--acc) !important;
+}
+
+#contactModal .muted-small {
+  margin-bottom: 16px !important;
+  display: block !important;
+}
+
+#contactModal .contact-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  gap: 16px !important;
+}
+
+#contactModal .contact-row:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+#contactModal .contact-row .muted-small {
+  margin-bottom: 0 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: var(--text-muted) !important;
+  flex-shrink: 0 !important;
+}
+
+#contactModal .contact-row .value {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text) !important;
+  text-align: right !important;
+}

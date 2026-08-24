@@ -1,0 +1,238 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proyecto StockFlow Pro +</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Consistencia con la Paleta Premium */
+      --acc: #ff6a00; 
+      --acc-alt: #00c6ff;
+      --acc-glow: rgba(255, 106, 0, 0.25);
+      --bg: #090b10;
+      --bg2: #12161f;
+      --border: rgba(255, 255, 255, 0.06);
+      --text: #f0f2f5;
+      --text-muted: rgba(240, 242, 245, 0.5);
+      --nav-h: 72px;
+      --max-w: 1140px;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* --- CAPAS DE FONDO TECNOLÓGICO --- */
+    .bg-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .bg-overlay { 
+      position: absolute; inset: 0; 
+      background: radial-gradient(circle at 15% 15%, rgba(0, 198, 255, 0.07), transparent 45%),
+                  radial-gradient(circle at 85% 25%, rgba(255, 106, 0, 0.07), transparent 45%);
+    }
+    .bg-grid { 
+      position: absolute; inset: 0; 
+      background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), 
+                        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); 
+      background-size: 50px 50px; 
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- NAVBAR --- */
+    header.navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h); background: rgba(9, 11, 16, 0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      height: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand .logo {
+      font-family: 'Barlow Condensed'; font-weight: 800; font-size: 18px;
+      background: linear-gradient(135deg, var(--acc), var(--acc-alt));
+      color: #090b10; width: 38px; height: 38px; display: flex; 
+      align-items: center; justify-content: center; border-radius: 4px;
+      box-shadow: 0 0 12px var(--acc-glow);
+    }
+    .brand-text-main { font-family: 'Barlow Condensed'; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; font-size: 16px; line-height: 1.1; }
+    .brand-text-sub { font-size: 11px; color: var(--text-muted); }
+
+    nav.nav-links { display: flex; gap: 8px; }
+    nav.nav-links a {
+      color: var(--text-muted); text-decoration: none; font-size: 12px; text-transform: uppercase;
+      letter-spacing: 1px; font-weight: 500; padding: 8px 16px; transition: .3s; border-radius: 4px;
+    }
+    nav.nav-links a:hover, nav.nav-links a.active { color: #fff; background: rgba(255,255,255,0.05); }
+    nav.nav-links a.active { border-bottom: 2px solid var(--acc); border-radius: 4px 4px 0 0; color: #fff; }
+
+    /* --- CONTENIDO PRINCIPAL EN REJILLA --- */
+    main.content {
+      position: relative; z-index: 1;
+      padding-top: calc(var(--nav-h) + 40px);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 30px;
+    }
+
+    /* Contenedor del Reproductor de Video */
+    .video-container {
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+      height: 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* Área del Panel de Descripción */
+    .description {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 30px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .description h2 {
+      font-family: 'Barlow Condensed';
+      font-weight: 800;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #fff;
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .description p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* --- ENLACE DE RETORNO TECNOLÓGICO --- */
+    .btn-back-container {
+      position: relative; z-index: 1;
+      margin-bottom: 60px;
+      display: flex;
+    }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Barlow Condensed'; font-weight: 600; font-size: 14px;
+      text-transform: uppercase; letter-spacing: 1px; padding: 10px 22px;
+      border: 1px solid var(--border); border-radius: 4px; background: var(--bg2);
+      color: var(--text); text-decoration: none; transition: all 0.3s;
+    }
+    .btn-back:hover {
+      border-color: var(--acc); background: rgba(255, 106, 0, 0.05); transform: translateX(-3px);
+    }
+
+    /* --- RESPONSIVO --- */
+    @media (max-width: 900px) {
+      main.content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="theme-glassmorphism.css">
+</head>
+<body>
+
+  <!-- CAPA GLOBAL DE EFECTOS VISUALES -->
+  <div class="bg-layer">
+    <div class="bg-overlay"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" role="banner">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo">CV</div>
+        <div>
+          <div class="brand-text-main">StockFlow Pro +</div>
+          <div class="brand-text-sub">Detalle de Proyecto</div>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="index.html">Perfil</a>
+        <a href="exp.html">Experiencia</a>
+        <a href="portfolio.html" class="active" aria-current="page">Portafolio</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="container content" role="main">
+    
+    <!-- CONTENEDOR MULTIMEDIA -->
+    <div class="video-container" aria-label="Video demostrativo del Proyecto StockFlow Pro +">
+      <iframe 
+        src="https://drive.google.com/file/d/1OnUMSChs6JMI_87TnPJLaKn4WfE_zMgU/preview" 
+        allow="autoplay; encrypted-media" 
+        allowfullscreen 
+        title="Video interactivo de StockFlow Pro +">
+      </iframe>
+    </div>
+    
+    <!-- DESCRIPCIÓN TÉCNICA -->
+    <section class="description" aria-labelledby="desc-title">
+      <h2 id="desc-title">Descripción del Proyecto</h2>
+      <p>
+        StockFlow Pro + es una aplicación de inventario escolar para sistemas Android, desarrollada para facilitar la gestión eficiente y precisa de los recursos educativos. Esta solución tecnológica permite registrar entradas y salidas de inventarios en tiempo real, optimizando la administración y reduciendo errores manuales.
+      </p>
+      <p>
+        Integrando una interfaz intuitiva y funcionalidades robustas, StockFlow Pro + mejora la transparencia y control de materiales, contribuyendo a una mayor productividad y organización dentro de las instituciones educativas.
+      </p>
+      <p>
+        Una de sus ventajas es su peso a nivel de sistema, puesto que no superaba los 10Mb. La razón de que la aplicación sea tan ligera es debido a su conectividad con formularios realizados en Drive, dependiendo únicamente de la conexión a internet. Cabe destacar que esta permitía tener una visualización de los datos ingresados y, junto a eso, mediante un ordenador, el usuario tenía la capacidad de editar o auditar la data sin importar la ubicación geológica, mientras el dispositivo móvil actuaba como un simple escáner.
+      </p>
+      <p>
+        Esta aplicación fue desarrollada en AppInventor (desarrollado por el MIT), una plataforma de programación por bloques para proyectos pequeños como la integración de Arduino. Sin embargo, a pesar de su baja capacidad y limitantes presentes, se desarrolla esta aplicación que se considera bastante flexible puesto que combina verificación, suscripción y registro.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- RETORNO DE NAVEGACIÓN -->
+  <div class="container btn-back-container">
+    <a href="portfolio.html" class="btn-back" title="Volver al panel de portafolio">
+      <span>←</span> Volver a Portafolio
+    </a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
