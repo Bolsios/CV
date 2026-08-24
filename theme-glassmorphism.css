@@ -701,3 +701,77 @@ html:not(.is-iframe) .modal-overlay:not(#globalIframeModal) .modal-card h3 {
   -webkit-text-fill-color: var(--text) !important;
   text-align: right !important;
 }
+
+/* ======================== RESPONSIVIDAD MOVIL (HERO Y EXTRAS) ======================== */
+@media (max-width: 900px) {
+  /* En móviles, la cuadrícula del hero debe ser de 1 sola columna */
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    text-align: center !important;
+  }
+  
+  /* Centrar el texto en móviles para que se vea más limpio */
+  .hero-text {
+    align-items: center !important;
+    text-align: center !important;
+  }
+  
+  /* Botones del hero centrados en móvil */
+  .hero-cta {
+    justify-content: center !important;
+  }
+
+  /* Reducir padding en móvil para aprovechar el espacio */
+  .hero-content {
+    padding: 30px 20px !important;
+  }
+
+  /* Ajustar el tamaño del texto principal en móvil */
+  .hero-text h1 {
+    font-size: 38px !important;
+    margin-bottom: 16px !important;
+  }
+  
+  /* Ajustar la tarjeta para que ocupe todo el ancho sin verse aplastada */
+  .hero-card {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 12px !important;
+    padding: 20px !important;
+  }
+  
+  /* Las etiquetas (badges) de la tarjeta centradas */
+  .hero-card > div:last-child > div[style*="display:flex"] {
+    justify-content: center !important;
+  }
+}
+
+/* ======================== FIX PARA LA BARRA DE NAVEGACIÓN EN MÓVIL ======================== */
+@media (max-width: 768px) {
+  /* Si la navbar esconde los links, asegurar que la marca no se rompa */
+  .nav-inner {
+    justify-content: center !important; /* Centrar logo en móvil si no hay menu hamburguesa */
+  }
+  .nav-links {
+    display: none !important;
+  }
+}
+/* ======================== NAVBAR MÓVIL ======================== */
+@media (max-width: 650px) {
+  /* Permitir que la navbar se adapte a 2 filas si es muy estrecha */
+  .nav-inner {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+  header.navbar {
+    height: auto !important;
+    min-height: var(--nav-h) !important;
+  }
+  /* Ajustar los márgenes superiores para compensar que la navbar pueda ser más alta */
+  html:not(.is-iframe) main.container {
+    padding-top: 80px !important;
+  }
+}
