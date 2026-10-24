@@ -41,6 +41,11 @@ window.switchCockpitView = function (viewIndex) {
   if (eduVid && viewIndex === 3) {
     eduVid.play().catch(function () {});
   }
+
+  // En móvil, hacer scroll suave al inicio al cambiar de pestaña
+  if (window.innerWidth <= 1080) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 };
 
 // 2B. CONTROL INTERACTIVO DE CAPÍTULOS DEL VIDEO ILUSTRATIVO (VISTA 04)
