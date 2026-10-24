@@ -1,26 +1,34 @@
-﻿/* ============================================================
-   CV Josseph Bolsios - script.js
+/* ============================================================
+   CV Josseph Bolsios — script.js
+   Dark Obsidian Glassmorphism & Interactive Modal / Slider
    ============================================================ */
 
-// 1. DETECCION DE IFRAME - Inmediata para evitar flash
+// 1. DETECCION DE IFRAME — Inmediata para evitar flash
 (function detectIframe() {
   var inModal = window.location.search.indexOf('inModal=true') !== -1;
-  var inFrame = (function() { try { return window.self !== window.top; } catch(e) { return true; } })();
-  if (inModal || inFrame) document.documentElement.classList.add('is-iframe');
+  var inFrame = (function() {
+    try { return window.self !== window.top; } catch (e) { return true; }
+  })();
+  if (inModal || inFrame) {
+    document.documentElement.classList.add('is-iframe');
+  }
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
   var isIframe = document.documentElement.classList.contains('is-iframe');
+
+  // Paginas principales que navegan completo vs sub-paginas que abren en modal interactivo
+  var mainPages = ['index.html', 'exp.html', 'portfolio.html'];
 
   // 2. MODAL GLOBAL DE IFRAME
   if (!isIframe) {
     if (!document.getElementById('globalIframeModal')) {
       document.body.insertAdjacentHTML('beforeend',
         '<div class="modal-overlay" id="globalIframeModal">' +
-          '<div class="modal-card" id="globalModalCard" style="padding:0;">' +
-            '<button class="modal-close" id="closeGlobalIframeBtn">&times;</button>' +
-            '<div style="flex:1;overflow:hidden;border-radius:0 0 10px 10px;">' +
-              '<iframe id="globalIframe" src="" style="width:100%;height:100%;border:none;background:#fff;"></iframe>' +
+          '<div class="modal-card" id="globalModalCard" style="padding:0; overflow:hidden;">' +
+            '<button class="modal-close" id="closeGlobalIframeBtn" title="Cerrar vista">&times;</button>' +
+            '<div style="flex:1;overflow:hidden;border-radius:20px;">' +
+              '<iframe id="globalIframe" src="" style="width:100%;height:100%;border:none;background:#060a15;"></iframe>' +
             '</div>' +
           '</div>' +
         '</div>');
@@ -35,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
+
     function closeIframeModal() {
       modal.classList.remove('active');
       document.body.style.overflow = '';
@@ -42,12 +51,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     closeBtn.addEventListener('click', closeIframeModal);
-    modal.addEventListener('click', function(e) { if (e.target === modal) closeIframeModal(); });
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeIframeModal(); });
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeIframeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeIframeModal();
+    });
 
     document.querySelectorAll('a').forEach(function(link) {
       var href = link.getAttribute('href');
-      if (href && href.endsWith('.html') && !href.startsWith('http') && !href.startsWith('//')) {
+      if (!href) return;
+      var cleanHref = href.split('?')[0].split('#')[0];
+      var isLocalHtml = cleanHref.endsWith('.html') && !href.startsWith('http') && !href.startsWith('//');
+      var isMainPage = mainPages.indexOf(cleanHref) !== -1 && !link.hasAttribute('data-modal');
+
+      if (isLocalHtml && !isMainPage) {
         link.addEventListener('click', function(e) {
           if (e.ctrlKey || e.metaKey || e.button === 1) return;
           e.preventDefault();
@@ -58,51 +76,69 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // 3. MODAL DE CONTACTO
-  var openContactBtn  = document.getElementById('openContactBtn');
+  var openContactBtns = document.querySelectorAll('#openContactBtn, .js-open-contact');
   var closeContactBtn = document.getElementById('closeContactBtn');
   var contactModal    = document.getElementById('contactModal');
-  if (openContactBtn && contactModal) {
-    openContactBtn.addEventListener('click', function() { contactModal.classList.add('active'); });
-    closeContactBtn.addEventListener('click', function() { contactModal.classList.remove('active'); });
-    contactModal.addEventListener('click', function(e) { if (e.target === contactModal) contactModal.classList.remove('active'); });
+  if (openContactBtns.length > 0 && contactModal) {
+    openContactBtns.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        contactModal.classList.add('active');
+      });
+    });
+    if (closeContactBtn) {
+      closeContactBtn.addEventListener('click', function() {
+        contactModal.classList.remove('active');
+      });
+    }
+    contactModal.addEventListener('click', function(e) {
+      if (e.target === contactModal) contactModal.classList.remove('active');
+    });
   }
 
-  // 4. SCROLL SUAVE
+  // 4. SCROLL SUAVE PARA ANCLAS
   var navbar  = document.querySelector('.navbar');
-  var navbarH = navbar ? navbar.offsetHeight : 72;
-  document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(link) {
+  var navbarH = navbar ? navbar.offsetHeight : 76;
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
     link.addEventListener('click', function(e) {
-      var target = document.querySelector(link.getAttribute('href'));
-      if (target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - navbarH - 10, behavior: 'smooth' }); }
+      var href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - navbarH - 16, behavior: 'smooth' });
+      }
     });
   });
 
-  // 5. NAVBAR SCROLL
+  // 5. NAVBAR SCROLL — Mantener efecto cristal oscuro
   if (navbar) {
     window.addEventListener('scroll', function() {
-      navbar.style.background = '#ffffff';
-      navbar.style.boxShadow  = window.scrollY > 50 ? '0 2px 16px rgba(0,0,0,0.12)' : '0 2px 12px rgba(0,0,0,0.08)';
+      if (window.scrollY > 40) {
+        navbar.style.background = 'rgba(4, 8, 18, 0.88)';
+        navbar.style.boxShadow  = '0 12px 36px rgba(0, 0, 0, 0.65)';
+      } else {
+        navbar.style.background = 'rgba(6, 10, 22, 0.72)';
+        navbar.style.boxShadow  = '0 10px 30px rgba(0, 0, 0, 0.45)';
+      }
     });
   }
 
-  // 6. SLIDER TIPO PRESENTACION - Corta cada 2 parrafos o en cada H3/DIV
+  // 6. SLIDER TIPO PRESENTACION — Corta cada 2 parrafos o en cada H3/DIV
   var desc = document.querySelector('.description');
   if (desc && !desc.querySelector('.pres-slider')) {
     var children = Array.from(desc.children);
     desc.innerHTML = '';
 
-    // Agrupar contenido en slides
     var groups  = [];
     var current = [];
-    var pCount  = 0; // contador de parrafos en el slide actual
+    var pCount  = 0;
 
     children.forEach(function(child) {
       var tag = child.tagName;
-
-      // Iniciar nuevo slide en: H3, o cada 2 parrafos P, o DIV de subtema (no tech-tags)
-      var isH3   = (tag === 'H3');
-      var isDiv  = (tag === 'DIV' && !child.classList.contains('tech-tag-container'));
-      var is2P   = (tag === 'P' && pCount >= 2 && current.length > 0);
+      var isH3  = (tag === 'H3');
+      var isDiv = (tag === 'DIV' && !child.classList.contains('tech-tag-container'));
+      var is2P  = (tag === 'P' && pCount >= 2 && current.length > 0);
 
       if ((isH3 || isDiv || is2P) && current.length > 0) {
         groups.push(current);
@@ -115,8 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     if (current.length > 0) groups.push(current);
 
-    // Si solo hay 1 grupo y tiene muchos parrafos, forzar corte cada 2
-    if (groups.length === 1 && groups[0].filter(function(el){ return el.tagName === 'P'; }).length > 2) {
+    if (groups.length === 1 && groups[0].filter(function(el) { return el.tagName === 'P'; }).length > 2) {
       var allChildren = groups[0];
       groups  = [];
       current = [];
@@ -134,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (current.length > 0) groups.push(current);
     }
 
-    // Construir slider
     var slider = document.createElement('div');
     slider.className = 'pres-slider';
 
@@ -148,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       var num = document.createElement('span');
       num.className = 'slide-num';
-      num.textContent = (i + 1) + ' / ' + groups.length;
+      num.textContent = 'Diapositiva ' + (i + 1) + ' de ' + groups.length;
       slide.appendChild(num);
 
       group.forEach(function(el) { slide.appendChild(el); });
@@ -156,7 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
       return slide;
     });
 
-    // Controles
     var controls = document.createElement('div');
     controls.className = 'pres-controls';
 
@@ -187,7 +220,6 @@ document.addEventListener('DOMContentLoaded', function() {
     slider.appendChild(controls);
     desc.appendChild(slider);
 
-    // Logica
     var currentIdx = 0;
 
     function goTo(idx) {
@@ -196,10 +228,9 @@ document.addEventListener('DOMContentLoaded', function() {
       currentIdx = idx;
       track.style.transform = 'translateX(-' + (idx * 100) + '%)';
       dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
-      // Actualizar contador en cada slide
       slides.forEach(function(s) {
         var n = s.querySelector('.slide-num');
-        if (n) n.textContent = (currentIdx + 1) + ' / ' + slides.length;
+        if (n) n.textContent = 'Diapositiva ' + (currentIdx + 1) + ' de ' + slides.length;
       });
     }
 
@@ -207,15 +238,13 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.addEventListener('click', function() { goTo(currentIdx + 1); });
     dots.forEach(function(dot, i) { dot.addEventListener('click', function() { goTo(i); }); });
 
-    // Swipe movil
     var touchX = 0;
-    track.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
     track.addEventListener('touchend', function(e) {
       var diff = touchX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) goTo(diff > 0 ? currentIdx + 1 : currentIdx - 1);
-    }, {passive:true});
+    }, { passive: true });
 
-    // Teclado (solo cuando el modal esta abierto)
     document.addEventListener('keydown', function(e) {
       if (!document.documentElement.classList.contains('is-iframe')) return;
       if (e.key === 'ArrowRight') goTo(currentIdx + 1);
@@ -227,7 +256,6 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.list-item').forEach(function(el, i) {
     el.style.animationDelay = (i * 0.08) + 's';
   });
-
 });
 
 window.populateDemo = function(p) { console.log('populateDemo', p); };
