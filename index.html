@@ -1,433 +1,595 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Josseph Steven Bolsios Cortés — CV & Portafolio Ejecutivo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Josseph Steven Bolsios Cortés — Redes, Telecomunicaciones, Flujos & Desarrollo</title>
+  <meta name="description" content="Portafolio y Curriculum Vitae de Josseph Steven Bolsios Cortés. Técnico en Redes y Telecomunicaciones (CCNAv7), Técnico Medio en Electrónica en Telecomunicaciones (COVAO), Creación de Flujos de Trabajo y Creador de NEXTIME Pro en SEKUNET S.A." />
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="theme-glassmorphism.css">
 </head>
 <body>
 
-  <!-- CAPAS DE FONDO CRISTALIZADO Y MALLA TECNOLÓGICA -->
-  <div class="bg-layer">
-    <div class="bg-overlay"></div>
-    <div class="bg-grid"></div>
-  </div>
+  <!-- SHELL FORMIX ZERO-SCROLL (100VH / 100DVH) -->
+  <div class="formix-shell">
 
-  <!-- NAVBAR CRISTALIZADA -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a href="index.html" class="brand">
-        <div class="logo">JB</div>
+    <!-- ======================== 1. NAVBAR FORMIX ======================== -->
+    <header class="formix-navbar">
+      <a href="#inicio" class="formix-brand" onclick="switchCockpitView(0); return false;">
+        <div class="formix-logo-mark">JB</div>
         <div>
-          <div class="brand-text-main">Josseph Bolsios Cortés</div>
-          <div class="brand-text-sub">Seguridad Electrónica • Procesos • Innovación TI</div>
+          <div class="formix-brand-text">Bolsios</div>
+          <div class="formix-brand-sub">TELECOMUNICACIONES &amp; FLUJOS</div>
         </div>
       </a>
 
-      <nav class="nav-links" aria-label="Navegación rápida">
-        <a href="index.html" class="active">Inicio</a>
-        <a href="#sekunet-impact">Impacto SEKUNET</a>
-        <a href="exp.html">Experiencia</a>
-        <a href="portfolio.html">Portafolio</a>
-        <a href="Certificados.html">Certificados</a>
+      <!-- Píldora Central de Navegación con Subrayado Naranja Activo -->
+      <nav class="formix-nav-pill" role="tablist" aria-label="Secciones del Curriculum">
+        <button type="button" class="formix-nav-link active" onclick="switchCockpitView(0)">
+          Inicio
+        </button>
+        <button type="button" class="formix-nav-link" onclick="switchCockpitView(1)">
+          Qué Hago &amp; SEKUNET
+        </button>
+        <button type="button" class="formix-nav-link" onclick="switchCockpitView(2)">
+          Portafolio (8)
+        </button>
+        <button type="button" class="formix-nav-link" onclick="switchCockpitView(3)">
+          Estudios &amp; Títulos (13)
+        </button>
+        <a href="Certificados.html" class="formix-nav-link">
+          Certificados
+        </a>
       </nav>
 
-      <div class="nav-status-pill">
-        <span class="status-dot"></span>
-        <span>Perfil Activo &amp; Evolucionando</span>
+      <!-- Botón Derecho "Hablemos ↗" -->
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button type="button" class="btn-formix-outline js-open-contact" id="openContactBtn" style="padding:7px 16px !important; font-size:12px !important;">
+          <span>Hablemos</span>
+          <span style="color:var(--orange-core);">↗</span>
+        </button>
       </div>
+    </header>
+
+    <!-- SUB-PESTAÑAS TÁCTILES PARA CELULAR (100% COMPATIBLE MÓVIL SIN SCROLL CAÓTICO) -->
+    <div class="mobile-subtabs" id="mobileSubtabs">
+      <button type="button" class="mob-sub-btn active" onclick="switchMobCol(0)">1. Presentación</button>
+      <button type="button" class="mob-sub-btn" onclick="switchMobCol(1)">2. Caso NEXTIME</button>
+      <button type="button" class="mob-sub-btn" onclick="switchMobCol(2)">3. Métricas Clave</button>
     </div>
-  </header>
 
-  <!-- HERO EJECUTIVO DE ALTO IMPACTO -->
-  <section class="hero container" aria-labelledby="hero-title">
-    <div class="hero-bg-wrapper">
-      <div class="hero-content">
-        <div class="hero-grid">
+    <!-- ======================== 2. ESCENARIO PRINCIPAL ZERO-SCROLL ======================== -->
+    <main class="formix-stage">
 
-          <div class="hero-text">
-            <div class="hero-eyebrow">
-              <span>⚡</span>
-              <span>Ingeniería de Soporte • Reforma de Procesos • Creador de Herramientas</span>
-            </div>
+      <!-- =======================================================================
+           VISTA 01: HERO FORMIX + HALO SOLAR + FEATURED CASE + BARRA DE 4 MÉTRICAS
+           ======================================================================= -->
+      <section class="cockpit-view formix-home-layout active" id="view-0">
 
-            <h1 id="hero-title">Josseph Steven Bolsios Cortés</h1>
-            <span class="hero-role-gradient">
-              Especialista en Seguridad Electrónica, Arquitectura de Flujos de Trabajo &amp; Desarrollo Asistido por IA
-            </span>
+        <div class="formix-hero-grid">
 
-            <p>
-              Profesional técnico enfocado en resultados tangibles: no solo diagnostico y resuelvo incidencias críticas en <strong>seguridad electrónica, redes e infraestructura TI</strong>, sino que analizo la operación desde adentro para <strong>crear flujos de trabajo, reformar procesos, capacitar equipos técnicos y desarrollar herramientas propias</strong> —como <strong>NEXTIME Pro</strong> y plataformas de autoasistencia 24/7— que eliminan cuellos de botella y multiplican la productividad.
-            </p>
+          <!-- COLUMNA IZQUIERDA: TITULAR BICOLOR MONUMENTAL + BOTONES -->
+          <div class="mob-pane mob-active" id="mob-col-0">
+            <div>
+              <div class="formix-eyebrow" style="margin-bottom:8px;">
+                REDES Y TELECOMUNICACIONES • ELECTRÓNICA • OPTIMIZACIÓN DE PROCESOS
+              </div>
 
-            <div class="hero-cta" role="toolbar" aria-label="Acciones rápidas para reclutadores">
-              <a href="https://drive.google.com/file/d/1uq_bCt8xgrJSIinNFeKNj0oTx0J7ud4M/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-primary">
-                ⬇ Descargar CV (PDF)
-              </a>
-              <a href="portfolio.html" class="btn btn-ghost">
-                🚀 Explorar Portafolio (8 Casos)
-              </a>
-              <a href="Certificados.html" class="btn btn-ghost">
-                🏅 Ver 10 Certificaciones
-              </a>
-              <button class="btn btn-success" id="openContactBtn">
-                ✉ Contacto Directo
-              </button>
+              <h1 class="formix-hero-title">
+                Creo flujos y herramientas <span class="hl-orange">que destacan</span> e impulsan resultados
+              </h1>
+
+              <p class="formix-hero-desc">
+                Técnico en Redes y Telecomunicaciones (CCNAv7) y Electrónica en Telecomunicaciones en <strong>SEKUNET S.A.</strong>, enfocado en la <strong>creación de flujos de trabajo</strong>, <strong>sugerencias en reforma de procesos</strong>, <strong>capacitación de personal y compañeros</strong>, y creador de <strong>NEXTIME Pro</strong>.
+              </p>
+
+              <!-- Botones idénticos a "Start a project ↗" + "View our work ▷" -->
+              <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                <button type="button" class="btn-formix-solid" onclick="switchCockpitView(1)">
+                  <span>Explorar lo que hago</span>
+                  <span>↗</span>
+                </button>
+
+                <div style="display:inline-flex; align-items:center; gap:10px; cursor:pointer;" onclick="switchCockpitView(2)">
+                  <span style="font-size:12.5px; font-weight:600; color:#ffffff;">Ver portafolio (8)</span>
+                  <span class="formix-circle-icon">&#9655;</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- SNAPSHOT EJECUTIVO PARA RECLUTADORES -->
-          <div>
-            <div class="hero-card">
-              <div class="hero-profile-top">
-                <div class="hero-avatar">
-                  <img src="Media/Perfil.jpg" alt="Fotografía profesional de Josseph Bolsios Cortés">
-                </div>
-                <div>
-                  <div style="font-weight:800; font-size:19px; color:#fff; letter-spacing:0.3px;">Josseph Bolsios Cortés</div>
-                  <div style="color:var(--acc); font-size:13.5px; font-weight:600; margin-top:2px;">Técnico Especialista &amp; Optimizador de Procesos</div>
-                  <div style="color:var(--text-muted); font-size:12.5px; margin-top:2px;">📍 Oreamuno de Cartago, Costa Rica</div>
-                  <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                    <span class="badge">HCSA Hikvision</span>
-                    <span class="badge">UNP Ubiquiti</span>
-                    <span class="badge">ZKTeco Pro</span>
-                    <span class="badge">Cisco CCNAv7</span>
-                  </div>
-                </div>
+          <!-- COLUMNA CENTRAL: RETRATO CON HALO DE ECLIPSE SOLAR NARANJA (IDÉNTICO A FORMIX) -->
+          <div class="formix-eclipse-stage mob-pane mob-active" id="mob-col-eclipse">
+            <div class="formix-solar-circle">
+              <img src="Media/Perfil.jpg" alt="Josseph Steven Bolsios Cortés" />
+            </div>
+          </div>
+
+          <!-- COLUMNA DERECHA: CLUSTER "18+ PROYECTOS" + TARJETA VERTICAL "• Caso destacado" -->
+          <div class="mob-pane" id="mob-col-1" style="display:flex; flex-direction:column; justify-content:center;">
+
+            <!-- Badge Superior -->
+            <div class="formix-trust-cluster">
+              <div class="formix-mini-avatars">
+                <span class="formix-mini-ava">CCNA</span>
+                <span class="formix-mini-ava">UNP</span>
+                <span class="formix-mini-ava">HCSA</span>
+                <span class="formix-mini-ava orange-pill">20+</span>
+              </div>
+              <div style="font-size:11px; line-height:1.25; color:var(--text-secondary);">
+                <strong style="color:#ffffff; display:block;">8 Proyectos &amp; 13 Títulos</strong>
+                Flujos, herramientas y certificaciones
+              </div>
+            </div>
+
+            <!-- Tarjeta Vertical "• Caso destacado: NEXTIME Pro & Guías SEKUNET" -->
+            <div class="formix-featured-card">
+              <div style="display:flex; align-items:center; gap:7px; font-size:11.5px; color:var(--text-secondary);">
+                <span style="width:7px; height:7px; border-radius:50%; background:var(--orange-core); display:inline-block;"></span>
+                <span>Caso destacado en SEKUNET S.A.</span>
               </div>
 
-              <div class="hero-kpi-grid">
-                <div class="hero-kpi-box">
-                  <div class="hero-kpi-num">+5 Años</div>
-                  <div class="hero-kpi-label">Trayectoria en Soporte TI, Electrónica &amp; Proyectos</div>
+              <div class="formix-featured-inner">
+                <div style="height:80px; border-radius:10px; overflow:hidden; margin-bottom:10px; border:1px solid rgba(255,255,255,0.08);">
+                  <img src="Media/nextime_preview.png" alt="NEXTIME Pro y Portal SEKUNET" style="width:100%; height:100%; object-fit:cover; display:block;" />
                 </div>
-                <div class="hero-kpi-box">
-                  <div class="hero-kpi-num">Liderazgo</div>
-                  <div class="hero-kpi-label">Creación de Flujos, Reforma de Procesos y Capacitación</div>
+                <div style="font-size:16.5px; font-weight:700; color:#ffffff; margin-bottom:4px;">
+                  NEXTIME Pro &amp; Guías 24/7
                 </div>
-                <div class="hero-kpi-box">
-                  <div class="hero-kpi-num">NEXTIME Pro</div>
-                  <div class="hero-kpi-label">Creador de Apps y Herramientas de Mejora Operativa</div>
-                </div>
-                <div class="hero-kpi-box">
-                  <div class="hero-kpi-num">360° Tech</div>
-                  <div class="hero-kpi-label">CCTV, Acceso, Redes, Impresión 3D &amp; Desarrollo IA</div>
+                <p style="font-size:11.5px; color:var(--text-secondary); line-height:1.4; margin-bottom:10px;">
+                  Herramienta propia de mejora en flujos de trabajo y plataforma de guías de soporte (<strong style="color:#fff;">sekunet.vercel.app</strong>).
+                </p>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+                  <a href="nextime.html" class="formix-orange-link">
+                    <span>Demo NEXTIME Pro</span>
+                    <span>↗</span>
+                  </a>
+                  <a href="disenoia.html" style="font-size:11.5px; color:#ffffff; font-weight:600; text-decoration:none;">
+                    Guías SEKUNET ↗
+                  </a>
                 </div>
               </div>
             </div>
+
           </div>
 
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- DASHBOARD EJECUTIVO BENTO GRID -->
-  <main class="container">
-    <div class="bento-dashboard" aria-label="Panel Ejecutivo de Currículum">
+        <!-- BARRA INFERIOR DE 4 ESTADÍSTICAS CON DIVISORES VERTICALES -->
+        <div class="formix-stats-bar mob-pane" id="mob-col-2">
+          <div class="formix-stat-icon-col" style="display:flex; align-items:center; justify-content:center;">
+            <div class="formix-circle-icon" style="width:42px !important; height:42px !important; border-radius:12px !important;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+            </div>
+          </div>
 
-      <!-- BENTO 1 (8 COLUMNAS): IMPACTO EN SEKUNET S.A. Y NEXTIME PRO -->
-      <section class="bento-card bento-span-8 sekunet-spotlight" id="sekunet-impact" aria-labelledby="sekunet-title">
-        <div class="sekunet-header-row">
+          <div class="formix-stat-item" style="cursor:pointer;" onclick="switchCockpitView(1)">
+            <div class="formix-stat-num">SEKUNET S.A.</div>
+            <div class="formix-stat-label">Flujos, procesos y capacitación (2025–Hoy)</div>
+          </div>
+
+          <div class="formix-stat-item" style="cursor:pointer;" onclick="switchCockpitView(1)">
+            <div class="formix-stat-num">5+ Años</div>
+            <div class="formix-stat-label">Electrónica en telecomunicaciones, redes y 3D</div>
+          </div>
+
+          <div class="formix-stat-item" style="cursor:pointer;" onclick="switchCockpitView(2)">
+            <div class="formix-stat-num">8 Proyectos</div>
+            <div class="formix-stat-label">NEXTIME Pro, StockFlow Pro+, Visor 3D y soporte</div>
+          </div>
+
+          <div class="formix-stat-item" style="cursor:pointer;" onclick="switchCockpitView(3)">
+            <div class="formix-stat-num">13 Títulos</div>
+            <div class="formix-stat-label">Redes &amp; Telecom, CCNAv7, Ubiquiti, Hikvision, ZKTeco</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =======================================================================
+           VISTA 02: "WHAT WE DO" — CUADRÍCULA 3X2 (01–05 + TARJETA NARANJA SÓLIDA #6)
+           ======================================================================= -->
+      <section class="cockpit-view formix-services-layout" id="view-1">
+
+        <!-- Cabecera Bicolor -->
+        <div class="formix-section-header">
           <div>
-            <span class="muted-small" style="margin-bottom:4px; color:var(--acc) !important; font-weight:700; text-transform:uppercase; letter-spacing:1px;">
-              ★ Experiencia Actual de Alto Impacto • 2025 – Presente
-            </span>
-            <h2 id="sekunet-title" style="font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:0;">
-              SEKUNET S.A. — Evolución en Organización, Procesos e Innovación
+            <div class="formix-eyebrow">LO QUE HAGO &amp; MI IMPACTO EN SEKUNET S.A.</div>
+            <h2 class="formix-section-title">
+              Creo flujos de trabajo <span>que optimizan procesos</span> y dejan un impacto real
             </h2>
           </div>
-          <a href="exp.html" class="btn btn-ghost" style="padding:8px 16px !important; font-size:12px !important;">
-            Ver Historial Completo →
-          </a>
-        </div>
 
-        <p style="color:var(--text-secondary); font-size:14.5px; margin-bottom:20px; line-height:1.7;">
-          Más allá del diagnóstico electrónico de laboratorio y el soporte multimarca en seguridad electrónica, durante mi etapa más reciente he asumido <strong>responsabilidades estratégicas de organización y mejora continua</strong>, transformando la manera en que el departamento opera, documenta y atiende requerimientos:
-        </p>
-
-        <div class="sekunet-pillars-grid">
-          <div class="pillar-glass-card">
-            <div class="pillar-icon-title">
-              <span class="pillar-icon">🔄</span>
-              <span>Creación de Flujos de Trabajo</span>
-            </div>
-            <p>
-              Diseño y estructuración de flujos de trabajo claros y medibles para la recepción, diagnóstico técnico, escalamiento de soporte y control de garantías, logrando orden operativo y trazabilidad total.
+          <div style="max-width:390px;">
+            <p style="font-size:12px; color:var(--text-secondary); line-height:1.45; margin-bottom:4px;">
+              Desde la organización operativa y capacitación de personal hasta el desarrollo de aplicaciones propias como <strong>NEXTIME Pro</strong>.
             </p>
-          </div>
-
-          <div class="pillar-glass-card">
-            <div class="pillar-icon-title">
-              <span class="pillar-icon">📈</span>
-              <span>Sugerencias y Reforma de Procesos</span>
-            </div>
-            <p>
-              Identificación proactiva de cuellos de botella en la operación diaria, formulando e implementando reformas en los procesos internos para reducir tiempos de respuesta y errores recurrentes.
-            </p>
-          </div>
-
-          <div class="pillar-glass-card">
-            <div class="pillar-icon-title">
-              <span class="pillar-icon">🎓</span>
-              <span>Capacitación de Personal y Compañeros</span>
-            </div>
-            <p>
-              Entrenamiento directo a compañeros de trabajo, nuevo personal e integradores externos en plataformas Hikvision, ZKTeco, Ubiquiti y MikroTik, nivelando hacia arriba las competencias del equipo.
-            </p>
-          </div>
-
-          <div class="pillar-glass-card">
-            <div class="pillar-icon-title">
-              <span class="pillar-icon">🛠️</span>
-              <span>Creador de Oportunidades y Herramientas</span>
-            </div>
-            <p>
-              Desarrollo de soluciones propias que nacen de necesidades reales detectadas en campo y taller, convirtiendo problemas cotidianos en herramientas digitales que agilizan el trabajo de todo el equipo.
-            </p>
-          </div>
-        </div>
-
-        <!-- BANNER DESTACADO NEXTIME PRO -->
-        <div class="nextime-banner">
-          <div>
-            <div class="nextime-badge">
-              <span>⚡ HERRAMIENTA INSIGNIA CREADA</span>
-            </div>
-            <h4 style="font-size:18px; font-weight:800; color:#ffffff; margin-bottom:6px;">
-              NEXTIME Pro — Aplicación de Mejora y Optimización en Flujos de Trabajo
-            </h4>
-            <p style="font-size:13.5px; color:var(--text-secondary); margin:0; line-height:1.6;">
-              Ejemplo real de iniciativa e innovación aplicada: desarrollo de la aplicación <strong>NEXTIME Pro</strong> para sistematizar la gestión del tiempo, seguimiento de tareas y eficiencia en los flujos de trabajo técnicos, sumada al despliegue del ecosistema web de autoasistencia 24/7 (<a href="https://sekunet.vercel.app/" target="_blank" rel="noopener" style="color:var(--acc); font-weight:700;">sekunet.vercel.app</a>).
-            </p>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:8px; flex-shrink:0;">
-            <a href="disenoia.html" class="btn btn-primary" style="white-space:nowrap;">
-              Explorar Ecosistema Web
+            <a href="https://sekunet.vercel.app/" target="_blank" rel="noopener" class="formix-orange-link">
+              <span>Visitar portal activo sekunet.vercel.app</span>
+              <span>↗</span>
             </a>
           </div>
         </div>
+
+        <!-- Cuadrícula 3x2 Exacta de Formix (Tarjetas 01 a 05 + Tarjeta #6 Naranja Sólida) -->
+        <div class="formix-3x2-grid">
+
+          <!-- 01 -->
+          <article class="formix-service-card">
+            <div>
+              <div class="formix-num">01</div>
+              <h3 class="formix-card-title">Creación de Flujos de Trabajo</h3>
+              <p class="formix-card-desc">
+                Estructuración paso a paso de flujos operativos en <strong>SEKUNET S.A.</strong>, coordinación entre departamentos y continuidad mediante el sistema de tickets embebido en <strong>NEXTIME Pro</strong>.
+              </p>
+            </div>
+            <a href="garantias.html" class="formix-orange-link">
+              <span>Ver flujo aplicado</span>
+              <span>↗</span>
+            </a>
+          </article>
+
+          <!-- 02 -->
+          <article class="formix-service-card">
+            <div>
+              <div class="formix-num">02</div>
+              <h3 class="formix-card-title">Reforma de Procesos</h3>
+              <p class="formix-card-desc">
+                Superación de <strong>3 reformas de plataforma</strong> para unificar la información (primeros 15 días críticos por etapa), recuperando procesos para los compañeros y sorteando permisos en producción.
+              </p>
+            </div>
+            <a href="garantias.html" class="formix-orange-link">
+              <span>Ver las 3 reformas</span>
+              <span>↗</span>
+            </a>
+          </article>
+
+          <!-- 03 -->
+          <article class="formix-service-card">
+            <div>
+              <div class="formix-num">03</div>
+              <h3 class="formix-card-title">Capacitación de Personal</h3>
+              <p class="formix-card-desc">
+                Entrenamiento directo a compañeros de trabajo, nuevo personal e integradores en tecnologías Hikvision, ZKTeco, redes Ubiquiti y protocolos internos.
+              </p>
+            </div>
+            <a href="capacitaciones.html" class="formix-orange-link">
+              <span>Ver capacitaciones</span>
+              <span>↗</span>
+            </a>
+          </article>
+
+          <!-- 04: DOS BOTONES (PLATAFORMA DE GUÍAS SEKUNET + DEMO NEXTIME PRO) -->
+          <article class="formix-service-card">
+            <div>
+              <div class="formix-num">04</div>
+              <h3 class="formix-card-title">Creador: App NEXTIME Pro</h3>
+              <p class="formix-card-desc">
+                Creador de <strong>NEXTIME Pro</strong> (con registro de actividades y <strong>sistema de tickets embebido</strong> para contingencia ante caídas de la plataforma principal) y del portal de guías 24/7.
+              </p>
+            </div>
+            <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; position:relative; z-index:2;">
+              <a href="disenoia.html" class="formix-orange-link">
+                <span>Plataforma Guías SEKUNET</span>
+                <span>↗</span>
+              </a>
+              <a href="nextime.html" class="btn-formix-solid" style="padding:5px 13px !important; font-size:11.5px !important;">
+                <span>Demo NEXTIME Pro</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- 05: STOCKFLOW PRO+ CON FORMULARIOS Y DATASHEET EXCEL DE GOOGLE -->
+          <article class="formix-service-card">
+            <div>
+              <div class="formix-num">05</div>
+              <h3 class="formix-card-title">Electrónica, Hardware &amp; 3D</h3>
+              <p class="formix-card-desc">
+                5 años de experiencia en diagnóstico electrónico y reparación (estación de soldadura con cautín/pistola de calor, fuente DC, multímetro, amperímetro, tester Ethernet y bancos de prueba improvisados), creador de <strong>StockFlow Pro+</strong> y modelado 3D.
+              </p>
+            </div>
+            <a href="sttockflow.html" class="formix-orange-link">
+              <span>Ver StockFlow Pro+</span>
+              <span>↗</span>
+            </a>
+          </article>
+
+          <!-- 06: TARJETA NARANJA SÓLIDA CON COMILLAS Y TRAMA DE PUNTOS -->
+          <article class="formix-quote-card">
+            <div class="formix-quote-mark">&ldquo;</div>
+            <div class="formix-quote-text">
+              Los grandes sistemas no son casualidad: se construyen con flujos claros, equipo capacitado y herramientas con propósito.
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; color:rgba(255,255,255,0.9); font-weight:600;">
+              <span>Josseph Steven Bolsios</span>
+              <a href="Media/Josseph_Bolsios_CV_ATS.pdf" download="Josseph_Steven_Bolsios_Cortes_CV_ATS.pdf" onclick="if(window.downloadATSCV) downloadATSCV(event);" style="color:#ffffff; text-decoration:underline;">Descargar CV (PDF ATS) ↗</a>
+            </div>
+          </article>
+
+        </div>
+
       </section>
 
-      <!-- BENTO 2 (4 COLUMNAS): COMPETENCIAS Y PERFIL INTEGRAL -->
-      <aside class="bento-card bento-span-4" id="info" aria-labelledby="otras-title" style="display:flex; flex-direction:column; justify-content:space-between; gap:18px;">
-        <div>
-          <h3 id="otras-title">
-            <span>Arsenal &amp; Competencias</span>
-            <span style="font-size:12px; color:var(--text-muted); font-weight:600;">360°</span>
-          </h3>
+      <!-- =======================================================================
+           VISTA 03: "CASE STUDIES" — PORTAFOLIO DE 8 PROYECTOS + LOGOS DE MARCAS
+           ======================================================================= -->
+      <section class="cockpit-view" id="view-2" style="grid-template-rows: auto 1fr auto; gap:10px;">
 
-          <div style="margin-bottom:16px;">
-            <div class="muted-small" style="font-weight:700; color:#e2e8f0 !important; text-transform:uppercase; letter-spacing:0.6px;">
-              Organización, Procesos y Liderazgo
-            </div>
-            <div class="chips">
-              <div class="chip">Creación de Flujos de Trabajo</div>
-              <div class="chip">Reforma de Procesos</div>
-              <div class="chip">Capacitación de Personal</div>
-              <div class="chip">Liderazgo de Equipos</div>
-              <div class="chip">Planificación Operativa</div>
-            </div>
-          </div>
-
-          <div style="margin-bottom:16px;">
-            <div class="muted-small" style="font-weight:700; color:#e2e8f0 !important; text-transform:uppercase; letter-spacing:0.6px;">
-              Seguridad Electrónica y Redes
-            </div>
-            <div class="chips">
-              <div class="chip">Hikvision CCTV &amp; Intercom</div>
-              <div class="chip">ZKTeco Acceso &amp; Asistencia</div>
-              <div class="chip">Ubiquiti UniFi (UNP)</div>
-              <div class="chip">MikroTik Routing</div>
-              <div class="chip">Cisco CCNAv7</div>
-              <div class="chip">Integración Wiegand / RS485</div>
-            </div>
-          </div>
-
-          <div style="margin-bottom:16px;">
-            <div class="muted-small" style="font-weight:700; color:#e2e8f0 !important; text-transform:uppercase; letter-spacing:0.6px;">
-              Desarrollo de Herramientas &amp; 3D
-            </div>
-            <div class="chips">
-              <div class="chip">Creador NEXTIME Pro</div>
-              <div class="chip">Desarrollo Web con IA</div>
-              <div class="chip">Apps Android (StockFlow Pro+)</div>
-              <div class="chip">Diseño &amp; Impresión 3D (FDM)</div>
-              <div class="chip">Renderizado Blender</div>
-            </div>
-          </div>
-
+        <div class="formix-section-header">
           <div>
-            <div class="muted-small" style="font-weight:700; color:#e2e8f0 !important; text-transform:uppercase; letter-spacing:0.6px;">
-              Idiomas &amp; Filosofía
-            </div>
-            <div class="chips">
-              <div class="chip">Español — Nativo</div>
-              <div class="chip">Inglés — Intermedio</div>
-            </div>
-            <p class="muted" style="margin-top:12px; font-size:13px !important; font-style:italic; border-left:2px solid var(--acc); padding-left:10px;">
-              "El primer paso del éxito es una correcta estructuración de los procesos para implementar las mejores soluciones."
-            </p>
+            <div class="formix-eyebrow">CASOS DE ESTUDIO &amp; DESARROLLOS</div>
+            <h2 class="formix-section-title">
+              Trabajo técnico <span>que habla por sí mismo</span>
+            </h2>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <a href="nextime.html" class="formix-orange-link" style="margin-right:8px;">
+              <span>Probar Demo NEXTIME Pro</span>
+              <span>↗</span>
+            </a>
+            <a href="https://sekunet.vercel.app/" target="_blank" rel="noopener" class="formix-orange-link" style="margin-right:8px;">
+              <span>sekunet.vercel.app</span>
+              <span>↗</span>
+            </a>
+            <button type="button" class="formix-circle-icon" onclick="switchCockpitView(1)" title="Anterior">&larr;</button>
+            <button type="button" class="formix-circle-icon" onclick="switchCockpitView(3)" title="Siguiente">&rarr;</button>
           </div>
         </div>
 
-        <div style="padding-top:12px; border-top:1px solid rgba(255,255,255,0.08);">
-          <a href="https://drive.google.com/file/d/1uq_bCt8xgrJSIinNFeKNj0oTx0J7ud4M/view?usp=sharing" target="_blank" rel="noopener" style="text-decoration:none;">
-            <button class="btn btn-primary" style="width:100%;">⬇ Descargar Currículum en PDF</button>
-          </a>
-        </div>
-      </aside>
-
-      <!-- BENTO 3 (7 COLUMNAS): PROYECTOS Y HERRAMIENTAS ESTRELLA (VISTA RÁPIDA) -->
-      <section class="bento-card bento-span-7" aria-labelledby="featured-projects-title">
-        <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px; margin-bottom:16px;">
-          <h3 id="featured-projects-title" style="border:none !important; padding:0 !important; margin:0 !important;">
-            Herramientas y Casos de Éxito Destacados
-          </h3>
-          <a href="portfolio.html" style="color:var(--acc); font-size:13px; font-weight:700; text-decoration:none;">
-            Ver los 8 proyectos →
-          </a>
-        </div>
-        <div class="muted-small" style="margin-bottom:14px;">
-          Haz clic en cualquier proyecto para abrir su demostración interactiva sin salir de esta página
-        </div>
-
-        <div class="portfolio-grid" style="grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)) !important; margin-top:10px !important; gap:16px !important;">
-          <div class="portfolio-item">
-            <div class="portfolio-thumb">
-              <img src="Media/cv.png" alt="Portal SEKUNET y Herramientas de Flujo con IA">
-            </div>
+        <!-- 8 Tarjetas con Miniaturas Reales de Media/ y Botón Circular Naranja '↗' -->
+        <div class="portfolio-grid" style="align-content:stretch;">
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/nextime_preview.png" alt="NEXTIME Pro y Portal Web SEKUNET"></div>
             <div class="portfolio-info">
               <div>
-                <span class="badge" style="margin-bottom:8px; display:inline-block;">Workflows &amp; Web IA</span>
-                <div class="portfolio-title"><a href="disenoia.html">Ecosistema Web 24/7 &amp; Flujos</a></div>
-                <div class="portfolio-desc">Plataforma interactiva de autoasistencia técnica y optimización operativa en SEKUNET.</div>
+                <div class="portfolio-title"><a href="disenoia.html">NEXTIME Pro &amp; Guías Web</a></div>
+                <p class="portfolio-desc">Herramienta de Flujos • <a href="nextime.html" style="color:var(--orange-core); font-weight:700; text-decoration:none;">Abrir Demo ↗</a></p>
               </div>
+              <a href="disenoia.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/sttockflow.jpeg" alt="StockFlow Pro+"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="sttockflow.html">StockFlow Pro+</a></div>
+                <p class="portfolio-desc">Formularios &amp; Datasheet Excel de Google</p>
+              </div>
+              <a href="sttockflow.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/capa.jpg" alt="Capacitación de Personal"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="capacitaciones.html">Capacitaciones</a></div>
+                <p class="portfolio-desc">Formación de Personal &amp; Clientes</p>
+              </div>
+              <a href="capacitaciones.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/reforma_procesos.png" alt="Reforma de Procesos y Flujos en 3 Etapas"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="garantias.html">Reforma de Procesos &amp; Flujos</a></div>
+                <p class="portfolio-desc">3 Etapas de Plataforma &amp; Tickets NEXTIME</p>
+              </div>
+              <a href="garantias.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/anydesk.jpg" alt="Soporte Remoto"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="remoto.html">Soporte Remoto N2/N3</a></div>
+                <p class="portfolio-desc">Redes VLAN, Ubiquiti &amp; VMS</p>
+              </div>
+              <a href="remoto.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/impresion.gif" alt="Visor 3D interactivo"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="3d.html">Visor 3D CAD (.GLB)</a></div>
+                <p class="portfolio-desc">Modelado &amp; Impresión 3D</p>
+              </div>
+              <a href="3d.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/hardware_diagnostico.png" alt="Revisión de Placas, CCTV, Control de Acceso y Hardware PC"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="mantenimiento.html">Hardware &amp; Diagnóstico</a></div>
+                <p class="portfolio-desc">Placas PCB, CCTV, Acceso &amp; Hardware PC</p>
+              </div>
+              <a href="mantenimiento.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/BLEND.png" alt="Renders Técnicos"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="render.html">Renderizado 3D</a></div>
+                <p class="portfolio-desc">Visualización de Prototipos</p>
+              </div>
+              <a href="render.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Franja Inferior estilo "TRUSTED BY LEADING BRANDS WORLDWIDE" -->
+        <div class="formix-brands-strip">
+          <span style="font-size:10px; font-weight:700; letter-spacing:0.12em; color:var(--orange-core); text-transform:uppercase;">
+            TECNOLOGÍAS &amp; CERTIFICACIONES
+          </span>
+          <span class="formix-brand-logo">SEKUNET S.A.</span>
+          <span class="formix-brand-logo">NEXTIME PRO</span>
+          <span class="formix-brand-logo">CISCO CCNAv7</span>
+          <span class="formix-brand-logo">UBIQUITI UNP</span>
+          <span class="formix-brand-logo">HIKVISION HCSA</span>
+          <span class="formix-brand-logo">ZKTECO</span>
+        </div>
+
+      </section>
+
+      <!-- =======================================================================
+           VISTA 04: ESTUDIOS, 10 CERTIFICACIONES OFICIALES & CTA FORMIX
+           ======================================================================= -->
+      <section class="cockpit-view view-edu-grid" id="view-3">
+        <div class="card" style="padding:20px 24px; display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+          <div>
+            <div class="formix-eyebrow">ACREDITACIÓN ACADÉMICA Y TRAYECTORIA</div>
+            <h2 style="font-size:21px; font-weight:700; color:#ffffff; margin:4px 0 12px;">
+              Formación Universitaria y <span style="color:var(--orange-core);">13 Títulos &amp; Certificaciones Oficiales</span>
+            </h2>
+
+            <div class="list-item">
+              <h4>Certificaciones de Fabricante: UNP Ubiquiti, Hikvision (HCSA-CCTV &amp; HCSA-VMS) &amp; ZKTeco</h4>
+              <span class="institution">SEKUNET / FABRICANTES GLOBALES • 2025</span>
+              <p>Acreditación oficial en arquitectura inalámbrica Ubiquiti, seguridad electrónica y gestión de video Hikvision (HCSA-CCTV &amp; Intercom, HCSA-VMS) y sistemas biométricos ZKTeco.</p>
+            </div>
+
+            <div class="list-item">
+              <h4>Técnico en Redes y Telecomunicaciones &amp; Cisco CCNAv7: SRWE</h4>
+              <span class="institution">UNIVERSIDAD JUAN PABLO II • 2024</span>
+              <p>Formación técnica universitaria en redes y telecomunicaciones cursada en paralelo con la certificación Cisco CCNAv7 (Switching, Routing, and Wireless Essentials).</p>
+            </div>
+
+            <div class="list-item">
+              <h4>Técnico en el Nivel Medio en Electrónica en Telecomunicaciones (Título N° 3691 + Mejor Promedio)</h4>
+              <span class="institution">COLEGIO VOCACIONAL DE ARTES Y OFICIOS (COVAO NOCTURNO) • 12 DIC 2024</span>
+              <p>Título oficial del MEP / COVAO (Tomo 3, Folio 71, N° 3691) acompañado del reconocimiento oficial al Mejor Promedio de la Especialidad.</p>
+            </div>
+
+            <div class="list-item">
+              <h4>Técnico de Soporte TI (Respaldado bajo Título de Redes y Telecomunicaciones)</h4>
+              <span class="institution">UNIVERSIDAD JUAN PABLO II / HR SOLUCIONES (2021) / 5 AÑOS FREELANCE</span>
+              <p>Soporte técnico TI respaldado bajo el mismo título de Redes y Telecomunicaciones llevado en la Universidad Juan Pablo II.</p>
             </div>
           </div>
 
-          <div class="portfolio-item">
-            <div class="portfolio-thumb">
-              <img src="Media/sttockflow.jpeg" alt="Aplicación StockFlow Pro +">
+          <div style="display:flex; gap:10px;">
+            <a href="Certificados.html" class="btn-formix-solid">
+              <span>Abrir Galería de 13 Certificados</span>
+              <span>↗</span>
+            </a>
+            <a href="Media/Josseph_Bolsios_CV_ATS.pdf" download="Josseph_Steven_Bolsios_Cortes_CV_ATS.pdf" onclick="if(window.downloadATSCV) downloadATSCV(event);" class="btn-formix-outline">
+              <span>Descargar CV (ATS PDF)</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Video Ilustrativo de Especialidades + Bloque Final CTA Formix -->
+        <div style="display:flex; flex-direction:column; gap:12px; height:100%; min-height:0;">
+          <div class="card" style="padding:12px 14px; flex:1; display:flex; flex-direction:column; gap:8px; min-height:0;">
+            <div style="position:relative; flex:1; min-height:0; border-radius:12px; overflow:hidden; border:1px solid rgba(255,81,26,0.42); background:#0b0b0f;">
+              <video
+                id="eduShowcaseVideo"
+                src="Media/resumen_ilustrativo.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
+                style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;"
+              ></video>
             </div>
-            <div class="portfolio-info">
+
+            <!-- Selector Interactivo de Capítulos del Video (01–06) -->
+            <div class="edu-video-chapters" style="display:grid; grid-template-columns:repeat(6, 1fr); gap:5px;">
+              <button type="button" class="edu-chap-btn active" onclick="seekEduVideo(0)" style="background:rgba(255,81,26,0.16); border:1px solid var(--orange-core); color:#fff; border-radius:7px; padding:5px 2px; font-size:10.5px; font-weight:700; cursor:pointer; transition:all 0.2s;">01 Flujos</button>
+              <button type="button" class="edu-chap-btn" onclick="seekEduVideo(1)" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:var(--text-secondary); border-radius:7px; padding:5px 2px; font-size:10.5px; font-weight:600; cursor:pointer; transition:all 0.2s;">02 NEXTIME</button>
+              <button type="button" class="edu-chap-btn" onclick="seekEduVideo(2)" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:var(--text-secondary); border-radius:7px; padding:5px 2px; font-size:10.5px; font-weight:600; cursor:pointer; transition:all 0.2s;">03 Redes</button>
+              <button type="button" class="edu-chap-btn" onclick="seekEduVideo(3)" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:var(--text-secondary); border-radius:7px; padding:5px 2px; font-size:10.5px; font-weight:600; cursor:pointer; transition:all 0.2s;">04 Capacit.</button>
+              <button type="button" class="edu-chap-btn" onclick="seekEduVideo(4)" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:var(--text-secondary); border-radius:7px; padding:5px 2px; font-size:10.5px; font-weight:600; cursor:pointer; transition:all 0.2s;">05 Electrón.</button>
+              <button type="button" class="edu-chap-btn" onclick="seekEduVideo(5)" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:var(--text-secondary); border-radius:7px; padding:5px 2px; font-size:10.5px; font-weight:600; cursor:pointer; transition:all 0.2s;">06 3D &amp; Stock</button>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center;">
               <div>
-                <span class="badge" style="margin-bottom:8px; display:inline-block;">App Móvil &amp; Cloud</span>
-                <div class="portfolio-title"><a href="sttockflow.html">Proyecto StockFlow Pro +</a></div>
-                <div class="portfolio-desc">App Android ultraligera (&lt;10MB) para auditoría e inventario en tiempo real.</div>
+                <div style="font-size:12.5px; font-weight:700; color:#ffffff;">Resumen Ilustrativo: Lo Que Hago &amp; Impacto</div>
+                <div style="font-size:11px; color:var(--text-secondary);">Flujos RMA • NEXTIME Pro • Redes • Capacitación • Electrónica • 3D</div>
               </div>
+              <span style="font-size:11px; color:var(--orange-core); font-weight:700;">● VIDEO HD</span>
             </div>
           </div>
 
-          <div class="portfolio-item">
-            <div class="portfolio-thumb">
-              <img src="Media/capa.jpg" alt="Capacitación Técnica de Personal">
-            </div>
-            <div class="portfolio-info">
+          <!-- Bloque Inferior estilo Footer Formix -->
+          <div class="card" style="padding:16px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="formix-logo-mark" style="border-radius:50% !important; background:var(--orange-solid) !important; color:#fff !important;">JB</div>
               <div>
-                <span class="badge" style="margin-bottom:8px; display:inline-block;">Liderazgo &amp; Formación</span>
-                <div class="portfolio-title"><a href="capacitaciones.html">Capacitación de Personal</a></div>
-                <div class="portfolio-desc">Entrenamiento técnico en Hikvision, ZKTeco, MikroTik e integración multimarca.</div>
+                <div style="font-size:14.5px; font-weight:700; color:#ffffff; line-height:1.2;">
+                  ¿Listo para impulsar tu equipo técnico?
+                </div>
+                <div style="font-size:11.5px; color:var(--text-secondary);">
+                  bolsios2007@gmail.com • +506 7158-4923 • Cartago, CR
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="portfolio-item">
-            <div class="portfolio-thumb">
-              <img src="Media/tank.jpg" alt="Ingeniería e Impresión 3D">
-            </div>
-            <div class="portfolio-info">
-              <div>
-                <span class="badge" style="margin-bottom:8px; display:inline-block;">Visor 3D Interactivo</span>
-                <div class="portfolio-title"><a href="3d.html">Prototipado e Impresión 3D</a></div>
-                <div class="portfolio-desc">Diseño de piezas funcionales y herramientas a medida con Anycubic Kobra 2 NEO.</div>
-              </div>
-            </div>
+            <button type="button" class="btn-formix-solid js-open-contact" style="padding:8px 16px !important;">
+              <span>Hablemos</span>
+              <span>↗</span>
+            </button>
           </div>
         </div>
       </section>
 
-      <!-- BENTO 4 (5 COLUMNAS): ESTUDIOS Y CERTIFICACIONES -->
-      <section class="bento-card bento-span-5" id="estudios" aria-labelledby="estudios-title">
-        <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px; margin-bottom:16px;">
-          <h3 id="estudios-title" style="border:none !important; padding:0 !important; margin:0 !important;">
-            Estudios y Acreditaciones
-          </h3>
-          <a href="Certificados.html" style="color:var(--acc); font-size:13px; font-weight:700; text-decoration:none;">
-            Galería Visual →
-          </a>
-        </div>
+    </main>
 
-        <div>
-          <div class="list-item">
-            <h4>Certificado: UNP (UniFi Network Professional)</h4>
-            <div class="institution">SEKUNET S.A. / Ubiquiti Academy • 2025</div>
-            <small>Administración avanzada de UniFi Site Manager e infraestructura inalámbrica y ruteo Ubiquiti.</small>
-          </div>
+  </div>
 
-          <div class="list-item">
-            <h4>Certificado: HCSA Hikvision</h4>
-            <div class="institution">SEKUNET S.A. / Hikvision • 2025</div>
-            <small>Especialista certificado en sistemas de seguridad CCTV e Intercomunicación IP Hikvision.</small>
-          </div>
-
-          <div class="list-item">
-            <h4>Certificado ZKTeco: Acceso, Tiempo y Asistencia</h4>
-            <div class="institution">SEKUNET S.A. / ZKTeco • 2025</div>
-            <small>Implementación integral de control de acceso biométrico, vehicular y gestión de asistencia.</small>
-          </div>
-
-          <div class="list-item">
-            <h4>Técnico en Electrónica en Telecomunicaciones</h4>
-            <div class="institution">COVAO Nocturno • 2022 - 2024</div>
-            <small>Fundamentos de electrónica aplicada y despliegue en sistemas de telecomunicaciones.</small>
-          </div>
-
-          <div class="list-item">
-            <h4>Técnico en Redes y Telecomunicaciones</h4>
-            <div class="institution">Universidad Juan Pablo II • 2019 - 2020</div>
-            <small>• Cisco CCNAv7 (2020) • Telecomunicaciones Empresariales • Ciberseguridad • IoT &amp; IT.</small>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- MODAL DE CONTACTO DIRECTO -->
+  <!-- ======================== MODAL DE CONTACTO FORMIX ======================== -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-card">
-      <button class="modal-close" id="closeContactBtn">&times;</button>
-      <h3>Contacto Directo</h3>
-      <div class="muted-small" style="margin-bottom: 16px;">Canales inmediatos de comunicación para reclutadores y proyectos</div>
-      <div>
-        <div class="contact-row">
-          <span class="muted-small" style="margin-bottom:0">Correo Electrónico</span>
-          <a href="mailto:bolsios2007@gmail.com" class="value" style="text-decoration:none; color:#fff;">bolsios2007@gmail.com</a>
-        </div>
-        <div class="contact-row">
-          <span class="muted-small" style="margin-bottom:0">Teléfono / WhatsApp</span>
-          <a href="https://wa.me/50671584923" target="_blank" rel="noopener" class="value" style="text-decoration:none; color:var(--acc);">+506 7158-4923</a>
-        </div>
-        <div class="contact-row">
-          <span class="muted-small" style="margin-bottom:0">Ubicación</span>
-          <span class="value">Oreamuno de Cartago, C.R.</span>
-        </div>
+      <button class="modal-close" id="closeContactBtn" aria-label="Cerrar">&times;</button>
+      <div class="formix-eyebrow" style="margin-bottom:4px;">CANAL DIRECTO</div>
+      <h3 style="font-size:20px; font-weight:800; color:#ffffff; margin-bottom:6px;">Contacto Profesional</h3>
+      <p style="font-size:12.5px; color:var(--text-secondary); margin-bottom:16px;">
+        Disponible para entrevistas técnicas, liderazgo de soporte, redes, telecomunicaciones y optimización de flujos.
+      </p>
+
+      <div class="contact-row">
+        <span style="font-size:11.5px; color:var(--text-secondary);">Teléfono / WhatsApp</span>
+        <a href="https://wa.me/50671584923" target="_blank" rel="noopener" style="color:#ffffff; font-weight:700; text-decoration:none;">+506 7158-4923 ↗</a>
+      </div>
+      <div class="contact-row">
+        <span style="font-size:11.5px; color:var(--text-secondary);">Correo Electrónico</span>
+        <a href="mailto:bolsios2007@gmail.com" style="color:var(--orange-core); font-weight:600; text-decoration:none;">bolsios2007@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span style="font-size:11.5px; color:var(--text-secondary);">Ubicación</span>
+        <span style="color:#ffffff; font-size:12px;">Oreamuno de Cartago, Costa Rica</span>
+      </div>
+      <div class="contact-row" style="border-bottom:none !important;">
+        <span style="font-size:11.5px; color:var(--text-secondary);">Proyecto en Producción</span>
+        <a href="https://sekunet.vercel.app/" target="_blank" rel="noopener" style="color:var(--orange-core); font-weight:700; text-decoration:none;">sekunet.vercel.app ↗</a>
+      </div>
+
+      <div style="margin-top:18px; display:flex; gap:8px;">
+        <a href="https://wa.me/50671584923" target="_blank" rel="noopener" class="btn-formix-solid" style="flex:1;">WhatsApp Directo ↗</a>
+        <a href="Media/Josseph_Bolsios_CV_ATS.pdf" download="Josseph_Steven_Bolsios_Cortes_CV_ATS.pdf" onclick="if(window.downloadATSCV) downloadATSCV(event);" class="btn-formix-outline" style="flex:1;">Descargar CV (ATS)</a>
       </div>
     </div>
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="foot-row" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-        <p>© 2026 <strong>Josseph Steven Bolsios Cortés</strong> — Portafolio &amp; Currículum Vitae Ejecutivo</p>
-        <p class="muted-small" style="margin:0;">Arquitectura Cristalizada • Diseñado con IA y Criterio Humano</p>
-      </div>
-    </div>
-  </footer>
-
+  <script src="ats-cv.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

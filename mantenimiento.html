@@ -1,25 +1,25 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mantenimiento en la Infraestructura Tecnológica</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Hardware & Diagnóstico — Revisión de Placas, CCTV, Control de Acceso y PC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --acc: #ff6a00; 
+      --acc: #ff511a; 
       --acc-alt: #00c6ff;
-      --acc-glow: rgba(255, 106, 0, 0.25);
+      --acc-glow: rgba(255, 81, 26, 0.25);
       --bg: #090b10;
       --bg2: #12161f;
-      --border: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
       --text: #f0f2f5;
-      --text-muted: rgba(240, 242, 245, 0.5);
+      --text-muted: rgba(240, 242, 245, 0.68);
       --nav-h: 72px;
-      --max-w: 1140px;
+      --max-w: 1200px;
     }
 
     body {
@@ -28,15 +28,14 @@
       color: var(--text);
       overflow-x: hidden;
       min-height: 100vh;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
-    /* --- CAPAS DE FONDO TECNOLÓGICO --- */
     .bg-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
     .bg-overlay { 
       position: absolute; inset: 0; 
       background: radial-gradient(circle at 15% 15%, rgba(0, 198, 255, 0.07), transparent 45%),
-                  radial-gradient(circle at 85% 25%, rgba(255, 106, 0, 0.07), transparent 45%);
+                  radial-gradient(circle at 85% 25%, rgba(255, 81, 26, 0.08), transparent 45%);
     }
     .bg-grid { 
       position: absolute; inset: 0; 
@@ -52,7 +51,6 @@
       padding: 0 24px;
     }
 
-    /* --- NAVBAR --- */
     header.navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: var(--nav-h); background: rgba(9, 11, 16, 0.85); backdrop-filter: blur(16px);
@@ -61,12 +59,12 @@
     .nav-inner {
       height: 100%; display: flex; align-items: center; justify-content: space-between;
     }
-    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
     .brand .logo {
       font-family: 'Barlow Condensed'; font-weight: 800; font-size: 18px;
       background: linear-gradient(135deg, var(--acc), var(--acc-alt));
       color: #090b10; width: 38px; height: 38px; display: flex; 
-      align-items: center; justify-content: center; border-radius: 4px;
+      align-items: center; justify-content: center; border-radius: 6px;
       box-shadow: 0 0 12px var(--acc-glow);
     }
     .brand-text-main { font-family: 'Barlow Condensed'; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; font-size: 16px; line-height: 1.1; }
@@ -80,54 +78,126 @@
     nav.nav-links a:hover, nav.nav-links a.active { color: #fff; background: rgba(255,255,255,0.05); }
     nav.nav-links a.active { border-bottom: 2px solid var(--acc); border-radius: 4px 4px 0 0; color: #fff; }
 
-    /* --- CONTENIDO PRINCIPAL --- */
     main.content {
       position: relative; z-index: 1;
-      padding-top: calc(var(--nav-h) + 40px);
+      padding-top: calc(var(--nav-h) + 36px);
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 32px;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
       align-items: start;
       margin-bottom: 30px;
     }
 
-    /* --- MÓDULO DE GALERÍA INTERACTIVA --- */
-    .gallery-wrapper {
+    .media-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
       width: 100%;
     }
-    .gallery-viewer {
+
+    .section-label {
+      font-family: 'Barlow Condensed';
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--acc);
+    }
+
+    .video-switcher {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .switch-btn {
+      flex: 1;
+      min-width: 140px;
+      font-family: 'Barlow Condensed';
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 10px 12px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: center;
+    }
+    .switch-btn:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.22);
+    }
+    .switch-btn.active {
+      background: rgba(255, 81, 26, 0.16);
+      color: #fff;
+      border-color: var(--acc);
+      box-shadow: 0 0 12px rgba(255, 81, 26, 0.22);
+    }
+
+    .video-container {
       width: 100%;
-      height: 420px;
+      aspect-ratio: 16 / 9;
       background: #000;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    }
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .gallery-viewer {
+      width: 100%;
+      height: 290px;
+      background: #05070b;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.4);
     }
     .gallery-viewer img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 0.25s ease;
     }
+    .viewer-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(9,11,16,0.95), rgba(9,11,16,0.6) 70%, transparent);
+      padding: 22px 16px 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .gallery-thumbs {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
     .thumb-item {
-      height: 80px;
+      height: 68px;
       border: 1px solid var(--border);
       background: #000;
-      border-radius: 2px;
+      border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
-      opacity: 0.5;
-      transition: all 0.25s ease;
+      opacity: 0.55;
+      transition: all 0.22s ease;
+      position: relative;
     }
     .thumb-item img {
       width: 100%;
@@ -135,66 +205,110 @@
       object-fit: cover;
     }
     .thumb-item:hover {
-      opacity: 0.8;
+      opacity: 0.85;
       border-color: rgba(255,255,255,0.3);
     }
     .thumb-item.active {
       opacity: 1;
-      border-color: var(--acc-alt);
-      box-shadow: 0 0 8px rgba(0, 198, 255, 0.2);
+      border-color: var(--acc);
+      box-shadow: 0 0 10px rgba(255, 81, 26, 0.35);
     }
 
-    /* Panel de Resumen Técnico */
     .description {
       background: var(--bg2);
       border: 1px solid var(--border);
-      padding: 30px;
-      border-radius: 4px;
+      padding: 28px;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 15px;
     }
     .description h2 {
       font-family: 'Barlow Condensed';
       font-weight: 800;
-      font-size: 24px;
+      font-size: 25px;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       color: #fff;
-      margin-bottom: 6px;
       border-bottom: 1px solid var(--border);
       padding-bottom: 10px;
     }
+    .description h3 {
+      font-family: 'Barlow Condensed';
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--acc);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 4px;
+    }
     .description p {
       color: var(--text-muted);
-      font-size: 15px;
+      font-size: 14.6px;
       line-height: 1.6;
       text-align: justify;
     }
+    .description strong {
+      color: #fff;
+      font-weight: 600;
+    }
 
-    /* --- RETORNO DE NAVEGACIÓN --- */
+    .tech-tag-container {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .tech-tag {
+      font-family: 'Barlow Condensed';
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 5px 11px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: #fff;
+      border-radius: 6px;
+    }
+
     .btn-back-container {
       position: relative; z-index: 1;
       margin-bottom: 60px;
       display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .btn-back {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: 'Barlow Condensed'; font-weight: 600; font-size: 14px;
       text-transform: uppercase; letter-spacing: 1px; padding: 10px 22px;
-      border: 1px solid var(--border); border-radius: 4px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 8px; background: var(--bg2);
       color: var(--text); text-decoration: none; transition: all 0.3s;
     }
     .btn-back:hover {
-      border-color: var(--acc); background: rgba(255, 106, 0, 0.05); transform: translateX(-3px);
+      border-color: var(--acc); background: rgba(255, 81, 26, 0.08); transform: translateX(-3px);
     }
 
-    @media (max-width: 900px) {
-      main.content { grid-template-columns: 1fr; gap: 24px; }
-      .gallery-viewer { height: 320px; }
+    .lightbox-modal {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(5, 7, 10, 0.92); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
     }
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
+    .lightbox-modal.open { opacity: 1; pointer-events: auto; }
+    .lightbox-content {
+      max-width: 92%; max-height: 84vh;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+    }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none; color: #fff; font-size: 36px; cursor: pointer;
+    }
+
+    @media (max-width: 960px) {
+      main.content { grid-template-columns: 1fr; gap: 24px; }
     }
   </style>
   <link rel="stylesheet" href="theme-glassmorphism.css">
@@ -208,15 +322,15 @@
 
   <header class="navbar" role="banner">
     <div class="container nav-inner">
-      <div class="brand">
-        <div class="logo">CV</div>
+      <a href="index.html" class="brand">
+        <div class="logo">JB</div>
         <div>
-          <div class="brand-text-main">Infraestructura Tecnológica</div>
-          <div class="brand-text-sub">Detalle de Proyecto</div>
+          <div class="brand-text-main">Hardware &amp; Diagnóstico Integral</div>
+          <div class="brand-text-sub">Placas PCB, CCTV, Control de Acceso, Garantías &amp; PC</div>
         </div>
-      </div>
+      </a>
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="index.html">Perfil</a>
+        <a href="index.html">Inicio</a>
         <a href="exp.html">Experiencia</a>
         <a href="portfolio.html" class="active" aria-current="page">Portafolio</a>
       </nav>
@@ -225,41 +339,103 @@
 
   <main class="container content" role="main">
     
-    <div class="gallery-wrapper" aria-label="Galería interactiva de evidencias técnicas">
-      <div class="gallery-viewer">
-        <img id="mainViewerImage" src="Media/1.jpg" alt="Vista de inspección principal">
+    <!-- COLUMNA IZQUIERDA: VIDEOS DE DIAGNÓSTICO DE PLACAS/FUENTES + GALERÍA UNIFICADA (PLACAS, CCTV, ACCESO Y PC) -->
+    <div class="media-wrapper">
+
+      <div class="section-label">Casos de Diagnóstico en Laboratorio (Placas, Fuentes y Locks)</div>
+      <div class="video-switcher">
+        <button class="switch-btn active" onclick="switchVideo(this, 'https://www.youtube.com/embed/xcaIyEsT98E')">Caso: Fuente no enciende</button>
+        <button class="switch-btn" onclick="switchVideo(this, 'https://www.youtube.com/embed/96wnObUBXcg')">Caso: Fuentes corroídas</button>
+        <button class="switch-btn" onclick="switchVideo(this, 'https://www.youtube.com/embed/a0awX4XWxzQ')">Caso: Sin energía en los locks</button>
+      </div>
+
+      <div class="video-container" aria-label="Reproductor de pruebas de laboratorio">
+        <iframe 
+          id="mainVideoPlayer"
+          src="https://www.youtube.com/embed/xcaIyEsT98E" 
+          allow="autoplay; encrypted-media" 
+          allowfullscreen 
+          title="Video de diagnóstico técnico de hardware">
+        </iframe>
+      </div>
+
+      <div class="section-label" style="margin-top:4px;">Evidencias Clínicas: Placas CCTV, Control de Acceso &amp; Hardware PC (Clic para ampliar)</div>
+
+      <div class="gallery-viewer" onclick="openLightboxFromViewer()">
+        <img id="mainViewerImage" src="Media/cam.jpeg" alt="Revisión de placa principal de cámara IP con falla en integrado de bobinas">
+        <div class="viewer-caption">
+          <span id="mainViewerCaption">Placa Principal CCTV IP — Diagnóstico en etapa de bobinas y alimentación</span>
+          <span style="color:var(--acc); font-size:12px;">Ampliar ↗</span>
+        </div>
       </div>
       
       <div class="gallery-thumbs">
-        <div class="thumb-item active" onclick="changeImage(this, 'Media/1.jpg')" onmouseover="changeImage(this, 'Media/1.jpg')">
-          <img src="Media/1.jpg" alt="Evidencia principal">
+        <div class="thumb-item active" onclick="changeImage(this, 'Media/cam.jpeg', 'Placa Principal CCTV IP — Diagnóstico en etapa de bobinas y alimentación')">
+          <img src="Media/cam.jpeg" alt="Revisión de placa de cámara CCTV">
         </div>
-
-        <div class="thumb-item" onclick="changeImage(this, 'Media/2.jpg')" onmouseover="changeImage(this, 'Media/2.jpg')">
-          <img src="Media/2.jpg" alt="Inspección de hardware">
+        <div class="thumb-item" onclick="changeImage(this, 'Media/sense.jpeg', 'Control de Acceso Biométrico — Revisión de placas y traslado de mainboard')">
+          <img src="Media/sense.jpeg" alt="Mainboard de control de acceso">
         </div>
-
-        <div class="thumb-item" onclick="changeImage(this, 'Media/3.jpg')" onmouseover="changeImage(this, 'Media/3.jpg')">
+        <div class="thumb-item" onclick="changeImage(this, 'Media/relee.jpeg', 'Etapa de Relés y Fuentes DC — Pruebas de encendido y conmutación')">
+          <img src="Media/relee.jpeg" alt="Revisión de encendido en relé">
+        </div>
+        <div class="thumb-item" onclick="changeImage(this, 'Media/1.jpg', 'Hardware de PC — Diagnóstico, ensamble y optimización de componentes')">
+          <img src="Media/1.jpg" alt="Hardware de PC">
+        </div>
+        <div class="thumb-item" onclick="changeImage(this, 'Media/MdeT.jpg', 'Estaciones de Trabajo y Laptops — Despliegue de SO (Linux Mint / Windows) y periféricos')">
+          <img src="Media/MdeT.jpg" alt="Estación de trabajo Dell">
+        </div>
+        <div class="thumb-item" onclick="changeImage(this, 'Media/2.jpg', 'Equipos de Proyección y Audio — Mantenimiento y reemplazo de lámparas críticas')">
+          <img src="Media/2.jpg" alt="Mantenimiento de proyector">
+        </div>
+        <div class="thumb-item" onclick="changeImage(this, 'Media/3.jpg', 'Soporte de Infraestructura TI — Puesta a punto de equipos informáticos')">
           <img src="Media/3.jpg" alt="Despliegue de sistemas">
         </div>
-
-        <div class="thumb-item" onclick="changeImage(this, 'Media/4.jpg')" onmouseover="changeImage(this, 'Media/4.jpg')">
-          <img src="Media/4.jpg" alt="Configuración en bancos de prueba">
+        <div class="thumb-item" onclick="changeImage(this, 'Media/4.jpg', 'Bancos de Prueba — Configuración y validación de estabilidad')">
+          <img src="Media/4.jpg" alt="Bancos de prueba">
         </div>
       </div>
     </div>
     
+    <!-- COLUMNA DERECHA: DESCRIPCIÓN INTEGRAL DE HARDWARE Y DIAGNÓSTICO -->
     <section class="description" aria-labelledby="desc-title">
-      <h2 id="desc-title">Descripción del Proyecto</h2>
+      <h2 id="desc-title">Revisión de Placas, CCTV, Acceso y Hardware PC</h2>
+
       <p>
-        Una de las áreas más atendidas ha sido el soporte de equipo informático. Al haber laborado en un entorno educativo, el mantenimiento preventivo y el cambio de piezas de hardware para mejorar el rendimiento de los sistemas era bastante recurrentes. Junto a esto, se sumaban equipos de proyección, monitoreo y audio, de los cuales se realizaban cotizaciones con diferentes proveedores para gestionar de forma eficiente la adquisición de repuestos críticos, tales como lámparas para los proyectores.
+        Este módulo reúne toda mi labor práctica en <strong>revisión de placas electrónicas, cámaras de CCTV, terminales de control de acceso, garantías RMA y mantenimiento de hardware de PC e infraestructura TI</strong>:
       </p>
-      <p>
-        Según las capacidades y la arquitectura del hardware, se gestionaban recomendaciones personalizadas de software y despliegues de sistemas operativos, utilizando entornos Windows o distribuciones optimizadas como Linux Mint para estaciones de trabajo de recursos limitados, aplicando de manera simultánea directivas de seguridad informática esenciales.
-      </p>
-      <p>
-        Más allá del marco institucional, clientes particulares confiaban de manera regular sus equipos informáticos de gama baja y media o laptops para optimizaciones, limpiezas físicas exhaustivas y actualizaciones de componentes de hardware (SSD, RAM), además de la resolución de consultas técnicas y soporte a funcionalidades lógicas del sistema.
-      </p>
+
+      <div>
+        <h3>1. Revisión de Placas Electrónicas, CCTV y Control de Acceso</h3>
+        <p>
+          Ejecuto revisiones exhaustivas, validación de fallas y reparaciones puntuales en <strong>placas principales (PCB) de cámaras de seguridad CCTV</strong>, terminales biométricas de <strong>control de acceso y asistencia</strong>, módulos de relé, cerraduras electromagnéticas (locks), fuentes conmutadas y <strong>dispositivos de red</strong>, garantizando el aislamiento preciso de averías físicas, eléctricas o de firmware.
+        </p>
+      </div>
+
+      <div>
+        <h3>2. Bancos de Prueba Recursivos, Soldadura y Garantías RMA</h3>
+        <p>
+          Ante escenarios donde las pruebas están acotadas al instrumental disponible, domina la <strong>recursividad e improvisación técnica para adaptar bancos de prueba funcionales</strong> utilizando <strong>estación de soldadura con cautín y pistola de aire caliente, fuente de alimentación DC, multímetro, amperímetro, probadores de cable Ethernet (RJ45) y herramienta básica</strong>. Cada diagnóstico respalda el control de <strong>trámites de garantías (RMA)</strong> mediante informes técnicos detallados de síntomas, pruebas realizadas y resoluciones.
+        </p>
+      </div>
+
+      <div>
+        <h3>3. Hardware de PC, Laptops e Infraestructura Tecnológica</h3>
+        <p>
+          En el ámbito de cómputo e infraestructura TI (tanto institucional como para clientes particulares), realizo <strong>mantenimiento preventivo y correctivo de PCs y laptops</strong>, reemplazo y actualización de piezas de hardware (<strong>unidades SSD, memoria RAM, fuentes de poder, tarjetas madre</strong>), mantenimiento de equipos de proyección y audio (incluyendo cotización con proveedores para repuestos críticos como lámparas de proyectores), y despliegue optimizado de sistemas operativos (<strong>Windows y distribuciones ligeras como Linux Mint</strong>).
+        </p>
+      </div>
+
+      <div class="tech-tag-container">
+        <span class="tech-tag">Revisión de Placas PCB</span>
+        <span class="tech-tag">CCTV &amp; Control de Acceso</span>
+        <span class="tech-tag">Cautín &amp; Pistola de Calor</span>
+        <span class="tech-tag">Fuente DC &amp; Multímetro/A</span>
+        <span class="tech-tag">Tester Ethernet RJ45</span>
+        <span class="tech-tag">Hardware PC &amp; Laptops</span>
+        <span class="tech-tag">Garantías RMA</span>
+        <span class="tech-tag">Hikvision • ZKTeco • Ubiquiti</span>
+      </div>
     </section>
 
   </main>
@@ -268,25 +444,53 @@
     <a href="portfolio.html" class="btn-back" title="Volver al panel de portafolio">
       <span>←</span> Volver a Portafolio
     </a>
+    <a href="garantias.html" class="btn-back" title="Ver Reforma de Procesos y Flujos">
+      <span>Ver Reforma de Procesos (3 Etapas &amp; NEXTIME Pro)</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <button class="lightbox-close">&times;</button>
+    <img id="lightboxImg" class="lightbox-content" src="" alt="Vista ampliada">
   </div>
 
   <script>
-    function changeImage(element, src) {
+    function switchVideo(button, videoUrl) {
+      const player = document.getElementById('mainVideoPlayer');
+      if (player.src === videoUrl) return;
+      player.style.opacity = 0;
+      setTimeout(() => {
+        player.src = videoUrl;
+        player.style.opacity = 1;
+      }, 200);
+      document.querySelectorAll('.video-switcher .switch-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    }
+
+    function changeImage(element, src, captionText) {
       const viewer = document.getElementById('mainViewerImage');
-      
-      if(viewer.src.endsWith(src)) return;
-      
+      const caption = document.getElementById('mainViewerCaption');
       viewer.style.opacity = 0.3;
-      
       setTimeout(() => {
         viewer.src = src;
+        if (caption && captionText) caption.textContent = captionText;
         viewer.style.opacity = 1;
       }, 120);
-
-      document.querySelectorAll('.thumb-item').forEach(item => {
-        item.classList.remove('active');
-      });
+      document.querySelectorAll('.thumb-item').forEach(item => item.classList.remove('active'));
       element.classList.add('active');
+    }
+
+    function openLightboxFromViewer() {
+      const viewer = document.getElementById('mainViewerImage');
+      const modal = document.getElementById('lightbox');
+      const modalImg = document.getElementById('lightboxImg');
+      modalImg.src = viewer.src;
+      modal.classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
     }
   </script>
 

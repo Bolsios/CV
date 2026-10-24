@@ -1,26 +1,24 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Diagnóstico Técnico — Revisión de Equipos de Seguridad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-  
+  <title>Reforma de Procesos, Flujos Operativos y Contingencia NEXTIME Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      /* Consistencia Absoluta con el Tema Premium Oscuro Cyberpunk */
-      --acc: #ff6a00; 
-      --acc-alt: #00c6ff;
-      --acc-glow: rgba(255, 106, 0, 0.25);
+      --acc: #ff511a;
+      --acc-alt: #38bdf8;
+      --acc-glow: rgba(255, 81, 26, 0.25);
       --bg: #090b10;
       --bg2: #12161f;
-      --border: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
       --text: #f0f2f5;
-      --text-muted: rgba(240, 242, 245, 0.5);
+      --text-muted: rgba(240, 242, 245, 0.68);
       --nav-h: 72px;
-      --max-w: 1140px;
+      --max-w: 1200px;
     }
 
     body {
@@ -29,21 +27,20 @@
       color: var(--text);
       overflow-x: hidden;
       min-height: 100vh;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
-    /* --- CAPAS DE FONDO TECNOLÓGICO --- */
     .bg-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-    .bg-overlay { 
-      position: absolute; inset: 0; 
-      background: radial-gradient(circle at 15% 15%, rgba(0, 198, 255, 0.07), transparent 45%),
-                  radial-gradient(circle at 85% 25%, rgba(255, 106, 0, 0.07), transparent 45%);
+    .bg-overlay {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 15% 15%, rgba(255, 81, 26, 0.09), transparent 45%),
+                  radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.08), transparent 45%);
     }
-    .bg-grid { 
-      position: absolute; inset: 0; 
-      background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), 
-                        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); 
-      background-size: 50px 50px; 
+    .bg-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 50px 50px;
     }
 
     .container {
@@ -53,7 +50,6 @@
       padding: 0 24px;
     }
 
-    /* --- NAVBAR --- */
     header.navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: var(--nav-h); background: rgba(9, 11, 16, 0.85); backdrop-filter: blur(16px);
@@ -62,12 +58,12 @@
     .nav-inner {
       height: 100%; display: flex; align-items: center; justify-content: space-between;
     }
-    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
     .brand .logo {
       font-family: 'Barlow Condensed'; font-weight: 800; font-size: 18px;
       background: linear-gradient(135deg, var(--acc), var(--acc-alt));
-      color: #090b10; width: 38px; height: 38px; display: flex; 
-      align-items: center; justify-content: center; border-radius: 4px;
+      color: #090b10; width: 38px; height: 38px; display: flex;
+      align-items: center; justify-content: center; border-radius: 6px;
       box-shadow: 0 0 12px var(--acc-glow);
     }
     .brand-text-main { font-family: 'Barlow Condensed'; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; font-size: 16px; line-height: 1.1; }
@@ -81,18 +77,16 @@
     nav.nav-links a:hover, nav.nav-links a.active { color: #fff; background: rgba(255,255,255,0.05); }
     nav.nav-links a.active { border-bottom: 2px solid var(--acc); border-radius: 4px 4px 0 0; color: #fff; }
 
-    /* --- CONTENIDO PRINCIPAL --- */
     main.content {
       position: relative; z-index: 1;
-      padding-top: calc(var(--nav-h) + 40px);
+      padding-top: calc(var(--nav-h) + 36px);
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 32px;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
       align-items: start;
       margin-bottom: 30px;
     }
 
-    /* --- BLOQUE MULTIMEDIA AVANZADO --- */
     .media-wrapper {
       display: flex;
       flex-direction: column;
@@ -100,181 +94,155 @@
       width: 100%;
     }
 
-    /* Selectores de Video Estilo Consola */
-    .video-switcher {
+    .stage-switcher {
       display: flex;
-      gap: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
     .switch-btn {
+      flex: 1;
+      min-width: 150px;
       font-family: 'Barlow Condensed';
-      font-weight: 600;
-      font-size: 13px;
+      font-size: 13.5px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 8px 20px;
+      letter-spacing: 0.8px;
+      padding: 11px 14px;
       background: var(--bg2);
       border: 1px solid var(--border);
       color: var(--text-muted);
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 3px;
       transition: all 0.25s ease;
+      text-align: center;
     }
     .switch-btn:hover {
       color: #fff;
-      border-color: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.22);
     }
     .switch-btn.active {
-      color: #090b10;
-      background: var(--acc-alt);
-      border-color: var(--acc-alt);
-      font-weight: 800;
-      box-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
+      background: rgba(255, 81, 26, 0.16);
+      color: #fff;
+      border-color: var(--acc);
+      box-shadow: 0 0 14px rgba(255, 81, 26, 0.22);
     }
 
-    /* Contenedor del Video Principal */
-    .video-container {
-      border-radius: 4px;
+    .interactive-panel {
+      background: var(--bg2);
       border: 1px solid var(--border);
-      overflow: hidden;
-      background: #000;
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
-      transition: opacity 0.3s ease;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.45);
     }
 
-    /* Galería Auxiliar Inferior */
-    .gallery-preview-title {
-      font-family: 'Barlow Condensed';
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--acc);
-      margin-top: 8px;
-    }
-    .thumb-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .thumb-card {
-      height: 90px;
-      background: #000;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      cursor: pointer;
-      transition: border-color 0.25s;
-    }
-    .thumb-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-    .thumb-card:hover {
-      border-color: var(--acc-alt);
-    }
-    .thumb-card:hover img {
-      opacity: 1;
-      transform: scale(1.03);
-    }
+    .tab-pane { display: none; flex-direction: column; gap: 16px; }
+    .tab-pane.active { display: flex; }
 
-    /* --- SISTEMA LIGHTBOX MODAL --- */
-    .lightbox-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(5, 7, 10, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 200;
+    .reforma-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-left: 4px solid var(--acc);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .reforma-card.alt { border-left-color: var(--acc-alt); }
+    .reforma-card.green { border-left-color: #22c55e; }
+
+    .rc-header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      padding: 20px;
+      margin-bottom: 6px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-    .lightbox-modal.open {
-      opacity: 1;
-      pointer-events: auto;
+    .rc-tag {
+      font-family: 'Barlow Condensed';
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--acc);
+      background: rgba(255, 81, 26, 0.12);
+      padding: 3px 10px;
+      border-radius: 999px;
     }
-    .lightbox-content {
-      max-width: 90%;
-      max-height: 80vh;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-      border-radius: 4px;
-      transform: scale(0.95);
+    .rc-tag.blue { color: var(--acc-alt); background: rgba(56, 189, 248, 0.12); }
+    .rc-tag.green { color: #22c55e; background: rgba(34, 197, 94, 0.12); }
+
+    .rc-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .rc-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .preview-banner {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      position: relative;
+    }
+    .preview-banner img {
+      width: 100%;
+      display: block;
       transition: transform 0.3s ease;
     }
-    .lightbox-modal.open .lightbox-content {
-      transform: scale(1);
+    .preview-banner:hover img {
+      transform: scale(1.02);
     }
-    .lightbox-close {
-      position: absolute;
-      top: 24px; right: 24px;
-      background: none; border: none;
-      color: #fff; font-size: 36px; cursor: pointer;
-      line-height: 1; opacity: 0.6; transition: opacity 0.25s;
-    }
-    .lightbox-close:hover { opacity: 1; color: var(--acc); }
 
-    /* Panel de Resumen Técnico */
     .description {
       background: var(--bg2);
       border: 1px solid var(--border);
-      padding: 30px;
-      border-radius: 4px;
+      padding: 28px;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 16px;
     }
     .description h2 {
       font-family: 'Barlow Condensed';
       font-weight: 800;
-      font-size: 24px;
+      font-size: 25px;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       color: #fff;
-      margin-bottom: -4px;
       border-bottom: 1px solid var(--border);
       padding-bottom: 10px;
     }
     .description h3 {
       font-family: 'Barlow Condensed';
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--acc-alt);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--acc);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 4px;
+      letter-spacing: 0.6px;
+      margin-bottom: 4px;
     }
     .description p {
       color: var(--text-muted);
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 14.8px;
+      line-height: 1.62;
       text-align: justify;
     }
     .description strong {
       color: #fff;
       font-weight: 600;
     }
+
     .tech-tag-container {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-top: 6px;
+      margin-top: 4px;
     }
     .tech-tag {
       font-family: 'Barlow Condensed';
@@ -282,31 +250,49 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      padding: 4px 10px;
-      background: rgba(255, 255, 255, 0.03);
+      padding: 5px 11px;
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
       color: #fff;
-      border-radius: 2px;
+      border-radius: 6px;
     }
 
-    /* --- RETORNO DE NAVEGACIÓN --- */
     .btn-back-container {
       position: relative; z-index: 1;
       margin-bottom: 60px;
       display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .btn-back {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: 'Barlow Condensed'; font-weight: 600; font-size: 14px;
       text-transform: uppercase; letter-spacing: 1px; padding: 10px 22px;
-      border: 1px solid var(--border); border-radius: 4px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 8px; background: var(--bg2);
       color: var(--text); text-decoration: none; transition: all 0.3s;
     }
     .btn-back:hover {
-      border-color: var(--acc); background: rgba(255, 106, 0, 0.05); transform: translateX(-3px);
+      border-color: var(--acc); background: rgba(255, 81, 26, 0.08); transform: translateX(-3px);
     }
 
-    @media (max-width: 900px) {
+    .lightbox-modal {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(5, 7, 10, 0.92); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .lightbox-modal.open { opacity: 1; pointer-events: auto; }
+    .lightbox-content {
+      max-width: 92%; max-height: 84vh;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+    }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none; color: #fff; font-size: 36px; cursor: pointer;
+    }
+
+    @media (max-width: 960px) {
       main.content { grid-template-columns: 1fr; gap: 24px; }
     }
   </style>
@@ -321,15 +307,15 @@
 
   <header class="navbar" role="banner">
     <div class="container nav-inner">
-      <div class="brand">
-        <div class="logo">CV</div>
+      <a href="index.html" class="brand">
+        <div class="logo">JB</div>
         <div>
-          <div class="brand-text-main">Revisión de Equipos</div>
-         
+          <div class="brand-text-main">Reforma de Procesos &amp; Flujos</div>
+          <div class="brand-text-sub">Unificación en 3 Etapas &amp; Contingencia NEXTIME Pro</div>
         </div>
-      </div>
+      </a>
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="index.html">Perfil</a>
+        <a href="index.html">Inicio</a>
         <a href="exp.html">Experiencia</a>
         <a href="portfolio.html" class="active" aria-current="page">Portafolio</a>
       </nav>
@@ -337,76 +323,166 @@
   </header>
 
   <main class="container content" role="main">
-    
+
+    <!-- COLUMNA IZQUIERDA: VISUALIZADOR INTERACTIVO DE LAS 3 REFORMAS + CONTINGENCIA NEXTIME PRO -->
     <div class="media-wrapper">
-      
-      <div class="video-switcher">
-        <button class="switch-btn active" onclick="switchVideo(this, 'https://www.youtube.com/embed/xcaIyEsT98E')">Caso: Fuente no enciende</button>
-        <button class="switch-btn" onclick="switchVideo(this, 'https://www.youtube.com/embed/96wnObUBXcg')">Caso: Fuentes corroídas</button>
-        <button class="switch-btn" onclick="switchVideo(this, 'https://www.youtube.com/embed/a0awX4XWxzQ')">Caso: Sin energía en los locks</button>
-      </div>
-      
-      <div class="video-container" aria-label="Reproductor de pruebas de laboratorio">
-        <iframe 
-          id="mainVideoPlayer"
-          src="https://www.youtube.com/embed/xcaIyEsT98E" 
-          allow="autoplay; encrypted-media" 
-          allowfullscreen 
-          title="Video de diagnóstico técnico">
-        </iframe>
+
+      <div class="stage-switcher">
+        <button class="switch-btn active" onclick="switchProcessTab(this, 'tab-reformas')">1. Las 3 Reformas (Días 1–15)</button>
+        <button class="switch-btn" onclick="switchProcessTab(this, 'tab-coordinacion')">2. Paso a Paso &amp; Permisos</button>
+        <button class="switch-btn" onclick="switchProcessTab(this, 'tab-nextime')">3. Tickets en NEXTIME Pro</button>
       </div>
 
-      <div class="gallery-preview-title">Registros Clínicos de Hardware (Presiona para ampliar)</div>
-      
-      <div class="thumb-grid" aria-label="Muestras de hardware en revisión">
-        <div class="thumb-card" onclick="openLightbox(this)">
-          <img src="Media/cam.jpeg" alt="Revisión de placa principal de cámara IP con falla en el integrado de bobinas">
+      <div class="interactive-panel">
+
+        <!-- TAB 1: LAS 3 REFORMAS DE PLATAFORMA -->
+        <div id="tab-reformas" class="tab-pane active">
+          <div class="reforma-card">
+            <div class="rc-header">
+              <span class="rc-tag">1ª Reforma de Plataforma • Primeros 15 Días</span>
+              <span style="font-size:12px; color:#ffb088; font-weight:700;">Cambio de Ambiente</span>
+            </div>
+            <div class="rc-title">Transición Inicial hacia la Unificación de Información</div>
+            <p class="rc-desc">
+              El ingreso a un ambiente completamente nuevo modificó los flujos habituales de trabajo. Ante la inquietud e inconformidad de los compañeros por el cambio brusco de versión, asumí la tarea de investigar y recuperar cómo ejecutar cada proceso anterior dentro de la nueva interfaz.
+            </p>
+          </div>
+
+          <div class="reforma-card alt">
+            <div class="rc-header">
+              <span class="rc-tag blue">2ª Reforma de Plataforma • Primeros 15 Días</span>
+              <span style="font-size:12px; color:#38bdf8; font-weight:700;">Estructuración Paso a Paso</span>
+            </div>
+            <div class="rc-title">Reestructuración de Guías Paso a Paso y Ajustes en Producción</div>
+            <p class="rc-desc">
+              En la segunda etapa los procesos volvieron a cambiar respecto a la versión previa. Estructuré manuales y flujos paso a paso adaptados a las nuevas características, sorteando además demoras considerables en el otorgamiento de permisos operativos mientras los desarrolladores aplicaban ajustes directamente en producción.
+            </p>
+          </div>
+
+          <div class="reforma-card green">
+            <div class="rc-header">
+              <span class="rc-tag green">3ª Reforma de Plataforma • Consolidación</span>
+              <span style="font-size:12px; color:#22c55e; font-weight:700;">Acuerdo Interdepartamental</span>
+            </div>
+            <div class="rc-title">Unificación Definitiva y Modo de Operación Conjunto</div>
+            <p class="rc-desc">
+              Coordinación directa con compañeros de otros departamentos para consensuar un modo de operación en conjunto, alineando criterios entre áreas técnicas, administrativas y de soporte para alcanzar la meta operativa sin detener el servicio.
+            </p>
+          </div>
         </div>
-        <div class="thumb-card" onclick="openLightbox(this)">
-          <img src="Media/relee.jpeg" alt="Revisión de encendido">
+
+        <!-- TAB 2: PASO A PASO, PERMISOS EN PRODUCCIÓN Y COORDINACIÓN -->
+        <div id="tab-coordinacion" class="tab-pane">
+          <div class="reforma-card">
+            <div class="rc-header">
+              <span class="rc-tag">Gestión del Cambio en el Equipo</span>
+              <span style="font-size:12px; color:#ffb088; font-weight:700;">Reducción de Fricción</span>
+            </div>
+            <div class="rc-title">De la Inquietud Operativa a un Paso a Paso Claro</div>
+            <p class="rc-desc">
+              Durante los primeros 15 días de cada reforma, la diferencia entre versiones generaba resistencia e incertidumbre. Mi enfoque consistió en mapear cada procedimiento antiguo, encontrar su equivalente o alternativa en el nuevo entorno y entregar al equipo una ruta paso a paso probada.
+            </p>
+          </div>
+
+          <div class="reforma-card alt">
+            <div class="rc-header">
+              <span class="rc-tag blue">Adversidades en Producción</span>
+              <span style="font-size:12px; color:#38bdf8; font-weight:700;">Concesión de Permisos</span>
+            </div>
+            <div class="rc-title">Continuidad ante Tiempos de Concesión de Permisos</div>
+            <p class="rc-desc">
+              Debido a que el equipo de desarrollo realizaba ajustes continuos en producción, ciertos permisos operativos dentro de la plataforma tomaban tiempos considerables en ser concedidos. Se diseñaron flujos alternos y acuerdos con otros departamentos para no frenar el cumplimiento de la meta.
+            </p>
+          </div>
+
+          <div class="reforma-card green">
+            <div class="rc-header">
+              <span class="rc-tag green">Sinergia Entre Departamentos</span>
+              <span style="font-size:12px; color:#22c55e; font-weight:700;">Meta Operativa</span>
+            </div>
+            <div class="rc-title">Coordinación Horizontal para Unificar la Información</div>
+            <p class="rc-desc">
+              Acuerdos prácticos de entrega, recepción y validación de casos con compañeros de otros departamentos para que la información fluyera de forma íntegra hacia la plataforma unificada.
+            </p>
+          </div>
         </div>
-        <div class="thumb-card" onclick="openLightbox(this)">
-          <img src="Media/sense.jpeg" alt="Traslado de mainboard">
+
+        <!-- TAB 3: INTEGRACIÓN DE NEXTIME PRO Y SISTEMA DE TICKETS EMBEBIDO -->
+        <div id="tab-nextime" class="tab-pane">
+          <div class="reforma-card">
+            <div class="rc-header">
+              <span class="rc-tag">Contingencia Crítica</span>
+              <span style="font-size:12px; color:#ffb088; font-weight:700;">Caídas o Transición de Plataforma</span>
+            </div>
+            <div class="rc-title">¿Qué ocurría cuando no contábamos con el sistema principal de tickets?</div>
+            <p class="rc-desc">
+              Relacionado con las 3 reformas de plataforma —o en momentos donde la plataforma corporativa se caía en su totalidad—, el equipo quedaba temporalmente sin acceso al sistema oficial de tickets.
+            </p>
+          </div>
+
+          <div class="reforma-card green">
+            <div class="rc-header">
+              <span class="rc-tag green">Solución Desarrollada • NEXTIME Pro</span>
+              <span style="font-size:12px; color:#22c55e; font-weight:700;">Tickets Embebidos + Bitácora</span>
+            </div>
+            <div class="rc-title">Sistema de Tickets Embebido dentro de NEXTIME Pro</div>
+            <p class="rc-desc">
+              Por ello, integré a <strong>NEXTIME Pro</strong> en el flujo de trabajo con un <strong>sistema de tickets embebido</strong> diseñado específicamente para entrar en acción cuando no contáramos con el sistema principal, funcionando en paralelo a su sistema de registro y cronometraje de actividades diarias.
+            </p>
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a href="nextime.html" class="btn-back" style="border-color:var(--acc); background:rgba(255,81,26,0.14); color:#fff;">
+                <span>Abrir Demo NEXTIME Pro (Ver Módulo de Tickets)</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
         </div>
+
+      </div>
+
+      <!-- Esquema Visual de las 3 Reformas y Contingencia NEXTIME Pro -->
+      <div class="preview-banner" onclick="openLightbox('Media/reforma_procesos.png')" title="Presiona para ampliar el esquema de Reforma de Procesos">
+        <img src="Media/reforma_procesos.png" alt="Esquema de las 3 Reformas de Plataforma, Estructuración Paso a Paso y Sistema de Tickets Embebido en NEXTIME Pro">
       </div>
 
     </div>
-    
+
+    <!-- COLUMNA DERECHA: DESCRIPCIÓN EJECUTIVA DEL CASO DE ESTUDIO -->
     <section class="description" aria-labelledby="desc-title">
-      <h2 id="desc-title">Revisión y Diagnóstico Hardware</h2>
-      
+      <h2 id="desc-title">Reforma de Procesos y Flujos de Trabajo</h2>
+
       <p>
-        Mi enfoque central en esta área se especializa en la evaluación profunda, control de fallas y optimización operativa de sistemas e infraestructura crítica de seguridad electrónica:
+        En <strong>SEKUNET S.A.</strong> nos enfrentamos a <strong>3 reformas diferentes de la plataforma corporativa</strong> con el propósito de unificar toda la información de la empresa. Este proceso implicó liderar la adaptación operativa del flujo técnico en escenarios cambiantes de producción:
       </p>
 
       <div>
-        <h3>Diagnóstico y Reparación de Equipos</h3>
+        <h3>1. Superación de las 3 Reformas (Primeros 15 Días Críticos)</h3>
         <p>
-          Ejecuto revisiones exhaustivas y reparaciones complejas a nivel de hardware y componentes en <strong>cámaras de seguridad de CCTV</strong>, terminales avanzadas de <strong>control de acceso y asistencia</strong>, así como en <strong>dispositivos de infraestructura de red</strong>. Este proceso garantiza el aislamiento exacto de averías físicas o lógicas.
+          Durante los <strong>primeros 15 días de cada etapa</strong> nos encontrábamos ante un ambiente nuevo donde los procesos no eran los mismos de una versión a otra. Ante la comprensible inconformidad e inquietud de los compañeros por los cambios, parte esencial de mi papel fue <strong>recuperar y estructurar un paso a paso claro</strong> de cómo realizar los procesos que ejecutábamos anteriormente adaptados a las nuevas características de cada ambiente.
         </p>
       </div>
 
       <div>
-        <h3>Gestión de Sistemas y Conectividad</h3>
+        <h3>2. Coordinación Interdepartamental y Permisos en Producción</h3>
         <p>
-          Administro y configuro las plataformas de gestión de sistemas dedicadas a estos entornos. Aseguro el correcto enlace, estabilidad de tráfico, aprovisionamiento de firmware y la interoperabilidad óptima entre las terminales de campo y las consolas centrales de monitoreo.
+          De forma simultánea, coordiné con los compañeros de <strong>otros departamentos</strong> para acordar un <strong>modo de operación en conjunto</strong> que nos permitiera llegar a la meta operativa. Cabe destacar el enfrentamiento de diversas adversidades técnicas, como el otorgamiento de ciertos <strong>permisos operativos dentro de la plataforma con tiempos considerables de concesión</strong>, debido a que existían ajustes continuos en producción por parte de los desarrolladores.
         </p>
       </div>
 
       <div>
-        <h3>Trámites de Garantías e Informes</h3>
+        <h3>3. Integración de NEXTIME Pro y Sistema de Tickets Embebido</h3>
         <p>
-          Llevo a cabo el control riguroso de trámites de garantías tanto directas como con la marca respectiva. Cada intervención se respalda mediante la generación de informes técnicos detallados, documentando de forma estructurada los síntomas detectados, las pruebas de laboratorio realizadas y las resoluciones finales de calidad.
+          Como parte de esta reforma se integró <strong>NEXTIME Pro</strong> directamente en el flujo de trabajo. En ocasiones, debido a las transiciones de versión o porque la plataforma principal se caía en su totalidad, no contábamos con el sistema oficial de tickets; por ello, <strong>NEXTIME Pro incorpora un sistema de tickets embebido</strong> para hacer uso inmediato de este respaldo cuando no disponemos del sistema principal, aparte de su sistema habitual de registro y cronometraje de actividades.
         </p>
       </div>
 
-      <div class="gallery-preview-title" style="margin-top: 10px; font-size: 13px;">Marcas Especializadas</div>
       <div class="tech-tag-container">
-        <span class="tech-tag">Hikvision</span>
-        <span class="tech-tag">ZKTeco</span>
-        <span class="tech-tag">Ubiquiti</span>
-        <span class="tech-tag">Mikrotik</span>
-        <span class="tech-tag">Ezviz</span>
+        <span class="tech-tag">3 Reformas de Plataforma</span>
+        <span class="tech-tag">Unificación de Información</span>
+        <span class="tech-tag">Guías Paso a Paso</span>
+        <span class="tech-tag">Coordinación Interdepartamental</span>
+        <span class="tech-tag">NEXTIME Pro</span>
+        <span class="tech-tag">Tickets Embebidos de Contingencia</span>
       </div>
     </section>
 
@@ -416,6 +492,10 @@
     <a href="portfolio.html" class="btn-back" title="Volver al panel de portafolio">
       <span>←</span> Volver a Portafolio
     </a>
+    <a href="mantenimiento.html" class="btn-back" title="Ir a Hardware y Diagnóstico">
+      <span>Ir a Hardware &amp; Diagnóstico (Placas, CCTV y PC)</span>
+      <span>→</span>
+    </a>
   </div>
 
   <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
@@ -424,32 +504,23 @@
   </div>
 
   <script>
-    function switchVideo(button, videoUrl) {
-      const player = document.getElementById('mainVideoPlayer');
-      if (player.src === videoUrl) return;
-
-      player.style.opacity = 0;
-      setTimeout(() => {
-        player.src = videoUrl;
-        player.style.opacity = 1;
-      }, 200);
-
-      document.querySelectorAll('.switch-btn').forEach(btn => btn.classList.remove('active'));
+    function switchProcessTab(button, tabId) {
+      document.querySelectorAll('.stage-switcher .switch-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
       button.classList.add('active');
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
     }
 
-    function openLightbox(cardElement) {
+    function openLightbox(src) {
       const modal = document.getElementById('lightbox');
       const modalImg = document.getElementById('lightboxImg');
-      const targetImgSrc = cardElement.querySelector('img').src;
-
-      modalImg.src = targetImgSrc;
+      modalImg.src = src;
       modal.classList.add('open');
     }
 
     function closeLightbox() {
-      const modal = document.getElementById('lightbox');
-      modal.classList.remove('open');
+      document.getElementById('lightbox').classList.remove('open');
     }
   </script>
 

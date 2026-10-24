@@ -2,178 +2,158 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portafolio de Proyectos y Herramientas — Josseph Bolsios Cortés</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Portafolio de Proyectos — Josseph Steven Bolsios Cortés</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="theme-glassmorphism.css">
 </head>
 <body>
 
-  <!-- CAPAS DE FONDO CRISTALIZADO -->
-  <div class="bg-layer">
-    <div class="bg-overlay"></div>
-    <div class="bg-grid"></div>
-  </div>
-
-  <!-- NAVBAR CRISTALIZADA -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a href="index.html" class="brand">
-        <div class="logo">JB</div>
+  <div class="formix-shell">
+    <header class="formix-navbar">
+      <a href="index.html" class="formix-brand">
+        <div class="formix-logo-mark">JB</div>
         <div>
-          <div class="brand-text-main">Portafolio de Evidencias</div>
-          <div class="brand-text-sub">Herramientas, Apps, Seguridad Electrónica &amp; 3D</div>
+          <div class="formix-brand-text">Bolsios</div>
+          <div class="formix-brand-sub">TELECOMUNICACIONES &amp; FLUJOS</div>
         </div>
       </a>
-      <nav class="nav-links">
-        <a href="index.html">Inicio</a>
-        <a href="exp.html">Experiencia</a>
-        <a href="portfolio.html" class="active">Portafolio</a>
-        <a href="Certificados.html">Certificados</a>
+
+      <nav class="formix-nav-pill">
+        <a href="index.html" class="formix-nav-link">Inicio</a>
+        <a href="exp.html" class="formix-nav-link">Qué Hago &amp; SEKUNET</a>
+        <a href="portfolio.html" class="formix-nav-link active">Portafolio (8)</a>
+        <a href="Certificados.html" class="formix-nav-link">Certificados (13)</a>
       </nav>
-    </div>
-  </header>
 
-  <main class="container" style="padding-top: calc(var(--nav-h) + 36px) !important; padding-bottom: 70px !important;">
-
-    <!-- BANNER INSIGNIA: NEXTIME PRO & ECOSISTEMA DE FLUJOS DE TRABAJO -->
-    <div class="bento-card sekunet-spotlight" style="margin-bottom: 28px !important;">
-      <div class="nextime-banner" style="background: transparent !important; border: none !important; padding: 0 !important; box-shadow: none !important;">
-        <div>
-          <div class="nextime-badge">
-            <span>★ INNOVACIÓN EN FLUJOS DE TRABAJO • SEKUNET S.A.</span>
-          </div>
-          <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(24px,3.2vw,34px); font-weight:800; text-transform:uppercase; margin-bottom:8px; color:#fff;">
-            NEXTIME Pro &amp; Ecosistema de Reforma de Procesos
-          </h2>
-          <p style="font-size:14.5px; color:var(--text-secondary); line-height:1.7; max-width:820px; margin-bottom:12px;">
-            Como parte de mi rol en la <strong>creación de flujos de trabajo, reforma de procesos y capacitación de personal en SEKUNET S.A.</strong>, diseño y desarrollo herramientas digitales orientadas a eliminar fricciones operativas. Un ejemplo emblemático es <strong>NEXTIME Pro</strong> —aplicación enfocada en la optimización de tiempos y control de flujos de trabajo— junto con la plataforma interactiva de autoasistencia técnica 24/7.
-          </p>
-          <div class="chips">
-            <span class="chip">NEXTIME Pro</span>
-            <span class="chip">Arquitectura de Flujos</span>
-            <span class="chip">Reforma de Procesos</span>
-            <span class="chip">Autoasistencia 24/7</span>
-            <span class="chip">Capacitación de Equipos</span>
-          </div>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px; flex-shrink:0;">
-          <a href="disenoia.html" class="btn btn-primary">Ver Demostración Interactiva</a>
-          <a href="exp.html" class="btn btn-ghost">Ver Impacto en SEKUNET</a>
-        </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <a href="Media/Josseph_Bolsios_CV_ATS.pdf" download="Josseph_Steven_Bolsios_Cortes_CV_ATS.pdf" onclick="if(window.downloadATSCV) downloadATSCV(event);" class="btn-formix-outline" style="padding:7px 16px !important; font-size:12px !important;">
+          <span>Descargar CV (ATS PDF)</span>
+          <span style="color:var(--orange-core);">↓</span>
+        </a>
       </div>
-    </div>
+    </header>
 
-    <!-- CUADRÍCULA PRINCIPAL DE PROYECTOS -->
-    <div class="card">
-      <h3>
-        <span>Catálogo de Proyectos y Casos Técnicos</span>
-        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">8 Módulos Interactivos</span>
-      </h3>
-      <div class="muted-small">Haz clic en cualquier tarjeta para abrir su vista interactiva con videos, visores 3D o aplicaciones en vivo</div>
-
-      <div class="portfolio-grid">
-
-        <div class="portfolio-item">
-          <div class="portfolio-thumb"><img src="Media/cv.png" alt="Desarrollo Web con IA y Flujos de Trabajo"></div>
-          <div class="portfolio-info">
-            <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">Workflows &amp; Web IA</span>
-              <div class="portfolio-title"><a href="disenoia.html">Desarrollo Web con IA &amp; Flujos</a></div>
-              <div class="portfolio-desc">Portal interactivo SEKUNET 24/7, NEXTIME Pro y herramientas de optimización con IA + criterio humano.</div>
-            </div>
+    <main class="formix-stage">
+      <section class="cockpit-view active" style="grid-template-rows: auto 1fr auto; gap:10px;">
+        <div class="formix-section-header">
+          <div>
+            <div class="formix-eyebrow">CASOS DE ESTUDIO &amp; DESARROLLOS</div>
+            <h1 class="formix-section-title">
+              Trabajo técnico <span>que habla por sí mismo</span>
+            </h1>
+          </div>
+          <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
+            <a href="nextime.html" class="formix-orange-link">
+              <span>Probar Demo NEXTIME Pro</span>
+              <span>↗</span>
+            </a>
+            <a href="https://sekunet.vercel.app/" target="_blank" rel="noopener" class="formix-orange-link">
+              <span>sekunet.vercel.app</span>
+              <span>↗</span>
+            </a>
           </div>
         </div>
 
-        <div class="portfolio-item">
-          <div class="portfolio-thumb"><img src="Media/sttockflow.jpeg" alt="Proyecto StockFlow Pro +"></div>
-          <div class="portfolio-info">
-            <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">App Android</span>
-              <div class="portfolio-title"><a href="sttockflow.html">Proyecto StockFlow Pro +</a></div>
-              <div class="portfolio-desc">Aplicación móvil ultraligera para control y auditoría de inventario escolar en tiempo real.</div>
+        <div class="portfolio-grid" style="align-content:stretch;">
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/nextime_preview.png" alt="NEXTIME Pro y Portal Web SEKUNET"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="nextime.html">NEXTIME Pro &amp; Web</a></div>
+                <p class="portfolio-desc">Demo Interactivo &amp; Guías SEKUNET</p>
+              </div>
+              <a href="nextime.html" class="formix-circle-icon" title="Abrir Demo Interactivo de NEXTIME Pro">↗</a>
             </div>
-          </div>
+          </article>
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/sttockflow.jpeg" alt="StockFlow Pro+"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="sttockflow.html">StockFlow Pro+</a></div>
+                <p class="portfolio-desc">Formularios &amp; Datasheet Excel de Google</p>
+              </div>
+              <a href="sttockflow.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/capa.jpg" alt="Capacitación de Personal"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="capacitaciones.html">Capacitaciones</a></div>
+                <p class="portfolio-desc">Formación de Personal &amp; Clientes</p>
+              </div>
+              <a href="capacitaciones.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/reforma_procesos.png" alt="Reforma de Procesos y Flujos en 3 Etapas"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="garantias.html">Reforma de Procesos &amp; Flujos</a></div>
+                <p class="portfolio-desc">3 Etapas de Plataforma &amp; Tickets NEXTIME</p>
+              </div>
+              <a href="garantias.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/anydesk.jpg" alt="Soporte Remoto"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="remoto.html">Soporte Remoto N2/N3</a></div>
+                <p class="portfolio-desc">Redes VLAN, Ubiquiti &amp; VMS</p>
+              </div>
+              <a href="remoto.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/impresion.gif" alt="Visor 3D interactivo"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="3d.html">Visor 3D CAD (.GLB)</a></div>
+                <p class="portfolio-desc">Modelado &amp; Impresión 3D</p>
+              </div>
+              <a href="3d.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/hardware_diagnostico.png" alt="Revisión de Placas, CCTV, Control de Acceso y Hardware PC"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="mantenimiento.html">Hardware &amp; Diagnóstico</a></div>
+                <p class="portfolio-desc">Placas PCB, CCTV, Acceso &amp; Hardware PC</p>
+              </div>
+              <a href="mantenimiento.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
+          <article class="portfolio-item">
+            <div class="portfolio-thumb"><img src="Media/BLEND.png" alt="Renders Técnicos"></div>
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-title"><a href="render.html">Renderizado 3D</a></div>
+                <p class="portfolio-desc">Visualización de Prototipos</p>
+              </div>
+              <a href="render.html" class="formix-circle-icon">↗</a>
+            </div>
+          </article>
         </div>
 
-        <div class="portfolio-item">
-          <div class="portfolio-thumb"><img src="Media/capa.jpg" alt="Capacitación Técnica"></div>
-          <div class="portfolio-info">
-            <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">Liderazgo &amp; Formación</span>
-              <div class="portfolio-title"><a href="capacitaciones.html">Capacitación de Personal</a></div>
-              <div class="portfolio-desc">Entrenamiento a compañeros e integradores en Hikvision, ZKTeco, MikroTik e integración multimarca.</div>
-            </div>
-          </div>
+        <div class="formix-brands-strip">
+          <span style="font-size:10px; font-weight:700; letter-spacing:0.12em; color:var(--orange-core); text-transform:uppercase;">
+            TECNOLOGÍAS &amp; CERTIFICACIONES
+          </span>
+          <span class="formix-brand-logo">SEKUNET S.A.</span>
+          <span class="formix-brand-logo">NEXTIME PRO</span>
+          <span class="formix-brand-logo">CISCO CCNAv7</span>
+          <span class="formix-brand-logo">UBIQUITI UNP</span>
+          <span class="formix-brand-logo">HIKVISION HCSA</span>
+          <span class="formix-brand-logo">ZKTECO</span>
         </div>
+      </section>
+    </main>
+  </div>
 
-        <div class="portfolio-item">
-          <div class="portfolio-thumb"><img src="Media/acc.jpg" alt="Seguridad Electrónica y Garantías"></div>
-          <div class="portfolio-info">
-            <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">Laboratorio &amp; Procesos</span>
-              <div class="portfolio-title"><a href="garantias.html">Seguridad Electrónica</a></div>
-              <div class="portfolio-desc">Diagnóstico clínico de hardware, control de garantías y estandarización de pruebas.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio-item">
-          <div class="portfolio-thumb"><img src="Media/tank.jpg" alt="Impresión 3D y Prototipado"></div>
-          <div class="portfolio-info">
-            <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">Visor STL 3D</span>
-              <div class="portfolio-title"><a href="3d.html">Impresión 3D Aplicada</a></div>
-              <div class="portfolio-desc">Diseño y fabricación aditiva de herramientas y soportes con Anycubic Kobra 2 NEO.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio-item">
-          <div class="portfolio-thumb"><img src="Media/BLEND.png" alt="Generación Multimedia y Renderizado"></div>
-          <div class="portfolio-info">
-            <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">Blender &amp; CAD</span>
-              <div class="portfolio-title"><a href="render.html">Generación Multimedia 3D</a></div>
-              <div class="portfolio-desc">Modelado conceptual, planos de simulación y renders fotorrealistas de producto para SEKUNET.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio-item">
-          <div class="portfolio-thumb"><img src="Media/any.webp" alt="Soporte Técnico Remoto"></div>
-          <div class="portfolio-info">
-            <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">Redes &amp; Asistencia</span>
-              <div class="portfolio-title"><a href="remoto.html">Soporte Técnico Remoto</a></div>
-              <div class="portfolio-desc">Rastreo profundo de redes CCTV, actualización de firmware y resolución crítica a distancia.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio-item">
-          <div class="portfolio-thumb"><img src="Media/MdeT.jpg" alt="Mantenimiento de Infraestructura"></div>
-          <div class="portfolio-info">
-            <div>
-              <span class="badge" style="margin-bottom:8px; display:inline-block;">Hardware &amp; TI</span>
-              <div class="portfolio-title"><a href="mantenimiento.html">Mantenimiento Infraestructura</a></div>
-              <div class="portfolio-desc">Optimización de estaciones de trabajo, proyectores multimedia y despliegue de sistemas operativos.</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="quick-actions" style="margin-top:24px; display:flex; gap:12px;">
-      <a class="btn btn-ghost" href="index.html">← Volver al Dashboard Principal</a>
-      <a class="btn btn-primary" href="exp.html">Ver Experiencia en SEKUNET →</a>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">© 2026 <strong>Josseph Steven Bolsios Cortés</strong> — Portafolio Ejecutivo Cristalizado</div>
-  </footer>
+  <script src="ats-cv.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

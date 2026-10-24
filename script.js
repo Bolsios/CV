@@ -1,72 +1,148 @@
 /* ============================================================
-   CV Josseph Bolsios — script.js
-   Dark Obsidian Glassmorphism & Interactive Modal / Slider
+   CV Josseph Steven Bolsios Cortés — script.js
+   Formix Executive Dark & Volcanic Orange OS (Zero-Scroll + 100% Mobile)
    ============================================================ */
 
-// 1. DETECCION DE IFRAME — Inmediata para evitar flash
+// 1. DETECCIÓN INMEDIATA DE IFRAME
 (function detectIframe() {
   var inModal = window.location.search.indexOf('inModal=true') !== -1;
-  var inFrame = (function() {
-    try { return window.self !== window.top; } catch (e) { return true; }
+  var inFrame = (function () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
   })();
   if (inModal || inFrame) {
     document.documentElement.classList.add('is-iframe');
   }
 })();
 
-document.addEventListener('DOMContentLoaded', function() {
+// 2. CONMUTADOR DE VISTAS FORMIX ZERO-SCROLL (0..3)
+window.switchCockpitView = function (viewIndex) {
+  var views = document.querySelectorAll('.cockpit-view');
+  var navLinks = document.querySelectorAll('.formix-nav-pill button.formix-nav-link');
+  var mobSubtabs = document.getElementById('mobileSubtabs');
+
+  views.forEach(function (v, idx) {
+    v.classList.toggle('active', idx === viewIndex);
+  });
+
+  navLinks.forEach(function (link, idx) {
+    link.classList.toggle('active', idx === viewIndex);
+  });
+
+  if (mobSubtabs) {
+    mobSubtabs.classList.toggle('hidden-on-subview', viewIndex !== 0);
+  }
+
+  // Asegurar reproducción fluida del video ilustrativo al abrir "Estudios & Títulos"
+  var eduVid = document.getElementById('eduShowcaseVideo');
+  if (eduVid && viewIndex === 3) {
+    eduVid.play().catch(function () {});
+  }
+};
+
+// 2B. CONTROL INTERACTIVO DE CAPÍTULOS DEL VIDEO ILUSTRATIVO (VISTA 04)
+window.seekEduVideo = function (chapIndex) {
+  var eduVid = document.getElementById('eduShowcaseVideo');
+  if (!eduVid) return;
+  eduVid.currentTime = chapIndex * 4.0 + 0.05;
+  eduVid.play().catch(function () {});
+  updateEduVideoButtons(chapIndex);
+};
+
+function updateEduVideoButtons(activeIdx) {
+  var btns = document.querySelectorAll('.edu-chap-btn');
+  btns.forEach(function (btn, idx) {
+    var isAct = idx === activeIdx;
+    btn.classList.toggle('active', isAct);
+    btn.style.background = isAct ? 'rgba(255,81,26,0.16)' : 'rgba(255,255,255,0.04)';
+    btn.style.borderColor = isAct ? 'var(--orange-core)' : 'rgba(255,255,255,0.08)';
+    btn.style.color = isAct ? '#ffffff' : 'var(--text-secondary)';
+    btn.style.fontWeight = isAct ? '700' : '600';
+  });
+}
+
+// 3. CONMUTADOR DE SUB-SECCIONES EN CELULAR (VISTA 01)
+window.switchMobCol = function (colIndex) {
+  var col0 = document.getElementById('mob-col-0');
+  var colEclipse = document.getElementById('mob-col-eclipse');
+  var col1 = document.getElementById('mob-col-1');
+  var col2 = document.getElementById('mob-col-2');
+  var btns = document.querySelectorAll('.mob-sub-btn');
+
+  if (col0) col0.classList.toggle('mob-active', colIndex === 0);
+  if (colEclipse) colEclipse.classList.toggle('mob-active', colIndex === 0);
+  if (col1) col1.classList.toggle('mob-active', colIndex === 1);
+  if (col2) col2.classList.toggle('mob-active', colIndex === 2);
+
+  btns.forEach(function (btn, idx) {
+    btn.classList.toggle('active', idx === colIndex);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', function () {
   var isIframe = document.documentElement.classList.contains('is-iframe');
 
-  // Paginas principales que navegan completo vs sub-paginas que abren en modal interactivo
-  var mainPages = ['index.html', 'exp.html', 'portfolio.html'];
-
-  // 2. MODAL GLOBAL DE IFRAME
+  // 4. MODAL GLOBAL DE IFRAME PARA SUB-PÁGINAS DE PROYECTOS Y CERTIFICADOS
   if (!isIframe) {
     if (!document.getElementById('globalIframeModal')) {
-      document.body.insertAdjacentHTML('beforeend',
+      var modalHTML =
         '<div class="modal-overlay" id="globalIframeModal">' +
-          '<div class="modal-card" id="globalModalCard" style="padding:0; overflow:hidden;">' +
-            '<button class="modal-close" id="closeGlobalIframeBtn" title="Cerrar vista">&times;</button>' +
-            '<div style="flex:1;overflow:hidden;border-radius:20px;">' +
-              '<iframe id="globalIframe" src="" style="width:100%;height:100%;border:none;background:#060a15;"></iframe>' +
+          '<div class="modal-card" style="padding:0; overflow:hidden;">' +
+            '<button class="modal-close" id="closeGlobalIframeBtn" aria-label="Cerrar ventana">&times;</button>' +
+            '<div style="flex:1; width:100%; height:100%; overflow:hidden; border-radius:18px; background:#0c0c10;">' +
+              '<iframe id="globalIframe" src="" style="width:100%; height:100%; border:none; background:#0c0c10;"></iframe>' +
             '</div>' +
           '</div>' +
-        '</div>');
+        '</div>';
+      document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 
-    var modal    = document.getElementById('globalIframeModal');
-    var iframe   = document.getElementById('globalIframe');
+    var modal = document.getElementById('globalIframeModal');
+    var iframe = document.getElementById('globalIframe');
     var closeBtn = document.getElementById('closeGlobalIframeBtn');
 
     function openIframeModal(href) {
-      iframe.src = href + (href.indexOf('?') !== -1 ? '&' : '?') + 'inModal=true';
+      var sep = href.indexOf('?') !== -1 ? '&' : '?';
+      iframe.src = href + sep + 'inModal=true';
       modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
     }
 
     function closeIframeModal() {
       modal.classList.remove('active');
-      document.body.style.overflow = '';
-      setTimeout(function() { iframe.src = ''; }, 300);
+      setTimeout(function () {
+        iframe.src = '';
+      }, 250);
     }
 
-    closeBtn.addEventListener('click', closeIframeModal);
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) closeIframeModal();
-    });
-    document.addEventListener('keydown', function(e) {
+    if (closeBtn) closeBtn.addEventListener('click', closeIframeModal);
+    if (modal) {
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeIframeModal();
+      });
+    }
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeIframeModal();
     });
 
-    document.querySelectorAll('a').forEach(function(link) {
+    // Interceptar enlaces a sub-páginas .html locales (excepto páginas principales y el demo independiente de NEXTIME Pro)
+    var rootPages = ['index.html', 'exp.html', 'portfolio.html', 'nextime.html'];
+    document.querySelectorAll('a').forEach(function (link) {
       var href = link.getAttribute('href');
       if (!href) return;
-      var cleanHref = href.split('?')[0].split('#')[0];
-      var isLocalHtml = cleanHref.endsWith('.html') && !href.startsWith('http') && !href.startsWith('//');
-      var isMainPage = mainPages.indexOf(cleanHref) !== -1 && !link.hasAttribute('data-modal');
+      var cleanHref = href.split('#')[0].split('?')[0];
+      var isRootPage = rootPages.indexOf(cleanHref) !== -1;
 
-      if (isLocalHtml && !isMainPage) {
-        link.addEventListener('click', function(e) {
+      if (
+        cleanHref.endsWith('.html') &&
+        !isRootPage &&
+        !href.startsWith('http') &&
+        !href.startsWith('//') &&
+        !link.hasAttribute('download')
+      ) {
+        link.addEventListener('click', function (e) {
           if (e.ctrlKey || e.metaKey || e.button === 1) return;
           e.preventDefault();
           openIframeModal(href);
@@ -75,187 +151,145 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 3. MODAL DE CONTACTO
-  var openContactBtns = document.querySelectorAll('#openContactBtn, .js-open-contact');
+  // 5. MODAL DE CONTACTO
+  var eduVid = document.getElementById('eduShowcaseVideo');
+  if (eduVid) {
+    eduVid.addEventListener('timeupdate', function () {
+      var idx = Math.floor(eduVid.currentTime / 4.0) % 6;
+      updateEduVideoButtons(idx);
+    });
+  }
+
   var closeContactBtn = document.getElementById('closeContactBtn');
-  var contactModal    = document.getElementById('contactModal');
-  if (openContactBtns.length > 0 && contactModal) {
-    openContactBtns.forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
+  var contactModal = document.getElementById('contactModal');
+  var contactTriggers = document.querySelectorAll('#openContactBtn, .js-open-contact');
+
+  if (contactModal) {
+    contactTriggers.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
         e.preventDefault();
         contactModal.classList.add('active');
       });
     });
+
     if (closeContactBtn) {
-      closeContactBtn.addEventListener('click', function() {
+      closeContactBtn.addEventListener('click', function () {
         contactModal.classList.remove('active');
       });
     }
-    contactModal.addEventListener('click', function(e) {
+
+    contactModal.addEventListener('click', function (e) {
       if (e.target === contactModal) contactModal.classList.remove('active');
     });
   }
 
-  // 4. SCROLL SUAVE PARA ANCLAS
-  var navbar  = document.querySelector('.navbar');
-  var navbarH = navbar ? navbar.offsetHeight : 76;
-  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      var href = link.getAttribute('href');
-      if (!href || href === '#') return;
-      var target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        window.scrollTo({ top: target.offsetTop - navbarH - 16, behavior: 'smooth' });
-      }
-    });
-  });
-
-  // 5. NAVBAR SCROLL — Mantener efecto cristal oscuro
-  if (navbar) {
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 40) {
-        navbar.style.background = 'rgba(4, 8, 18, 0.88)';
-        navbar.style.boxShadow  = '0 12px 36px rgba(0, 0, 0, 0.65)';
-      } else {
-        navbar.style.background = 'rgba(6, 10, 22, 0.72)';
-        navbar.style.boxShadow  = '0 10px 30px rgba(0, 0, 0, 0.45)';
-      }
-    });
-  }
-
-  // 6. SLIDER TIPO PRESENTACION — Corta cada 2 parrafos o en cada H3/DIV
+  // 6. SLIDER DE DIAPOSITIVAS EN SUB-PÁGINAS (.description)
   var desc = document.querySelector('.description');
   if (desc && !desc.querySelector('.pres-slider')) {
-    var children = Array.from(desc.children);
-    desc.innerHTML = '';
+    var mainTitle = desc.querySelector('h2');
+    var rawNodes = Array.from(desc.children);
+    var groups = [];
+    var currentGroup = [];
 
-    var groups  = [];
-    var current = [];
-    var pCount  = 0;
+    rawNodes.forEach(function (node) {
+      if (node === mainTitle) return;
+      var tag = node.tagName;
+      if ((tag === 'H3' || tag === 'DIV') && currentGroup.length > 0) {
+        groups.push(currentGroup);
+        currentGroup = [];
+      }
+      currentGroup.push(node);
+    });
+    if (currentGroup.length > 0) {
+      groups.push(currentGroup);
+    }
 
-    children.forEach(function(child) {
-      var tag = child.tagName;
-      var isH3  = (tag === 'H3');
-      var isDiv = (tag === 'DIV' && !child.classList.contains('tech-tag-container'));
-      var is2P  = (tag === 'P' && pCount >= 2 && current.length > 0);
+    if (groups.length > 1) {
+      desc.innerHTML = '';
 
-      if ((isH3 || isDiv || is2P) && current.length > 0) {
-        groups.push(current);
-        current = [];
-        pCount  = 0;
+      var slider = document.createElement('div');
+      slider.className = 'pres-slider';
+
+      var track = document.createElement('div');
+      track.className = 'pres-track';
+
+      groups.forEach(function (group, idx) {
+        var slide = document.createElement('div');
+        slide.className = 'pres-slide';
+
+        var badge = document.createElement('span');
+        badge.className = 'slide-num';
+        badge.textContent = 'SECCIÓN 0' + (idx + 1) + ' / 0' + groups.length;
+        slide.appendChild(badge);
+
+        if (idx === 0 && mainTitle) {
+          slide.appendChild(mainTitle.cloneNode(true));
+        }
+
+        group.forEach(function (el) {
+          slide.appendChild(el);
+        });
+
+        track.appendChild(slide);
+      });
+
+      slider.appendChild(track);
+
+      var controls = document.createElement('div');
+      controls.className = 'pres-controls';
+
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'pres-btn';
+      prevBtn.innerHTML = '&#8592;';
+      prevBtn.setAttribute('aria-label', 'Anterior');
+
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'pres-btn';
+      nextBtn.innerHTML = '&#8594;';
+      nextBtn.setAttribute('aria-label', 'Siguiente');
+
+      var dotsWrap = document.createElement('div');
+      dotsWrap.className = 'pres-dots';
+
+      var currentIdx = 0;
+      var dots = groups.map(function (_, i) {
+        var d = document.createElement('button');
+        d.className = 'pres-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Ir a sección ' + (i + 1));
+        d.addEventListener('click', function () {
+          goToSlide(i);
+        });
+        dotsWrap.appendChild(d);
+        return d;
+      });
+
+      function goToSlide(index) {
+        if (index < 0) index = groups.length - 1;
+        if (index >= groups.length) index = 0;
+        currentIdx = index;
+        track.style.transform = 'translateX(-' + currentIdx * 100 + '%)';
+        dots.forEach(function (d, i) {
+          d.classList.toggle('active', i === currentIdx);
+        });
       }
 
-      if (tag === 'P') pCount++;
-      current.push(child);
-    });
-    if (current.length > 0) groups.push(current);
-
-    if (groups.length === 1 && groups[0].filter(function(el) { return el.tagName === 'P'; }).length > 2) {
-      var allChildren = groups[0];
-      groups  = [];
-      current = [];
-      pCount  = 0;
-
-      allChildren.forEach(function(child) {
-        if (child.tagName === 'P' && pCount >= 2 && current.length > 0) {
-          groups.push(current);
-          current = [];
-          pCount  = 0;
-        }
-        if (child.tagName === 'P') pCount++;
-        current.push(child);
+      prevBtn.addEventListener('click', function () {
+        goToSlide(currentIdx - 1);
       });
-      if (current.length > 0) groups.push(current);
-    }
-
-    var slider = document.createElement('div');
-    slider.className = 'pres-slider';
-
-    var track = document.createElement('div');
-    track.className = 'pres-track';
-    slider.appendChild(track);
-
-    var slides = groups.map(function(group, i) {
-      var slide = document.createElement('div');
-      slide.className = 'pres-slide';
-
-      var num = document.createElement('span');
-      num.className = 'slide-num';
-      num.textContent = 'Diapositiva ' + (i + 1) + ' de ' + groups.length;
-      slide.appendChild(num);
-
-      group.forEach(function(el) { slide.appendChild(el); });
-      track.appendChild(slide);
-      return slide;
-    });
-
-    var controls = document.createElement('div');
-    controls.className = 'pres-controls';
-
-    var prevBtn = document.createElement('button');
-    prevBtn.className = 'pres-btn pres-prev';
-    prevBtn.innerHTML = '&#8592;';
-    prevBtn.setAttribute('aria-label', 'Anterior');
-
-    var dotsWrap = document.createElement('div');
-    dotsWrap.className = 'pres-dots';
-
-    var nextBtn = document.createElement('button');
-    nextBtn.className = 'pres-btn pres-next';
-    nextBtn.innerHTML = '&#8594;';
-    nextBtn.setAttribute('aria-label', 'Siguiente');
-
-    var dots = slides.map(function(slide, i) {
-      var dot = document.createElement('button');
-      dot.className = 'pres-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-      dotsWrap.appendChild(dot);
-      return dot;
-    });
-
-    controls.appendChild(prevBtn);
-    controls.appendChild(dotsWrap);
-    controls.appendChild(nextBtn);
-    slider.appendChild(controls);
-    desc.appendChild(slider);
-
-    var currentIdx = 0;
-
-    function goTo(idx) {
-      if (idx < 0) idx = slides.length - 1;
-      if (idx >= slides.length) idx = 0;
-      currentIdx = idx;
-      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
-      dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
-      slides.forEach(function(s) {
-        var n = s.querySelector('.slide-num');
-        if (n) n.textContent = 'Diapositiva ' + (currentIdx + 1) + ' de ' + slides.length;
+      nextBtn.addEventListener('click', function () {
+        goToSlide(currentIdx + 1);
       });
+
+      controls.appendChild(prevBtn);
+      controls.appendChild(dotsWrap);
+      controls.appendChild(nextBtn);
+
+      slider.appendChild(controls);
+      desc.appendChild(slider);
     }
-
-    prevBtn.addEventListener('click', function() { goTo(currentIdx - 1); });
-    nextBtn.addEventListener('click', function() { goTo(currentIdx + 1); });
-    dots.forEach(function(dot, i) { dot.addEventListener('click', function() { goTo(i); }); });
-
-    var touchX = 0;
-    track.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', function(e) {
-      var diff = touchX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) goTo(diff > 0 ? currentIdx + 1 : currentIdx - 1);
-    }, { passive: true });
-
-    document.addEventListener('keydown', function(e) {
-      if (!document.documentElement.classList.contains('is-iframe')) return;
-      if (e.key === 'ArrowRight') goTo(currentIdx + 1);
-      if (e.key === 'ArrowLeft')  goTo(currentIdx - 1);
-    });
   }
-
-  // 7. STAGGER ANIMACIONES
-  document.querySelectorAll('.list-item').forEach(function(el, i) {
-    el.style.animationDelay = (i * 0.08) + 's';
-  });
 });
 
-window.populateDemo = function(p) { console.log('populateDemo', p); };
+window.populateDemo = function (payload) {
+  console.log('populateDemo called', payload);
+};

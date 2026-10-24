@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nextime PRO V21.1.0 — Demo Interactivo (Simulación Autónoma)</title>
+  <style>
+    :root {
+      --primary: #f97316;
+      --primary-hover: #ea580c;
+      --primary-light: rgba(249, 115, 22, 0.15);
+      --bg-black: #000000;
+      --bg-main: #121214;
+      --bg-card: #18181b;
+      --bg-card-dark: #09090b;
+      --bg-card-light: #27272a;
+      --text-white: #ffffff;
+      --text-gray: #a1a1aa;
+      --text-dark: #18181b;
+      --border-dark: #27272a;
+      --border-light: #e4e4e7;
+      --color-blue: #0284c7;
+      --color-blue-hover: #0369a1;
+      --color-green: #84cc16;
+      --color-red: #ef4444;
+      --color-gray-btn: #52525b;
+      --base-scale: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-black);
+      color: var(--text-white);
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      font-size: calc(14px * var(--base-scale));
+    }
+
+    /* Barra Superior de Ventana Nextime PRO */
+    .window-titlebar {
+      height: 36px;
+      background-color: #050507;
+      border-bottom: 1px solid #1c1c1f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 14px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+    }
+
+    .titlebar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+
+    .demo-badge {
+      background: rgba(249, 115, 22, 0.18);
+      border: 1px solid #f97316;
+      color: #fb923c;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+
+    .window-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .win-circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Layout Principal */
+    .app-layout {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      padding-top: 36px;
+      background-color: var(--bg-black);
+    }
+
+    /* Sidebar Original de Nextime PRO V21.1.0 */
+    .sidebar {
+      width: 250px;
+      min-width: 250px;
+      background-color: var(--bg-black);
+      display: flex;
+      flex-direction: column;
+      padding: 12px 14px;
+      border-right: 1px solid #1c1c1f;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-left: 4px;
+    }
+
+    .nextime-brand-box {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: 0 0 14px rgba(249, 115, 22, 0.45);
+    }
+
+    .nextime-brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+
+    .nextime-brand-title span {
+      color: var(--primary);
+    }
+
+    .sidebar-group-title {
+      color: #71717a;
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      padding-left: 8px;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: var(--text-white);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background-color 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      background-color: #18181b;
+    }
+
+    .nav-btn.active {
+      background-color: var(--primary);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(249, 115, 22, 0.4);
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    /* Footer del Sidebar */
+    .sidebar-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid #1c1c1f;
+    }
+
+    .user-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-ava {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #27272a;
+      border: 1.5px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: #fff;
+    }
+
+    .user-badge-welcome {
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: block;
+    }
+
+    .user-badge-email {
+      color: var(--text-white);
+      font-size: 0.75rem;
+      display: block;
+    }
+
+    .sidebar-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .font-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .ia-toggle-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 34px;
+      height: 18px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; inset: 0;
+      background-color: #3f3f46; transition: .3s; border-radius: 18px;
+    }
+    .slider:before {
+      position: absolute; content: ""; height: 12px; width: 12px;
+      left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%;
+    }
+    input:checked + .slider { background-color: var(--primary); }
+    input:checked + .slider:before { transform: translateX(16px); }
+
+    .btn-version-pill {
+      width: 100%;
+      background: #18181b;
+      border: 1px solid #27272a;
+      color: #a1a1aa;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .btn-version-pill:hover {
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Área Principal de Contenido */
+    .main-content {
+      flex: 1;
+      background-color: var(--bg-main);
+      border-top-left-radius: 16px;
+      padding: 18px 22px;
+      overflow-y: auto;
+      height: calc(100vh - 36px);
+    }
+
+    .view-section {
+      display: none;
+      height: 100%;
+    }
+    .view-section.active {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* VISTA 1: BITÁCORA */
+    .bitacora-grid {
+      display: grid;
+      grid-template-columns: 295px 1fr;
+      gap: 18px;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .bitacora-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-clock, .card-physical {
+      background-color: var(--bg-black);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .card-clock { text-align: center; }
+
+    .clock-display {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .clock-sync {
+      font-size: 0.85rem;
+      color: var(--color-blue);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .clock-sync span { color: #fff; }
+
+    .status-btn-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .btn-status-action {
+      flex: 1;
+      padding: 9px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #fff;
+      background-color: var(--color-blue);
+      cursor: pointer;
+    }
+    .btn-status-action.paused {
+      background-color: #3f3f46;
+    }
+
+    .btn-lunch-action {
+      width: 100%;
+      padding: 9px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #fff;
+      background-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .card-physical-title {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .physical-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .btn-physical-task {
+      background-color: #3f3f46;
+      color: #fff;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 7px 6px;
+      font-size: 0.76rem;
+      cursor: pointer;
+    }
+    .btn-physical-task:hover, .btn-physical-task.selected {
+      background-color: #52525b;
+      border-color: var(--primary);
+    }
+
+    .physical-dropdown-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .physical-select {
+      flex: 1;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      color: #fff;
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 0.8rem;
+    }
+
+    .btn-physical-toggle {
+      background: var(--color-green);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .btn-physical-toggle.running {
+      background: var(--color-red);
+      color: #fff;
+    }
+
+    .physical-timer-text {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #a1a1aa;
+    }
+    .physical-timer-text span {
+      color: #fff;
+      font-weight: 700;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+
+    .btn-manual-entry-open {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: var(--color-blue);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Tabla Derecha de Bitácora */
+    .bitacora-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 0;
+    }
+
+    .history-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .history-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .date-pill-input, .filter-input {
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      color: #fff;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+    }
+
+    .role-pill {
+      background: var(--primary);
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .history-table-card {
+      background: #ffffff;
+      color: #18181b;
+      border-radius: 10px;
+      flex: 1;
+      overflow-y: auto;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .history-table th {
+      background: #f4f4f5;
+      color: #18181b;
+      font-weight: 700;
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 2px solid #e4e4e7;
+      position: sticky;
+      top: 0;
+    }
+
+    .history-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #e4e4e7;
+      color: #27272a;
+    }
+
+    .history-table tr:hover td {
+      background: #fff7ed;
+    }
+
+    .cat-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: #ffedd5;
+      color: #c2410c;
+    }
+
+    /* VISTAS DE ESTADÍSTICAS */
+    .stats-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: var(--bg-black);
+      border: 1px solid var(--border-dark);
+      padding: 10px 16px;
+      border-radius: 12px;
+    }
+
+    .stats-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-generate-filter {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .shortcut-pill-group {
+      display: flex;
+      gap: 4px;
+    }
+
+    .btn-shortcut-pill {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-shortcut-pill.inactive {
+      background: #27272a;
+      color: #a1a1aa;
+    }
+
+    .stats-body {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 16px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .stats-ai-card {
+      background: var(--bg-black);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stats-ai-text {
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: #e4e4e7;
+      overflow-y: auto;
+    }
+
+    .btn-generate-ai {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .stats-charts-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .charts-row-top {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 14px;
+    }
+
+    .chart-card-donut, .chart-card-bars, .chart-card-trend, .chart-card-leaderboard {
+      background: var(--bg-black);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .chart-card-donut {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .donut-legend-table {
+      width: 100%;
+      font-size: 0.78rem;
+      border-collapse: collapse;
+    }
+    .donut-legend-table th {
+      color: #a1a1aa;
+      text-align: left;
+      padding-bottom: 6px;
+      font-weight: 600;
+    }
+    .donut-legend-table td {
+      padding: 4px 0;
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .chart-title-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* Barras Horizontales Interactivas CSS */
+    .bar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .bar-row-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .bar-row-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: #e4e4e7;
+    }
+    .bar-track {
+      width: 100%;
+      height: 8px;
+      background: #27272a;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f97316, #fb923c);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    /* Tabla de Productividad por Técnico */
+    .tech-productivity-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+    .tech-productivity-table th {
+      background: #18181b;
+      color: #a1a1aa;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .tech-productivity-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #27272a;
+    }
+
+    /* VISTA 3: ANOTACIONES */
+    .notes-container {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 16px;
+      height: 100%;
+      min-height: 0;
+    }
+    .notes-left-col, .notes-right-col {
+      background: var(--bg-black);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .notes-actions-row {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-new-note {
+      flex: 1; background: var(--primary); color: #fff; border: none;
+      border-radius: 8px; padding: 8px; font-weight: 700; cursor: pointer;
+    }
+    .btn-delete-note {
+      background: #27272a; color: #ef4444; border: 1px solid #3f3f46;
+      border-radius: 8px; padding: 8px 12px; font-weight: 600; cursor: pointer;
+    }
+    .notes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .note-item {
+      padding: 10px;
+      border-radius: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      cursor: pointer;
+    }
+    .note-item.active {
+      border-color: var(--primary);
+      background: rgba(249, 115, 22, 0.1);
+    }
+    .note-detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .note-title-input {
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      color: #fff;
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      width: 260px;
+    }
+    .note-status-btn-group {
+      display: flex;
+      gap: 6px;
+    }
+    .btn-status-toggle {
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid #3f3f46;
+      background: #18181b;
+      color: #a1a1aa;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-status-toggle.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .note-chat-history {
+      flex: 1;
+      background: #09090b;
+      border: 1px solid #1c1c1f;
+      border-radius: 10px;
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .chat-bubble {
+      background: #18181b;
+      border-left: 3px solid var(--primary);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+    }
+    .chat-bubble small {
+      color: #71717a;
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.7rem;
+    }
+    .note-input-row {
+      display: flex;
+      gap: 8px;
+    }
+    .note-textarea-input {
+      flex: 1;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      color: #fff;
+      border-radius: 8px;
+      padding: 8px 12px;
+      resize: none;
+    }
+    .btn-note-send {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* VISTA 7: MOTOR LOCAL */
+    .motor-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 16px;
+      flex: 1;
+      min-height: 0;
+    }
+    .motor-left-card, .motor-right-card {
+      background: var(--bg-black);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 100%;
+    }
+    .motor-label-orange {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .motor-prompt-textarea {
+      width: 100%;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.82rem;
+      resize: none;
+    }
+    .rule-item {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Modales */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 5000;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-card {
+      background: #121214;
+      border: 1px solid var(--primary);
+      border-radius: 14px;
+      padding: 20px;
+      width: 460px;
+      max-width: 92vw;
+      position: relative;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: #27272a;
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary);
+    }
+    .modal-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .modal-pill-label {
+      background: #27272a;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      min-width: 85px;
+      text-align: center;
+    }
+    .modal-input, .modal-select {
+      flex: 1;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      color: #fff;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 0.82rem;
+    }
+    .modal-submit-btn {
+      float: right;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 22px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 960px) {
+      .app-layout { flex-direction: column; }
+      .sidebar { width: 100%; min-width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; padding: 8px; }
+      .sidebar-group-title, .sidebar-footer { display: none; }
+      .sidebar-nav { flex-direction: row; flex-wrap: wrap; }
+      .nav-btn { width: auto; padding: 6px 10px; font-size: 0.78rem; }
+      .bitacora-grid, .stats-body, .charts-row-top, .notes-container, .motor-container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de Ventana Superior -->
+  <div class="window-titlebar">
+    <div class="titlebar-left">
+      <strong style="color:#fff;">NEXTIME PRO V21.1.0</strong>
+      <span class="demo-badge">SIMULACIÓN INTERACTIVA AUTÓNOMA</span>
+      <span>• Creado por Josseph Steven Bolsios Cortés en SEKUNET S.A.</span>
+    </div>
+    <div class="window-controls">
+      <a href="index.html" style="color:#fb923c; font-size:11.5px; font-weight:700; text-decoration:none; margin-right:10px;">← Volver al CV</a>
+      <span class="win-circle" style="background:#ffbd2e;"></span>
+      <span class="win-circle" style="background:#27c93f;"></span>
+      <span class="win-circle" style="background:#ff5f56;"></span>
+    </div>
+  </div>
+
+  <!-- Layout de la Aplicación -->
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="nextime-brand-box">N</div>
+        <div class="nextime-brand-title">NEXTIME <span>PRO</span></div>
+      </div>
+
+      <div class="sidebar-group-title">Menú principal</div>
+      <div class="sidebar-nav">
+        <button class="nav-btn active" onclick="switchNextimeView('view-bitacora', this)">
+          <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Bitácora
+        </button>
+        <button class="nav-btn" onclick="switchNextimeView('view-mis-estadisticas', this)">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          Mis estadísticas
+        </button>
+        <button class="nav-btn" onclick="switchNextimeView('view-anotaciones', this)">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Anotaciones
+        </button>
+      </div>
+
+      <div class="sidebar-group-title">Sistema (Admin)</div>
+      <div class="sidebar-nav">
+        <button class="nav-btn" onclick="switchNextimeView('view-estadisticas-globales', this)">
+          <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Estadísticas Globales
+        </button>
+        <button class="nav-btn" onclick="switchNextimeView('view-estadisticas-personal', this)">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Estadísticas Personal
+        </button>
+        <button class="nav-btn" onclick="switchNextimeView('view-exportar', this)">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar bitácora
+        </button>
+        <button class="nav-btn" onclick="switchNextimeView('view-motor-local', this)">
+          <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9"/></svg>
+          Configurar motor local
+        </button>
+        <button class="nav-btn" onclick="switchNextimeView('view-gestion-bitacora', this)">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Gestión de bitácora
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <div class="user-ava">CM</div>
+          <div>
+            <span class="user-badge-welcome">Sesión Demo Activa</span>
+            <span class="user-badge-email">carlos.mendez@sekunet.demo</span>
+          </div>
+        </div>
+
+        <div class="sidebar-controls">
+          <button class="font-btn" onclick="changeScale(-0.06)" title="Reducir fuente">A-</button>
+          <button class="font-btn" onclick="changeScale(0.06)" title="Aumentar fuente">A+</button>
+          <div class="ia-toggle-wrapper">
+            <span>Usar IA</span>
+            <label class="switch">
+              <input type="checkbox" id="useAiToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <button class="btn-version-pill" onclick="alert('Nextime Pro V21.1.0 — Creado por Josseph Steven Bolsios Cortés para automatizar bitácoras, medir productividad y optimizar flujos de trabajo en SEKUNET S.A.')">
+          Nextime Pro V21.1.0 • Info
+        </button>
+      </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+
+      <!-- ====================================================
+           VISTA 1: BITÁCORA
+           ==================================================== -->
+      <section class="view-section active" id="view-bitacora">
+        <div class="bitacora-grid">
+
+          <!-- Columna Izquierda: Reloj + Tareas Físicas + Entrada Manual -->
+          <div class="bitacora-left-col">
+            <div class="card-clock">
+              <div class="clock-display" id="liveClock">10:42 am</div>
+              <div class="clock-sync">Sync <span id="syncTimer">14:35</span>m • Estado: <strong id="userStateLabel" style="color:#84cc16;">Activo</strong></div>
+
+              <div class="status-btn-row">
+                <button class="btn-status-action" onclick="setOperatorState('Activo')">Activo</button>
+                <button class="btn-status-action paused" onclick="setOperatorState('En Pausa')">Pausa</button>
+              </div>
+              <button class="btn-lunch-action" id="btnLunch" onclick="toggleLunchState()">Salir a Almuerzo</button>
+            </div>
+
+            <div class="card-physical">
+              <div class="card-physical-title">Tareas físicas</div>
+              <div class="physical-grid" id="physicalGrid">
+                <button class="btn-physical-task selected" onclick="selectPhysicalTask('Ir a Bodega', 'Logística Interna', this)">Ir a Bodega</button>
+                <button class="btn-physical-task" onclick="selectPhysicalTask('Ir al baño', 'Pausa Fisiológica', this)">Ir al baño</button>
+                <button class="btn-physical-task" onclick="selectPhysicalTask('Ir a Ventanilla', 'Atención Mostrador', this)">Ir a Ventanilla</button>
+                <button class="btn-physical-task" onclick="selectPhysicalTask('Reunión Técnica', 'Reunión', this)">Reunión</button>
+                <button class="btn-physical-task" style="grid-column: span 2;" onclick="selectPhysicalTask('In. Diagnóstico Físico RMA', 'Laboratorio RMA', this)">In. Diagnóstico Físico RMA</button>
+              </div>
+
+              <div class="physical-dropdown-row">
+                <select class="physical-select" id="physicalSelect" onchange="syncPhysicalSelect()">
+                  <option value="Ir a Bodega|Logística Interna">Ir a Bodega</option>
+                  <option value="Ir al baño|Pausa Fisiológica">Ir al baño</option>
+                  <option value="Ir a Ventanilla|Atención Mostrador">Ir a Ventanilla</option>
+                  <option value="Reunión Técnica|Reunión">Reunión Técnica</option>
+                  <option value="In. Diagnóstico Físico RMA|Laboratorio RMA">In. Diagnóstico Físico RMA</option>
+                </select>
+                <button class="btn-physical-toggle" id="btnStartPhysical" onclick="togglePhysicalTimer()">Iniciar</button>
+              </div>
+
+              <div class="physical-timer-text">
+                Tiempo utilizado <span id="physicalCounter">00:00:00</span>
+              </div>
+            </div>
+
+            <button class="btn-manual-entry-open" onclick="openModal('manualModal')">+ Entrada Manual</button>
+          </div>
+
+          <!-- Columna Derecha: Historial de Registros -->
+          <div class="bitacora-right-col">
+            <div class="history-topbar">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span class="history-title">Historial de Registros (Tiempo Real)</span>
+                <input type="date" class="date-pill-input" value="2025-05-14">
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:0.75rem; color:#a1a1aa;">ROL</span>
+                <span class="role-pill">Admin / Técnico</span>
+                <button class="btn-generate-filter" style="background:var(--color-blue);" onclick="simulateForceSync()">⚡ Simular Captura IA</button>
+              </div>
+            </div>
+
+            <div class="history-table-card">
+              <table class="history-table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>App / Contexto</th>
+                    <th>Resumen Automático (IA / Motor Local)</th>
+                    <th>Categoría</th>
+                  </tr>
+                </thead>
+                <tbody id="bitacoraTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ====================================================
+           VISTA 2: MIS ESTADÍSTICAS
+           ==================================================== -->
+      <section class="view-section" id="view-mis-estadisticas">
+        <div class="stats-topbar">
+          <div>
+            <strong style="font-size:1rem;">Mis Estadísticas de Productividad</strong>
+            <span style="font-size:0.8rem; color:#a1a1aa; margin-left:10px;">Usuario: carlos.mendez@sekunet.demo</span>
+          </div>
+          <div class="stats-filter-bar">
+            <div class="shortcut-pill-group">
+              <button class="btn-shortcut-pill" onclick="updatePersonalStatsPreset('today', this)">Hoy</button>
+              <button class="btn-shortcut-pill inactive" onclick="updatePersonalStatsPreset('month', this)">Este mes</button>
+              <button class="btn-shortcut-pill inactive" onclick="updatePersonalStatsPreset('year', this)">Este año</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-body">
+          <div class="stats-ai-card">
+            <div>
+              <div style="color:var(--primary); font-weight:700; font-size:0.88rem; margin-bottom:8px;">
+                🤖 Observación Inteligente (IA)
+              </div>
+              <div class="stats-ai-text" id="myAiAnalysisText">
+                <strong>Análisis del periodo actual:</strong><br><br>
+                • El técnico mantiene un índice de efectividad del <strong>86.4%</strong> (7h 45m productivas de 9h registradas).<br><br>
+                • El mayor enfoque estuvo en <strong>Diagnóstico RMA Hikvision (3.2h)</strong> y <strong>Soporte Remoto AnyDesk (2.4h)</strong>.<br><br>
+                • <strong>Sugerencia de flujo:</strong> Se redujo el tiempo de espera en ventanilla un 22% gracias al protocolo de recepción estandarizado.
+              </div>
+            </div>
+            <button class="btn-generate-ai" onclick="generateNewAiInsight('myAiAnalysisText')">
+              ⚡ Generar nuevo análisis con IA
+            </button>
+          </div>
+
+          <div class="stats-charts-col">
+            <div class="charts-row-top">
+              <div class="chart-card-donut">
+                <svg width="115" height="115" viewBox="0 0 36 36" style="flex-shrink:0;">
+                  <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#27272a" stroke-width="4.2"></circle>
+                  <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#ffffff" stroke-width="4.2" stroke-dasharray="86 14" stroke-dashoffset="25"></circle>
+                  <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#f97316" stroke-width="4.2" stroke-dasharray="8 92" stroke-dashoffset="-61"></circle>
+                  <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#84cc16" stroke-width="4.2" stroke-dasharray="3 97" stroke-dashoffset="-69"></circle>
+                  <text x="18" y="20.5" text-anchor="middle" fill="#ffffff" font-size="7" font-weight="700" id="myDonutPct">86%</text>
+                </svg>
+                <table class="donut-legend-table">
+                  <thead><tr><th>Efectividad</th><th>%</th><th>Horas</th></tr></thead>
+                  <tbody>
+                    <tr><td><span class="legend-dot" style="background:#ffffff;"></span>Productivo</td><td id="myLegProdPct">86%</td><td id="myLegProdHrs">07:45h</td></tr>
+                    <tr><td><span class="legend-dot" style="background:#f97316;"></span>Almuerzo</td><td>8%</td><td>00:45h</td></tr>
+                    <tr><td><span class="legend-dot" style="background:#84cc16;"></span>Baño</td><td>3%</td><td>00:16h</td></tr>
+                    <tr><td><span class="legend-dot" style="background:#52525b;"></span>Inactivo</td><td>3%</td><td>00:14h</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="chart-card-bars">
+                <div class="chart-title-row"><span>Top Tareas más Demandantes</span><span>Horas</span></div>
+                <div class="bar-list">
+                  <div class="bar-row-item"><div class="bar-row-head"><span>Diagnóstico Garantías RMA</span><strong>3.2 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:88%;"></div></div></div>
+                  <div class="bar-row-item"><div class="bar-row-head"><span>Soporte Remoto AnyDesk / VLAN</span><strong>2.4 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:68%;"></div></div></div>
+                  <div class="bar-row-item"><div class="bar-row-head"><span>Configuración Biométricos ZKTeco</span><strong>1.3 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:42%;"></div></div></div>
+                  <div class="bar-row-item"><div class="bar-row-head"><span>Capacitación a Integradores</span><strong>0.9 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:28%;"></div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chart-card-trend" style="flex:1; display:flex; flex-direction:column;">
+              <div class="chart-title-row">
+                <span style="color:var(--primary); font-weight:700;">Tendencia Semanal de Horas Productivas</span>
+                <span style="font-size:0.75rem; color:#a1a1aa;">Meta: 8.5h / día</span>
+              </div>
+              <svg viewBox="0 0 600 120" width="100%" height="115" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="nxGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f97316" stop-opacity="0.45"/>
+                    <stop offset="100%" stop-color="#f97316" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,90 L100,65 L200,72 L300,38 L400,45 L500,22 L600,18 L600,120 L0,120 Z" fill="url(#nxGrad)"/>
+                <path d="M0,90 L100,65 L200,72 L300,38 L400,45 L500,22 L600,18" fill="none" stroke="#f97316" stroke-width="3"/>
+                <circle cx="100" cy="65" r="4" fill="#fff"/><circle cx="300" cy="38" r="4" fill="#fff"/><circle cx="500" cy="22" r="4" fill="#fff"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           VISTA 3: ANOTACIONES (CHAT DE SEGUIMIENTO LOCAL)
+           ==================================================== -->
+      <section class="view-section" id="view-anotaciones">
+        <div class="notes-container">
+          <div class="notes-left-col">
+            <div class="notes-actions-row">
+              <button class="btn-new-note" onclick="createNewNote()">+ Nueva Anotación</button>
+            </div>
+            <div class="notes-list" id="notesList"></div>
+          </div>
+
+          <div class="notes-right-col">
+            <div class="note-detail-header">
+              <input type="text" class="note-title-input" id="activeNoteTitle" value="Caso RMA #4082 - NVR Hikvision 32ch" onchange="saveActiveNoteTitle()">
+              <div class="note-status-btn-group">
+                <button class="btn-status-toggle" onclick="setNoteStatus('Nuevo', this)">Nuevo</button>
+                <button class="btn-status-toggle active" onclick="setNoteStatus('En proceso', this)">En proceso</button>
+                <button class="btn-status-toggle" onclick="setNoteStatus('Finalizado', this)">Finalizado</button>
+              </div>
+            </div>
+            <div style="font-size:0.75rem; color:#71717a;" id="activeNoteMeta">Estado: En proceso • Bitácora de seguimiento técnico</div>
+
+            <div class="note-chat-history" id="noteChatBox"></div>
+
+            <div class="note-input-row">
+              <textarea class="note-textarea-input" id="noteChatInput" rows="2" placeholder="Escribe un avance del caso o tarea y presiona Enviar..."></textarea>
+              <button class="btn-note-send" onclick="sendNoteBubble()">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           VISTA 4: ESTADÍSTICAS GLOBALES (ADMIN)
+           ==================================================== -->
+      <section class="view-section" id="view-estadisticas-globales">
+        <div class="stats-topbar">
+          <div>
+            <strong style="font-size:1rem;">Estadísticas Globales del Departamento Técnico</strong>
+            <span class="role-pill" style="margin-left:8px;">5 Técnicos Activos</span>
+          </div>
+          <button class="btn-generate-filter" onclick="generateNewAiInsight('globalAiText')">🔄 Actualizar Métricas</button>
+        </div>
+
+        <div class="stats-body">
+          <div class="stats-ai-card">
+            <div>
+              <div style="color:var(--primary); font-weight:700; font-size:0.88rem; margin-bottom:8px;">
+                📊 Diagnóstico Global IA
+              </div>
+              <div class="stats-ai-text" id="globalAiText">
+                <strong>Resumen del Equipo (Mes Actual):</strong><br><br>
+                • <strong>Efectividad global:</strong> 88.2% en 842 horas registradas.<br><br>
+                • <strong>Impacto de Flujos:</strong> La estandarización de diagnósticos redujo el tiempo promedio por RMA de 48 min a 29 min.<br><br>
+                • <strong>Destacado:</strong> Carlos Méndez y Laura Jiménez lideran la resolución de tickets de Nivel 2/3.
+              </div>
+            </div>
+            <button class="btn-generate-ai" onclick="generateNewAiInsight('globalAiText')">⚡ Generar análisis global</button>
+          </div>
+
+          <div class="stats-charts-col">
+            <div class="chart-card-leaderboard">
+              <div class="chart-title-row">
+                <span style="color:var(--primary); font-weight:700;">Productividad por Técnico (Datos Simulados)</span>
+                <span style="font-size:0.75rem; color:#84cc16;">● Sincronizado con Supabase</span>
+              </div>
+              <table class="tech-productivity-table">
+                <thead>
+                  <tr>
+                    <th>Técnico</th>
+                    <th>Horas Reg.</th>
+                    <th>Horas Prod.</th>
+                    <th>Tiempo Perdido</th>
+                    <th>Productividad</th>
+                    <th>Actividades</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Carlos Méndez</strong></td><td>176.5 h</td><td>158.8 h</td><td>4.2 h</td><td style="color:#84cc16; font-weight:700;">90.0%</td><td>142 registros</td></tr>
+                  <tr><td><strong>Laura Jiménez</strong></td><td>172.0 h</td><td>151.4 h</td><td>5.8 h</td><td style="color:#84cc16; font-weight:700;">88.0%</td><td>136 registros</td></tr>
+                  <tr><td><strong>Andrés Vargas</strong></td><td>168.0 h</td><td>144.5 h</td><td>7.1 h</td><td style="color:#fb923c; font-weight:700;">86.0%</td><td>128 registros</td></tr>
+                  <tr><td><strong>Diego Rojas</strong></td><td>165.5 h</td><td>139.0 h</td><td>8.4 h</td><td style="color:#fb923c; font-weight:700;">84.0%</td><td>119 registros</td></tr>
+                  <tr><td><strong>Sofía Castro</strong></td><td>160.0 h</td><td>142.4 h</td><td>4.9 h</td><td style="color:#84cc16; font-weight:700;">89.0%</td><td>131 registros</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="charts-row-top">
+              <div class="chart-card-bars">
+                <div class="chart-title-row"><span>Distribución por Categoría Global</span><span>Horas</span></div>
+                <div class="bar-list">
+                  <div class="bar-row-item"><div class="bar-row-head"><span>Atención de Tickets &amp; Soporte Remoto</span><strong>312 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:85%;"></div></div></div>
+                  <div class="bar-row-item"><div class="bar-row-head"><span>Diagnóstico Físico &amp; Garantías RMA</span><strong>248 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:70%;"></div></div></div>
+                  <div class="bar-row-item"><div class="bar-row-head"><span>Capacitación de Clientes &amp; Equipo</span><strong>124 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:45%;"></div></div></div>
+                </div>
+              </div>
+
+              <div class="chart-card-bars">
+                <div class="chart-title-row"><span>Aplicaciones más Utilizadas</span><span>% Uso</span></div>
+                <div class="bar-list">
+                  <div class="bar-row-item"><div class="bar-row-head"><span>SADP Tool / iVMS-4200 / Hik-Connect</span><strong>38%</strong></div><div class="bar-track"><div class="bar-fill" style="width:82%;"></div></div></div>
+                  <div class="bar-row-item"><div class="bar-row-head"><span>AnyDesk / WinBox / UniFi Controller</span><strong>31%</strong></div><div class="bar-track"><div class="bar-fill" style="width:68%;"></div></div></div>
+                  <div class="bar-row-item"><div class="bar-row-head"><span>ZKBio CVSecurity / Portal Guías</span><strong>21%</strong></div><div class="bar-track"><div class="bar-fill" style="width:48%;"></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           VISTA 5: ESTADÍSTICAS PERSONAL (ADMIN)
+           ==================================================== -->
+      <section class="view-section" id="view-estadisticas-personal">
+        <div class="stats-topbar">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:0.85rem; color:#a1a1aa;">Seleccionar Empleado:</span>
+            <select class="physical-select" id="empSelect" onchange="switchEmployeeStats()" style="min-width:220px;">
+              <option value="0">Carlos Méndez (Soporte N3 &amp; Redes)</option>
+              <option value="1">Laura Jiménez (Especialista CCTV &amp; RMA)</option>
+              <option value="2">Andrés Vargas (Control Biométrico ZKTeco)</option>
+              <option value="3">Sofía Castro (Soporte Remoto &amp; Guías)</option>
+            </select>
+          </div>
+          <span class="role-pill" id="empScoreBadge">Productividad: 90.0%</span>
+        </div>
+
+        <div class="stats-body">
+          <div class="stats-ai-card">
+            <div class="stats-ai-text" id="empAiBio">
+              <strong>Evaluación Individual — Carlos Méndez:</strong><br><br>
+              Excelente dominio en resolución de enlaces Ubiquiti y configuración de VLANs. Mantiene tiempos de respuesta inferiores a 12 minutos por ticket asignado.
+            </div>
+            <button class="btn-generate-ai" onclick="switchEmployeeStats()">⚡ Auditar desempeño con IA</button>
+          </div>
+
+          <div class="stats-charts-col">
+            <div class="chart-card-bars">
+              <div class="chart-title-row"><span id="empChartTitle">Desglose de Actividades — Carlos Méndez</span><span>Horas Mes</span></div>
+              <div class="bar-list" id="empBarsContainer">
+                <div class="bar-row-item"><div class="bar-row-head"><span>Configuración de Redes &amp; Enlaces Ubiquiti</span><strong>64.0 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:88%;"></div></div></div>
+                <div class="bar-row-item"><div class="bar-row-head"><span>Soporte Remoto Nivel 2/3 (AnyDesk)</span><strong>52.5 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:74%;"></div></div></div>
+                <div class="bar-row-item"><div class="bar-row-head"><span>Diagnóstico en Laboratorio RMA</span><strong>42.3 h</strong></div><div class="bar-track"><div class="bar-fill" style="width:58%;"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           VISTA 6: EXPORTAR BITÁCORA
+           ==================================================== -->
+      <section class="view-section" id="view-exportar">
+        <div class="stats-topbar">
+          <div>
+            <strong>Exportación de Bitácora General (CSV / Excel)</strong>
+            <span style="font-size:0.8rem; color:#a1a1aa; margin-left:8px;">Listo para auditoría</span>
+          </div>
+          <button class="btn-generate-filter" onclick="downloadSimulatedCsv()">📥 Descargar CSV de Prueba</button>
+        </div>
+
+        <div class="history-table-card">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>App / Contexto</th>
+                <th>Resumen (IA)</th>
+                <th>Categoría</th>
+              </tr>
+            </thead>
+            <tbody id="exportPreviewBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           VISTA 7: CONFIGURAR MOTOR LOCAL (ADMIN)
+           ==================================================== -->
+      <section class="view-section" id="view-motor-local">
+        <div class="motor-container">
+          <div class="motor-left-card">
+            <div class="motor-label-orange">Prompt de IA (Instrucción de Resumen Automático)</div>
+            <textarea class="motor-prompt-textarea" rows="5">Eres el motor analítico de NEXTIME PRO en SEKUNET S.A. Resume en una sola oración técnica las ventanas activas utilizadas por el técnico, clasificándolas según el flujo de soporte, RMA, redes o capacitación.</textarea>
+
+            <div class="motor-label-orange" style="margin-top:6px;">Parámetros de Operación del Flujo</div>
+            <div class="modal-row"><span class="modal-pill-label">Jornada (h)</span><input type="number" class="modal-input" value="10"></div>
+            <div class="modal-row"><span class="modal-pill-label">Sync (min)</span><input type="number" class="modal-input" value="15"></div>
+            <div class="modal-row"><span class="modal-pill-label">Inactividad</span><input type="number" class="modal-input" value="5"></div>
+            <button class="btn-generate-ai" onclick="alert('Parámetros del motor guardados correctamente en la simulación.')">💾 Guardar Parámetros</button>
+          </div>
+
+          <div class="motor-right-card">
+            <div class="motor-label-orange">Reglas del Motor Local Híbrido (Clasificación sin IA)</div>
+            <div style="display:flex; flex-direction:column; gap:8px; flex:1; overflow-y:auto;">
+              <div class="rule-item"><div><strong style="color:#fff;">Soporte Remoto &amp; Redes</strong><div style="font-size:0.75rem; color:#a1a1aa;">Palabras clave: anydesk, winbox, putty, unifi, wireshark</div></div><span class="role-pill">Activa</span></div>
+              <div class="rule-item"><div><strong style="color:#fff;">Laboratorio &amp; Garantías RMA</strong><div style="font-size:0.75rem; color:#a1a1aa;">Palabras clave: sadp, ivms-4200, batch config, hitools, rma</div></div><span class="role-pill">Activa</span></div>
+              <div class="rule-item"><div><strong style="color:#fff;">Control de Acceso &amp; Biometría</strong><div style="font-size:0.75rem; color:#a1a1aa;">Palabras clave: zkbio, zktime, inbio, wdms, zkteco</div></div><span class="role-pill">Activa</span></div>
+              <div class="rule-item"><div><strong style="color:#fff;">Capacitación &amp; Documentación</strong><div style="font-size:0.75rem; color:#a1a1aa;">Palabras clave: sekunet.vercel.app, powerpoint, zoom, meet</div></div><span class="role-pill">Activa</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           VISTA 8: GESTIÓN Y AUDITORÍA DE BITÁCORA
+           ==================================================== -->
+      <section class="view-section" id="view-gestion-bitacora">
+        <div class="stats-topbar">
+          <input type="text" id="auditSearch" class="modal-input" placeholder="🔍 Búsqueda inteligente por técnico, app, categoría o resumen..." oninput="renderAuditTable()" style="max-width:420px;">
+          <div style="display:flex; gap:8px;">
+            <button class="btn-generate-filter" style="background:#ef4444;" onclick="deleteSelectedAuditRow()">🗑️ Eliminar Seleccionados</button>
+          </div>
+        </div>
+
+        <div class="history-table-card">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th style="width:40px;">Sel</th>
+                <th>Fecha</th>
+                <th>Técnico</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>App / Contexto</th>
+                <th>Resumen (IA)</th>
+                <th>Categoría</th>
+              </tr>
+            </thead>
+            <tbody id="auditTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL ENTRADA MANUAL -->
+  <div class="modal-overlay" id="manualModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal('manualModal')">✕</button>
+      <div class="modal-title">Agregar Entrada Manual a Bitácora</div>
+
+      <div class="modal-row">
+        <span class="modal-pill-label">Inicio</span>
+        <input type="time" class="modal-input" id="manStart" value="11:00">
+        <span class="modal-pill-label">Fin</span>
+        <input type="time" class="modal-input" id="manEnd" value="11:30">
+      </div>
+
+      <div class="modal-row">
+        <span class="modal-pill-label">Categoría</span>
+        <select class="modal-select" id="manCat">
+          <option value="Soporte Remoto">Soporte Remoto</option>
+          <option value="Laboratorio RMA">Laboratorio RMA</option>
+          <option value="Capacitación">Capacitación</option>
+          <option value="Redes &amp; VLAN">Redes &amp; VLAN</option>
+        </select>
+      </div>
+
+      <div class="modal-row">
+        <span class="modal-pill-label">Actividad</span>
+        <input type="text" class="modal-input" id="manAct" placeholder="Ej: Configuración de enlace Punto a Punto Ubiquiti">
+      </div>
+
+      <div style="overflow:hidden; margin-top:12px;">
+        <button class="modal-submit-btn" onclick="submitManualEntry()">Guardar Registro</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // DATOS INVENTADOS REALISTAS PARA LA SIMULACIÓN DE NEXTIME PRO V21.1.0
+    var BITACORA_LOGS = [
+      { id: 1, user: 'carlos.mendez@sekunet.demo', date: '14/05/2025', start: '07:30', end: '08:15', app: 'iVMS-4200 / SADP Tool', summary: 'Diagnóstico de NVR Hikvision 32 canales, actualización de firmware y prueba de cámaras ColorVu en banco de laboratorio.', cat: 'Laboratorio RMA' },
+      { id: 2, user: 'carlos.mendez@sekunet.demo', date: '14/05/2025', start: '08:15', end: '09:05', app: 'AnyDesk / UniFi Network', summary: 'Asistencia remota a integrador para segmentación de VLAN de videovigilancia y ajuste de potencia en APs Ubiquiti.', cat: 'Soporte Remoto' },
+      { id: 3, user: 'laura.jimenez@sekunet.demo', date: '14/05/2025', start: '09:05', end: '09:50', app: 'ZKBio CVSecurity', summary: 'Configuración de paneles InBio y sincronización de plantillas biométricas faciales SpeedFace V5L.', cat: 'Control de Acceso' },
+      { id: 4, user: 'carlos.mendez@sekunet.demo', date: '14/05/2025', start: '09:50', end: '10:20', app: 'Tarea Física: Ir a Ventanilla', summary: 'Recepción guiada de equipos en garantía aplicando el nuevo flujo de verificación rápida de RMA.', cat: 'Atención Mostrador' },
+      { id: 5, user: 'sofia.castro@sekunet.demo', date: '14/05/2025', start: '10:20', end: '11:05', app: 'sekunet.vercel.app / Zoom', summary: 'Sesión de capacitación técnica a compañeros de soporte sobre uso de guías interactivas 24/7.', cat: 'Capacitación' }
+    ];
+
+    var NOTES_DATA = [
+      {
+        title: 'Caso RMA #4082 - NVR Hikvision 32ch',
+        status: 'En proceso',
+        messages: [
+          { time: '14/05/2025 08:10 am', text: 'Se recibe equipo en laboratorio. Fuente PoE integrada presenta caída de tensión en canales 1 al 8.' },
+          { time: '14/05/2025 09:25 am', text: 'Se realiza medición SMD en etapa secundaria de 48V y reemplazo de mosfet conmutador. En prueba de estrés.' }
+        ]
+      },
+      {
+        title: 'Reforma Flujo de Garantías Ventanilla',
+        status: 'Finalizado',
+        messages: [
+          { time: '12/05/2025 02:15 pm', text: 'Se implementó plantilla rápida de descarte previo antes de ingresar equipo a cola de taller.' }
+        ]
+      }
+    ];
+    var activeNoteIndex = 0;
+
+    // Renderizar Tablas
+    function renderBitacoraTables() {
+      var tbody = document.getElementById('bitacoraTableBody');
+      var expBody = document.getElementById('exportPreviewBody');
+      if (tbody) {
+        tbody.innerHTML = BITACORA_LOGS.map(function (r) {
+          return '<tr>' +
+            '<td>' + r.date + '</td>' +
+            '<td><strong>' + r.start + '</strong></td>' +
+            '<td><strong>' + r.end + '</strong></td>' +
+            '<td>' + r.app + '</td>' +
+            '<td>' + r.summary + '</td>' +
+            '<td><span class="cat-badge">' + r.cat + '</span></td>' +
+          '</tr>';
+        }).join('');
+      }
+      if (expBody) {
+        expBody.innerHTML = BITACORA_LOGS.map(function (r) {
+          return '<tr>' +
+            '<td>' + r.user + '</td>' +
+            '<td>' + r.date + '</td>' +
+            '<td>' + r.start + '</td>' +
+            '<td>' + r.end + '</td>' +
+            '<td>' + r.app + '</td>' +
+            '<td>' + r.summary + '</td>' +
+            '<td><span class="cat-badge">' + r.cat + '</span></td>' +
+          '</tr>';
+        }).join('');
+      }
+      renderAuditTable();
+    }
+
+    function renderAuditTable() {
+      var auditBody = document.getElementById('auditTableBody');
+      var q = (document.getElementById('auditSearch') ? document.getElementById('auditSearch').value : '').toLowerCase();
+      if (!auditBody) return;
+      auditBody.innerHTML = BITACORA_LOGS.filter(function (r) {
+        return !q || (r.user + ' ' + r.app + ' ' + r.summary + ' ' + r.cat).toLowerCase().indexOf(q) !== -1;
+      }).map(function (r) {
+        return '<tr>' +
+          '<td style="text-align:center;"><input type="checkbox" class="audit-chk" value="' + r.id + '"></td>' +
+          '<td>' + r.date + '</td>' +
+          '<td>' + r.user.split('@')[0] + '</td>' +
+          '<td>' + r.start + '</td>' +
+          '<td>' + r.end + '</td>' +
+          '<td>' + r.app + '</td>' +
+          '<td>' + r.summary + '</td>' +
+          '<td><span class="cat-badge">' + r.cat + '</span></td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    function deleteSelectedAuditRow() {
+      var chks = Array.from(document.querySelectorAll('.audit-chk:checked')).map(function (c) { return Number(c.value); });
+      if (!chks.length) {
+        alert('Selecciona al menos una fila con la casilla para eliminar.');
+        return;
+      }
+      BITACORA_LOGS = BITACORA_LOGS.filter(function (r) { return chks.indexOf(r.id) === -1; });
+      renderBitacoraTables();
+    }
+
+    // Cambiar vista del Sidebar
+    function switchNextimeView(viewId, btn) {
+      document.querySelectorAll('.view-section').forEach(function (v) {
+        v.classList.toggle('active', v.id === viewId);
+      });
+      document.querySelectorAll('.sidebar .nav-btn').forEach(function (b) {
+        b.classList.remove('active');
+      });
+      if (btn) btn.classList.add('active');
+    }
+
+    // Escala de fuente A- / A+
+    var currentScale = 1;
+    function changeScale(delta) {
+      currentScale = Math.min(1.18, Math.max(0.88, currentScale + delta));
+      document.documentElement.style.setProperty('--base-scale', currentScale);
+    }
+
+    // Estados Activo / Pausa / Almuerzo
+    function setOperatorState(state) {
+      var lbl = document.getElementById('userStateLabel');
+      if (lbl) {
+        lbl.textContent = state;
+        lbl.style.color = state === 'Activo' ? '#84cc16' : '#f97316';
+      }
+    }
+
+    var inLunch = false;
+    function toggleLunchState() {
+      inLunch = !inLunch;
+      var btn = document.getElementById('btnLunch');
+      if (inLunch) {
+        setOperatorState('En Almuerzo');
+        btn.textContent = 'Regresar de Almuerzo';
+        btn.style.backgroundColor = '#84cc16';
+        btn.style.color = '#000';
+      } else {
+        setOperatorState('Activo');
+        btn.textContent = 'Salir a Almuerzo';
+        btn.style.backgroundColor = '';
+        btn.style.color = '#fff';
+      }
+    }
+
+    // Temporizador de Tareas Físicas
+    var selectedTaskName = 'Ir a Bodega';
+    var selectedTaskCat = 'Logística Interna';
+    var physTimer = null;
+    var physSeconds = 0;
+
+    function selectPhysicalTask(name, cat, btn) {
+      selectedTaskName = name;
+      selectedTaskCat = cat;
+      document.querySelectorAll('.btn-physical-task').forEach(function (b) { b.classList.remove('selected'); });
+      if (btn) btn.classList.add('selected');
+    }
+
+    function syncPhysicalSelect() {
+      var val = document.getElementById('physicalSelect').value.split('|');
+      selectedTaskName = val[0];
+      selectedTaskCat = val[1] || 'Tarea Física';
+    }
+
+    function togglePhysicalTimer() {
+      var btn = document.getElementById('btnStartPhysical');
+      var counter = document.getElementById('physicalCounter');
+      if (!physTimer) {
+        physSeconds = 0;
+        btn.textContent = 'Finalizar';
+        btn.classList.add('running');
+        physTimer = setInterval(function () {
+          physSeconds++;
+          var m = String(Math.floor(physSeconds / 60)).padStart(2, '0');
+          var s = String(physSeconds % 60).padStart(2, '0');
+          counter.textContent = '00:' + m + ':' + s;
+        }, 1000);
+      } else {
+        clearInterval(physTimer);
+        physTimer = null;
+        btn.textContent = 'Iniciar';
+        btn.classList.remove('running');
+        BITACORA_LOGS.unshift({
+          id: Date.now(),
+          user: 'carlos.mendez@sekunet.demo',
+          date: '14/05/2025',
+          start: '10:42',
+          end: '10:45',
+          app: 'Tarea Física: ' + selectedTaskName,
+          summary: 'Actividad física registrada por el operador (' + counter.textContent + '): ' + selectedTaskName + '.',
+          cat: selectedTaskCat
+        });
+        counter.textContent = '00:00:00';
+        renderBitacoraTables();
+      }
+    }
+
+    // Simular Captura con IA (Forzar Sync)
+    var AI_SAMPLES = [
+      { app: 'Wireshark / Putty SSH', summary: 'Análisis de tráfico multicast RTSP y depuración de pérdida de paquetes en enlace troncal de cámaras IP.', cat: 'Redes & VLAN' },
+      { app: 'HiTools / Batch Config', summary: 'Inicialización masiva y carga de plantillas de grabación para lote de 16 cámaras IP domo.', cat: 'Laboratorio RMA' },
+      { app: 'Portal sekunet.vercel.app', summary: 'Actualización de guía interactiva de resolución de fallas para biométricos ZKTeco.', cat: 'Documentación' }
+    ];
+    var sampleIdx = 0;
+
+    function simulateForceSync() {
+      var sample = AI_SAMPLES[sampleIdx % AI_SAMPLES.length];
+      sampleIdx++;
+      BITACORA_LOGS.unshift({
+        id: Date.now(),
+        user: 'carlos.mendez@sekunet.demo',
+        date: '14/05/2025',
+        start: '10:45',
+        end: '11:00',
+        app: sample.app,
+        summary: '[IA Gemini]: ' + sample.summary,
+        cat: sample.cat
+      });
+      renderBitacoraTables();
+    }
+
+    // Modal Entrada Manual
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    function submitManualEntry() {
+      var st = document.getElementById('manStart').value || '11:00';
+      var en = document.getElementById('manEnd').value || '11:30';
+      var cat = document.getElementById('manCat').value;
+      var act = document.getElementById('manAct').value.trim() || 'Revisión técnica manual en laboratorio';
+      BITACORA_LOGS.unshift({
+        id: Date.now(),
+        user: 'carlos.mendez@sekunet.demo',
+        date: '14/05/2025',
+        start: st,
+        end: en,
+        app: 'Entrada Manual',
+        summary: act,
+        cat: cat
+      });
+      document.getElementById('manAct').value = '';
+      closeModal('manualModal');
+      renderBitacoraTables();
+    }
+
+    // Estadísticas e Insights de IA
+    function updatePersonalStatsPreset(preset, btn) {
+      btn.parentElement.querySelectorAll('.btn-shortcut-pill').forEach(function (b) { b.classList.add('inactive'); });
+      btn.classList.remove('inactive');
+      var pct = preset === 'today' ? '86%' : (preset === 'month' ? '89%' : '91%');
+      var hrs = preset === 'today' ? '07:45h' : (preset === 'month' ? '158:20h' : '1,840h');
+      document.getElementById('myDonutPct').textContent = pct;
+      document.getElementById('myLegProdPct').textContent = pct;
+      document.getElementById('myLegProdHrs').textContent = hrs;
+    }
+
+    function generateNewAiInsight(targetId) {
+      var el = document.getElementById(targetId);
+      el.innerHTML = '<em>Procesando registros con el motor de IA de NEXTIME PRO...</em>';
+      setTimeout(function () {
+        el.innerHTML = '<strong>Diagnóstico IA Actualizado:</strong><br><br>' +
+          '• <strong>Eficiencia Operativa:</strong> 91.2% tras la consolidación de los últimos bloques de sincronización.<br><br>' +
+          '• <strong>Patrón Detectado:</strong> Las consultas recurrentes fueron resueltas un 34% más rápido utilizando el portal de autoasistencia 24/7.<br><br>' +
+          '• <strong>Recomendación:</strong> Mantener bloques continuos de laboratorio RMA durante la mañana.';
+      }, 450);
+    }
+
+    // Selector de Empleado en Estadísticas Personal
+    var EMP_PROFILES = [
+      { score: 'Productividad: 90.0%', bio: '<strong>Evaluación Individual — Carlos Méndez:</strong><br><br>Excelente dominio en resolución de enlaces Ubiquiti y configuración de VLANs. Mantiene tiempos de respuesta inferiores a 12 minutos por ticket asignado.', title: 'Desglose de Actividades — Carlos Méndez' },
+      { score: 'Productividad: 88.0%', bio: '<strong>Evaluación Individual — Laura Jiménez:</strong><br><br>Líder en diagnóstico de grabadores NVR/DVR Hikvision y cámaras PTZ en el laboratorio de garantías RMA.', title: 'Desglose de Actividades — Laura Jiménez' },
+      { score: 'Productividad: 86.0%', bio: '<strong>Evaluación Individual — Andrés Vargas:</strong><br><br>Especialista en bases de datos biométricas ZKBio CVSecurity, terminales faciales y controladoras de acceso.', title: 'Desglose de Actividades — Andrés Vargas' },
+      { score: 'Productividad: 89.0%', bio: '<strong>Evaluación Individual — Sofía Castro:</strong><br><br>Alto rendimiento en soporte remoto de primer y segundo nivel y capacitación a nuevos clientes.', title: 'Desglose de Actividades — Sofía Castro' }
+    ];
+
+    function switchEmployeeStats() {
+      var idx = Number(document.getElementById('empSelect').value) || 0;
+      var p = EMP_PROFILES[idx];
+      document.getElementById('empScoreBadge').textContent = p.score;
+      document.getElementById('empAiBio').innerHTML = p.bio;
+      document.getElementById('empChartTitle').textContent = p.title;
+    }
+
+    // Anotaciones Locales
+    function renderNotes() {
+      var list = document.getElementById('notesList');
+      list.innerHTML = NOTES_DATA.map(function (n, idx) {
+        return '<div class="note-item ' + (idx === activeNoteIndex ? 'active' : '') + '" onclick="selectNote(' + idx + ')">' +
+          '<div style="font-weight:700; font-size:0.84rem; color:#fff;">' + n.title + '</div>' +
+          '<div style="font-size:0.72rem; color:#fb923c; margin-top:3px;">● ' + n.status + ' (' + n.messages.length + ' avances)</div>' +
+        '</div>';
+      }).join('');
+
+      var curr = NOTES_DATA[activeNoteIndex];
+      if (curr) {
+        document.getElementById('activeNoteTitle').value = curr.title;
+        document.getElementById('activeNoteMeta').textContent = 'Estado: ' + curr.status + ' • Bitácora de seguimiento técnico';
+        document.getElementById('noteChatBox').innerHTML = curr.messages.map(function (m) {
+          return '<div class="chat-bubble"><small>' + m.time + '</small>' + m.text + '</div>';
+        }).join('');
+      }
+    }
+
+    function selectNote(idx) {
+      activeNoteIndex = idx;
+      renderNotes();
+    }
+
+    function createNewNote() {
+      NOTES_DATA.unshift({
+        title: 'Nuevo Ticket #' + Math.floor(1000 + Math.random() * 9000),
+        status: 'Nuevo',
+        messages: [{ time: 'Hoy 10:45 am', text: 'Anotación creada en el demo interactivo de NEXTIME PRO.' }]
+      });
+      activeNoteIndex = 0;
+      renderNotes();
+    }
+
+    function saveActiveNoteTitle() {
+      if (NOTES_DATA[activeNoteIndex]) {
+        NOTES_DATA[activeNoteIndex].title = document.getElementById('activeNoteTitle').value;
+        renderNotes();
+      }
+    }
+
+    function setNoteStatus(st, btn) {
+      if (NOTES_DATA[activeNoteIndex]) {
+        NOTES_DATA[activeNoteIndex].status = st;
+        btn.parentElement.querySelectorAll('.btn-status-toggle').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderNotes();
+      }
+    }
+
+    function sendNoteBubble() {
+      var inp = document.getElementById('noteChatInput');
+      var txt = inp.value.trim();
+      if (!txt || !NOTES_DATA[activeNoteIndex]) return;
+      NOTES_DATA[activeNoteIndex].messages.push({
+        time: 'Ahora mismo',
+        text: txt
+      });
+      inp.value = '';
+      renderNotes();
+    }
+
+    // Exportar CSV
+    function downloadSimulatedCsv() {
+      var csv = 'Usuario,Fecha,Inicio,Fin,App,Resumen,Categoria\n' +
+        BITACORA_LOGS.map(function (r) {
+          return '"' + r.user + '","' + r.date + '","' + r.start + '","' + r.end + '","' + r.app + '","' + r.summary + '","' + r.cat + '"';
+        }).join('\n');
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'Bitacora_NEXTIME_PRO_Demo.csv';
+      a.click();
+    }
+
+    // Inicialización
+    renderBitacoraTables();
+    renderNotes();
+  </script>
+</body>
+</html>
